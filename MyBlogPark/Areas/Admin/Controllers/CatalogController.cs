@@ -14,7 +14,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         // GET: Admin/Catalog
         public ActionResult Index()
         {
-            return View();
+            var list = dbContext.catalog.ToList();
+            return View(list);
         }
         public ActionResult Add()
         {
@@ -25,8 +26,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<CatalogAdd, Catalog>()
-                );
+              
                 var model = Mapper.Map<Catalog>(info);
                 model.AddTime = DateTime.Now;
                 model.EditTime = DateTime.Now;

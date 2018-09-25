@@ -30,9 +30,6 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => 
-                cfg.CreateMap<BlogApply,Blog>()
-                ) ;
                var model= Mapper.Map<Blog>(info);
                 model.AddTime = DateTime.Now;
                 model.EditTime = DateTime.Now;
@@ -41,13 +38,15 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 dbContext.blog.Add(model);
                 int res = dbContext.SaveChanges();
                 //ToDo: 这里放到事务里面（这里有些不懂的，明天早上再来看看{已经解决}）
-                if (res > 1)
+                if (res > 0)
                 {
-                    LoginUser.BlogId = model.ID;//取到ID
+                    LoginUser.BlogID = model.ID;//取到ID
                     //将要修改的实体附加到上下文中
                     dbContext.user.Attach(LoginUser);
                     //修改实体的状态，改为“修改”状态
                     dbContext.Entry<User>(LoginUser).State = System.Data.Entity.EntityState.Modified;
+                    res = dbContext.SaveChanges();
+
                     Session["LoginBlog"] = model;
                     return Content("申请成功"); 
                 } 

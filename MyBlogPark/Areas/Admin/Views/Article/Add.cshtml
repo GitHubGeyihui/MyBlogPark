@@ -1,0 +1,70 @@
+﻿@model ArticleAdd
+@{
+    ViewBag.Title = "新增栏目";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var catalogList = ViewBag.CatalogList as List<Catalog>;
+    var selectItemList = new List<SelectListItem>();
+    for (int i = 0; i < catalogList.Count; i++)
+    {
+        selectItemList.Add(new SelectListItem() { Text = catalogList[i].Name,Value = catalogList[i].ID.ToString() });
+    }
+} 
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style type="text/css">
+        .field-validation-error {
+            color: pink;
+        }
+    </style>
+}
+<div class="panel-head"><strong><span class="icon-pencil-square-o"></span>  @ViewBag.Title</strong></div>
+<div class="body-content">
+    <form method="post" class="form-x" action="">
+        <div class="form-group">
+            <div class="label">
+                <label>名称 ：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.Title, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+            </div>
+        </div>       
+        <div class="form-group">
+            <div class="label">
+                <label>内容 ：</label>
+            </div>
+            <div class="field">
+                @Html.TextAreaFor(m => m.Content, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Content)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>栏目 ：</label>
+            </div>
+            <div class="field">
+                @*@Html.DropDownList(m => m.Title, selectItemList, new { @class = "input" })*@
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="label">
+                <label></label>
+            </div>
+            <div class="field">
+                <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+            </div>
+        </div>
+    </form>
+</div>

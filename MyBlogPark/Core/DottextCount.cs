@@ -17,5 +17,6 @@ namespace MyBlogPark.Core
         public DbSet<User> user { set; get; }//创建用户表
         public DbSet<Blog> blog { set; get; }//创建博客表
         public DbSet<Catalog> catalog { set; get; }//创建栏目表
+        public DbSet<Article> article { set; get; }//创建随笔表
     }   
 }

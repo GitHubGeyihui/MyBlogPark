@@ -1,6 +1,6 @@
-﻿@model List<Catalog>
+﻿@model List<Article>
 @{
-    ViewBag.Title = "Catalog";
+    ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="/admin/catalog/add"> 新增栏目</a> </li>
+                <li> <a class="button border-main icon-plus-square-o" href="/admin/article/add"> 新增随笔 </a> </li>
                 <li> <a class="button border-main icon-plus-square-o" href="save"> 保存</a> </li>
 
             </ul>
@@ -27,10 +27,9 @@
                 {<tr>
                         <td style="padding-left:20px;">
                             @Model[i].ID
-                        </td>
-                        <td><input type="text" name="sort[1]" value="1" style="width:40px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
+                        </td> 
                         <td>
-                            @Model[i].Name
+                            @Model[i].Title
                         </td>
                         <td> @Model[i].AddTime.ToString("yyyy-MM-dd")</td>
                         <td>
@@ -42,9 +41,7 @@
                             </div>
                         </td>
                     </tr>
-                 }
-
-
+                }
 
                 <tr>
                     <td style="padding-left:21px;">
@@ -135,8 +132,6 @@
             return false;
         }
     }
-
-
     //批量首页显示
     function changeishome(o) {
         var Checkbox = false;
@@ -193,9 +188,7 @@
 
             return false;
         }
-    }
-
-
+    } 
     //批量移动
     function changecate(o) {
         var Checkbox = false;
@@ -244,6 +237,5 @@
             return false;
         }
     }
-
 </script>
 

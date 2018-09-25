@@ -21,7 +21,7 @@ namespace MyBlogPark.Models
         public DateTime AddTime { set; get; }
         public DateTime LastLoginTime { set; get; }
         public int LoginTimes { set; get; } 
-        public int BlogId { set; get; }
+        public int BlogID { set; get; }
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }
 

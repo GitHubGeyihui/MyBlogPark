@@ -1,4 +1,7 @@
-﻿using MyBlogPark.Core;
+﻿using AutoMapper;
+using MyBlogPark.Areas.Admin.ViewModels;
+using MyBlogPark.Core;
+using MyBlogPark.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +25,13 @@ namespace MyBlogPark
                 //数据库不存在则创建
                 var res = dottextCount.Database.CreateIfNotExists();
             }
+            //配置AutoMap 
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CatalogAdd, Catalog>();
+                cfg.CreateMap<BlogApply, Blog>();
+            }
+            );
         }
     }
 }

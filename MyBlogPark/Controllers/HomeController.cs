@@ -34,7 +34,7 @@ namespace MyBlogPark.Controllers
                     AddTime = DateTime.Now,
                     EditTime = DateTime.Now,
                     LoginTimes = 1,
-                    BlogId = 0,
+                    BlogID = 0,
                     LastLoginTime = DateTime.Now,
                     Status = true
                 };
