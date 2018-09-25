@@ -1,0 +1,40 @@
+﻿@model CatalogAdd
+@{
+    ViewBag.Title = "新增栏目";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style type="text/css">
+        .field-validation-error {
+            color: pink;
+        }
+    </style>
+}
+<div class="panel-head"><strong><span class="icon-pencil-square-o"></span>  @ViewBag.Title</strong></div>
+<div class="body-content">
+    <form method="post" class="form-x" action="Apply">
+        <div class="form-group">
+            <div class="label">
+                <label>名称 ：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.Name, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+        </div>  
+        <div class="form-group">
+            <div class="label">
+                <label></label>
+            </div>
+            <div class="field">
+                <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+            </div>
+        </div>
+    </form>
+</div>

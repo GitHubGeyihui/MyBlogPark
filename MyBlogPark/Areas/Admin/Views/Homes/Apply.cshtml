@@ -1,0 +1,99 @@
+﻿@model MyBlogPark.Areas.Admin.ViewModels.BlogApply
+@{
+    ViewBag.Title = "申请博客";
+}
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style type="text/css">
+        .field-validation-error {
+            color: pink;
+        }
+    </style>
+}
+<div class="panel-head"><strong><span class="icon-pencil-square-o"></span>  @ViewBag.Title</strong></div>
+<div class="body-content">
+    <form method="post" class="form-x" action="Apply">
+        <div class="form-group">
+            <div class="label">
+                <label>博客标题：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.Title, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="label">
+                <label>博客标识符：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.Identity, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Identity)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>签名：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.Signal, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.Signal)
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>博主昵称：</label>
+            </div>
+            <div class="field">
+                @Html.TextBoxFor(m => m.NiName, new { @class = "input" })
+                <div class="tips">
+                    @Html.ValidationMessageFor(m => m.NiName)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>博客描述：</label>
+            </div>
+                <div class="field">
+                    @Html.TextAreaFor(m => m.NiName, new { @class = "input" })
+                    <div class="tips">
+                        @Html.ValidationMessageFor(m => m.NiName)
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>皮肤：</label>
+                </div>
+                <div class="field">
+                    @Html.DropDownListFor(m => m.ThemeID, new List<SelectListItem>()
+                        { new SelectListItem() { Text = "默认皮肤" ,Value="1"} }, new {@class="input"})
+                    <div class="tips">
+                        @Html.ValidationMessageFor(m => m.ThemeID)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交申请</button>
+                </div>
+            </div>
+    </form>
+</div>

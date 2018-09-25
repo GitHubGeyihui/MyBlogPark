@@ -1,0 +1,46 @@
+﻿@model UserLogin
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style type="text/css">
+        .field-validation-error {
+            color: pink; 
+        }
+    </style>
+}
+<div class="am-g" style="margin-top:50px;">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <h1 style="text-align:center;">登录</h1>
+        <hr>
+        <form method="post" class="am-form" action="Login">
+            <label for="Name">用户名:</label>
+            @Html.TextBoxFor(m => m.Name, new { @type = "text" })
+            @Html.ValidationMessageFor(m => m.Name)
+            <br>
+            <label for="password">密码:</label>
+            @Html.PasswordFor(m => m.Pwd, new { @type = "password" })
+            @Html.ValidationMessageFor(m => m.Pwd)
+            <br>
+            <label for="ValidateCode">验证码:</label>
+            @Html.TextBoxFor(m => m.ValidateCode, new { @type = "text" })
+            @Html.ValidationMessageFor(m => m.ValidateCode)
+            <br />
+            <label for="remember-me">
+                <input id="remember-me" type="checkbox">
+                记住密码
+            </label>
+            <br />
+            <div class="am-cf">
+                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+                <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
+            </div>
+        </form>
+        <hr>
+    </div>
+</div>

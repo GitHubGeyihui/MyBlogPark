@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/Content/Plugin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/Plugin/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/Plugin/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!-- jQuery 3 -->
+    <script src="~/Content/Plugin/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/Plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/Plugin/dist/js/adminlte.min.js"></script>
+    @*当页面加载完成の时候，在执行下列JS代码*@
+    <script type="text/javascript">
+        $(function () {
+            $(".sidebar-menu .treeview-menu a").on("click", function () { //赋予标签，样式以click事件　
+                alter(11);//执行。。。。
+                $('Iframe').attr("src", $(this).attr('href'));//取当前标签的属性给Iframe
+                return false; //不要再往下跳转
+            });
+            $("#Iframe").height($(".content-wrapper").height)//让Iframe的高度等于它父级的高度
+            $("#Iframe").width($(".content-wrapper").width)//让Iframe的宽度等于它父级的宽度
+        });
+                //通过js来控制iframe的宽度和高度 同事通过js来修改iframe的src属性 达到动态修改。
+    </script>
+    @RenderSection("Header", required: false)
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+            @RenderBody()   
+</body>
+</html>
