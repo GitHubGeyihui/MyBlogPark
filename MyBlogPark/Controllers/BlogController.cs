@@ -16,7 +16,7 @@ namespace MyBlogPark.Controllers
             var model = dbContext.blog.Where(m => m.Identity.ToLower() == blog.ToLower()).FirstOrDefault();
             if (model == null)
             {
-                return Content("用户不存在");
+                return Content("博客不存在");
             }
             return View(model);
         }
@@ -28,9 +28,10 @@ namespace MyBlogPark.Controllers
             {
                 return Content("博文不存在"); 
             }
+
         //在判断文章存不存在
             var model = dbContext.article.Where(m => m.ID == id).FirstOrDefault();
-            if (model!= null)
+            if (model == null)
             {
                 return Content("博文不存在");
             }

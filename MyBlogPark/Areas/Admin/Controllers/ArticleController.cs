@@ -39,9 +39,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 int res = dbContext.SaveChanges();
                 if (res > 0)
                 {
-                    return Redirect(string.Format("/{0}/p/{1}.html",LoginBlog.Identity,model.ID));
-                }
+                    return Redirect(string.Format("/{0}/p/{1}.html", LoginBlog.Identity, model.ID));
 
+                }
             }
             return View(info);
         }

@@ -1,9 +1,10 @@
-﻿@model Article
+﻿@model  Article
 @{
-    ViewBag.Title = Model.Title;
-    Layout = "~/Views/Blog/_Layout.cshtml";
-}
 
+    Layout = "~/Views/Blog/_Layout.cshtml";
+    ViewBag.Title = Model.Title;
+}
+ 
 @section scripts{
     <style>
         @@media only screen and (min-width: 1200px) {

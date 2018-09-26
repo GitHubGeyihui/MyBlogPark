@@ -10,15 +10,13 @@
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
                 <li> <a class="button border-main icon-plus-square-o" href="/admin/article/add"> 新增随笔 </a> </li>
-                <li> <a class="button border-main icon-plus-square-o" href="save"> 保存</a> </li>
 
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th style="width:5% ;padding-left:20px;">ID</th>
-                <th width="10%">排序</th>
-                <th width="10%">分类名称</th>
+                <th style="width:20% ;padding-left:10px;">ID</th>
+                <th width="30%">标题  </th>
                 <th width="10%">更新时间</th>
                 <th width="10%">操作</th>
             </tr>
@@ -27,10 +25,10 @@
                 {<tr>
                         <td style="padding-left:20px;">
                             @Model[i].ID
-                        </td> 
+                        </td>   
                         <td>
                             @Model[i].Title
-                        </td>
+                        </td> 
                         <td> @Model[i].AddTime.ToString("yyyy-MM-dd")</td>
                         <td>
                             <div class="button-group">
@@ -43,16 +41,6 @@
                     </tr>
                 }
 
-                <tr>
-                    <td style="padding-left:21px;">
-                        <input type="checkbox" id="checkall" />
-                        全选
-                    </td>
-                    <td colspan="7" style="text-align:left;padding-left:20px;">
-                        <a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()">
-                            删除
-                        </a>
-                </tr>
                 <tr>
                     <td colspan="8">
                         <div class="pagelist" style="text-align:left;">
@@ -188,7 +176,7 @@
 
             return false;
         }
-    } 
+    }
     //批量移动
     function changecate(o) {
         var Checkbox = false;

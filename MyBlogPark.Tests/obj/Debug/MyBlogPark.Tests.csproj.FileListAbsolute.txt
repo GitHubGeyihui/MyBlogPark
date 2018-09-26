@@ -20,8 +20,8 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Deploy
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.Optimization.dll
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.dll
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.ValueTuple.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBlogPark.pdb
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBlogPark.dll.config
@@ -35,9 +35,9 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.Optimization.xml
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.pdb
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.xml
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.ValueTuple.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\zh-Hans\System.Web.Helpers.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
