@@ -1,12 +1,12 @@
 ﻿@model ArticleAdd
 @{
-    ViewBag.Title = "新增栏目";
+    ViewBag.Title = "新增随笔";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var catalogList = ViewBag.CatalogList as List<Catalog>;
     var selectItemList = new List<SelectListItem>();
-    for (int i = 0; i < catalogList.Count; i++)
+    for (int i = 0;i < catalogList.Count;i++)
     {
-        selectItemList.Add(new SelectListItem() { Text = catalogList[i].Name,Value = catalogList[i].ID.ToString() });
+        selectItemList.Add(new SelectListItem() { Text = catalogList[i].Name,Value = catalogList[i].ID.ToString()});
     }
 } 
 @section scripts{
@@ -50,7 +50,7 @@
                 <label>栏目 ：</label>
             </div>
             <div class="field">
-                @*@Html.DropDownList(m => m.Title, selectItemList, new { @class = "input" })*@
+                @Html.DropDownListFor(m=>m.Title ,selectItemList, new { @class = "input" })
                 <div class="tips">
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>

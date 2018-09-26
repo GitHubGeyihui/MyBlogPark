@@ -17,7 +17,14 @@ namespace MyBlogPark
               name: "Blog",
               url: "{blog}",
               defaults: new { controller = "Blog", action = "Index" }
-          );
+          );//博客的路由
+
+            routes.MapRoute(
+            name: "BlogArticle",
+            url: "{blog}/p/{id}.html",
+            defaults: new { controller = "Blog", action = "Article" },
+            constraints: new { id="\\d+"}
+        );//博文的路由
 
             routes.MapRoute(
                 name: "Default",

@@ -11,12 +11,10 @@ namespace MyBlogPark.Models
         public int ID { set; get; }
         public int CatalogID { set; get; }
         [StringLength(100)]
-        public string Title { set; get; }
-
+        public string Title { set; get; } 
         [StringLength(250)]
         public string Discription { set; get; }//博客描述
         public string Content { set; get; }//内容
-
         public int UserID { set; get; }
         public int BlogID { set; get; }
         public DateTime AddTime { set; get; }

@@ -165,6 +165,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomesController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ArticleAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\CatalogAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\BlogApply.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -299,6 +300,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Blog\_Layout.cshtml" />
+    <Content Include="Views\Blog\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\AdminBase\" />

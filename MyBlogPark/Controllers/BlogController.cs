@@ -20,5 +20,21 @@ namespace MyBlogPark.Controllers
             }
             return View(model);
         }
+        public ActionResult Article(string blog,int id)
+        {
+        // 先判断用户存不存在
+            var blogModel = dbContext.blog.Where(m => m.Identity.ToLower() == blog.ToLower()).FirstOrDefault();
+            if (blogModel == null)
+            {
+                return Content("博文不存在"); 
+            }
+        //在判断文章存不存在
+            var model = dbContext.article.Where(m => m.ID == id).FirstOrDefault();
+            if (model!= null)
+            {
+                return Content("博文不存在");
+            }
+            return View(model);
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace MyBlogPark
             {
                 cfg.CreateMap<CatalogAdd, Catalog>();
                 cfg.CreateMap<BlogApply, Blog>();
+                cfg.CreateMap<ArticleAdd, Article>(); 
             }
             );
         }

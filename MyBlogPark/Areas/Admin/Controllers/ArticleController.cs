@@ -20,17 +20,30 @@ namespace MyBlogPark.Areas.Admin.Controllers
         }
         public ActionResult Add()
         {
+            ViewBag.CatalogList = dbContext.catalog.ToList();
             return View();
         }
-       // [HttpPost]
-        //public ActionResult Add(Add info)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-              
+        [HttpPost]
+        public ActionResult Add(ArticleAdd info)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = Mapper.Map<Article>(info);
+                model.EditTime = DateTime.Now;
+                model.AddTime = DateTime.Now;
+                model.BlogID = LoginBlog.ID;
+                model.IsShowHome = true;
+                model.Status = true;
+                model.UserID = LoginUser.ID;
+                dbContext.article.Add(model);
+                int res = dbContext.SaveChanges();
+                if (res > 0)
+                {
+                    return Redirect(string.Format("/{0}/p/{1}.html",LoginBlog.Identity,model.ID));
+                }
 
-        //    }
-        //    return View(info);
-        //}
+            }
+            return View(info);
+        }
     }
-} 
+}
