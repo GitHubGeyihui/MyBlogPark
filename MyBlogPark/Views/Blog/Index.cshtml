@@ -4,6 +4,8 @@
     Layout = "~/Views/Blog/_Layout.cshtml";
     ViewBag.Title = Model.Title;
     var list = ViewBag.AritcleList as List<Article>;
+    var listCatalogList = ViewBag.CatalogList as List<Catalog>;
+
 }
 
 @section scripts{
@@ -61,12 +63,166 @@
             text-align: center;
         }
     </style>
+    @*日期插件的css及jQuery*@
+    <style type="text/css">
+        .Calendar {
+            font-family: Verdana;
+            font-size: 9pt;
+            background-color: #EEE;
+            text-align: center;
+            padding: 10px;
+            line-height: 1.5em;
+        }
+
+            .Calendar a {
+                color: #0066CC;
+            }
+
+            .Calendar table {
+                width: 100%;
+                border: 0;
+            }
+
+                .Calendar table thead {
+                    color: #acacac;
+                }
+
+                .Calendar table td {
+                    font-size: 11px;
+                    padding: 1px;
+                }
+
+        #idCalendarPre {
+            cursor: pointer;
+            float: left;
+            padding-right: 5px;
+        }
+
+        #idCalendarNext {
+            cursor: pointer;
+            float: right;
+            padding-right: 5px;
+        }
+
+        #idCalendar td.onToday {
+            font-weight: bold;
+            color: #C60;
+        }
+
+        #idCalendar td.onSelect {
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript">
+        var $ = function (id) {
+            return "string" == typeof id ? document.getElementById(id) : id;
+        };
+        var Class = {
+            create: function () {
+                return function () {
+                    this.initialize.apply(this, arguments);
+                }
+            }
+        }
+        Object.extend = function (destination, source) {
+            for (var property in source) {
+                destination[property] = source[property];
+            }
+            return destination;
+        }
+        var Calendar = Class.create();
+        Calendar.prototype = {
+            initialize: function (container, options) {
+                this.Container = $(container);//table结构容器
+                this.Days = [];//日期列表
+                this.SetOptions(options);
+                this.Year = this.options.Year;
+                this.Month = this.options.Month;
+                this.SelectDay = this.options.SelectDay ? new Date(this.options.SelectDay) : null;
+                this.onSelectDay = this.options.onSelectDay;
+                this.onToday = this.options.onToday;
+                this.onFinish = this.options.onFinish;
+                this.Draw();
+            },
+
+            SetOptions: function (options) {
+                this.options = {//默认值
+                    Year: new Date().getFullYear(),
+                    Month: new Date().getMonth() + 1,
+                    SelectDay: null,//选择日期
+                    onSelectDay: function () { },
+                    onToday: function () { },
+                    onFinish: function () { }
+                };
+                Object.extend(this.options, options || {});
+            },
+            //上月
+            PreMonth: function () {
+                //取得上月日期对象
+                var d = new Date(this.Year, this.Month - 2, 1);
+                //设置属性
+                this.Year = d.getFullYear();
+                this.Month = d.getMonth() + 1;
+                //重绘日历
+                this.Draw();
+            },
+            //下一个月
+            NextMonth: function () {
+                var d = new Date(this.Year, this.Month, 1);
+                this.Year = d.getFullYear();
+                this.Month = d.getMonth() + 1;
+                this.Draw();
+            },
+
+            Draw: function () {
+                //保存日期列表
+                var arr = [];
+                //用当月第一天在一周中的日期值作为当月离第一天的天数
+                for (var i = 1, firstDay = new Date(this.Year, this.Month - 1, 1).getDay(); i <= firstDay; i++) { arr.push(" "); }
+                //用当月最后一天在一个月中的日期值作为当月的天数
+                for (var i = 1, monthDay = new Date(this.Year, this.Month, 0).getDate(); i <= monthDay; i++) { arr.push(i); }
+                // /
+                var frag = document.createDocumentFragment();
+                this.Days = [];
+                while (arr.length > 0) {
+                    //每个星期插入一个tr
+                    var row = document.createElement("tr");
+                    //星期
+                    for (var i = 1; i <= 7; i++) {
+                        var cell = document.createElement("td");
+                        cell.innerHTML = " ";
+                        if (arr.length > 0) {
+                            var d = arr.shift();
+                            cell.innerHTML = d;
+                            if (d > 0) {
+                                this.Days[d] = cell;
+                                //获取今日
+                                if (this.IsSame(new Date(this.Year, this.Month - 1, d), new Date())) { this.onToday(cell); }
+                                //判断用户是否作了选择
+                                if (this.SelectDay && this.IsSame(new Date(this.Year, this.Month - 1, d), this.SelectDay)) { this.onSelectDay(cell); }
+                            }
+                        }
+                        row.appendChild(cell);
+                    }
+                    frag.appendChild(row);
+                }
+                //此先清空然后再插入(ie的table不能用innerHTML)
+                while (this.Container.hasChildNodes()) { this.Container.removeChild(this.Container.firstChild); }
+                this.Container.appendChild(frag);
+                this.onFinish();
+            },
+            //判断是否同一日
+            IsSame: function (d1, d2) {
+                return (d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate());
+            }
+        };
+    </script>
 
 }
-<div class="am-g  blog-g" style="margin-top:50px">
-    <div class="am-u-md-9">
+<div class="am-g  am-g blog-g-fixed" style="margin-top:50px">
+    <div class="am-u-md-8 am-u-lg-9">
 
-        @ViewBag.ArticleList
+        @*@ViewBag.ArticleList*@
         @if (list != null)
         {
             for (int i = 0; i < list.Count; i++)
@@ -84,7 +240,7 @@
                             }
                             else
                             {
-                                @list[i].Content.Substring(0, list[i].Content.Length >= 150?150 : list[i].Content.Length)
+                                @list[i].Discription
                             }
                         </div>
                     </div>
@@ -101,21 +257,70 @@
             <li class="am-pagination-next"><a href="">下一页 &raquo;</a></li>
         </ul>
     </div>
-  
-    <div class="am-u-md-3 blog-sidebar">
+
+    <div class="am-u-md-4 am-u-lg-3 blog-sidebar">
         <div class="am-panel-group">
             <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">关于我</div>
+                <div class="am-panel-hd">@Model.NiName</div>
                 <div class="am-panel-bd">
                     <p>
-                        前所未有的中文云端字型服务，让您在 web 平台上自由使用高品质中文字体，跨平台、可搜寻，而且超美。云端字型是我们的事业，推广字型学知识是我们的志业。从字体出发，关心设计与我们的生活，justfont blog
-                        正是為此而生。
+                        @Model.Discription
                     </p>
                     <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
                 </div>
             </section>
             <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">文章目录</div>
+                <div class="am-panel-hd">时间</div>
+                <div class="am-panel-bd">
+
+                    <div class="Calendar">
+                        <div id="idCalendarPre"><<</div>
+                        <div id="idCalendarNext">>></div>
+                        <span id="idCalendarYear">2008</span>年 <span id="idCalendarMonth">8</span>月
+                        <table cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td>日</td>
+                                    <td>一</td>
+                                    <td>二</td>
+                                    <td>三</td>
+                                    <td>四</td>
+                                    <td>五</td>
+                                    <td>六</td>
+                                </tr>
+                            </thead>
+                            <tbody id="idCalendar"></tbody>
+                        </table>
+                    </div>
+                    <script language="JavaScript">
+                        var cale = new Calendar("idCalendar", {
+                            SelectDay: new Date().setDate(10),
+                            onSelectDay: function (o) { o.className = "onSelect"; },
+                            onToday: function (o) { o.className = "onToday"; },
+                            onFinish: function () {
+                                $("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+                                var flag = [10, 15, 20];
+                                for (var i = 0, len = flag.length; i < len; i++) {
+                                    this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('您选择的日期是：" + this.Year + "/" + this.Month + "/" + flag[i] + "');return false;\">" + flag[i] + "</a>";
+                                }
+                            }
+                        });
+                        $("idCalendarPre").onclick = function () { cale.PreMonth(); }
+                        $("idCalendarNext").onclick = function () { cale.NextMonth(); }
+                    </script>
+                </div>
+            </section>
+            <section class="am-panel am-panel-default">
+                <div class="am-panel-hd">博客栏目</div>
+                <ul class="am-list blog-list">
+                    @foreach (var item in listCatalogList)
+                    {
+                        <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
+                    }
+                </ul>
+            </section>
+            <section class="am-panel am-panel-default">
+                <div class="am-panel-hd">热门博客</div>
                 <ul class="am-list blog-list">
                     <li><a href="#">Google fonts 的字體（sans-serif 篇）</a></li>
                     <li><a href="#">[but]服貿最前線？－再訪桃園機場</a></li>
@@ -124,46 +329,6 @@
                     <li><a href="#">浙江民間書刻體上線</a></li>
                     <li><a href="#">[極短篇] Android v.s iOS，誰的字體好讀？</a></li>
                 </ul>
-            </section>
-
-            <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">团队成员</div>
-                <div class="am-panel-bd">
-                    <ul class="am-avg-sm-4 blog-team">
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                        </li>
-                        <li>
-                            <img class="am-thumbnail"
-                                 src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                        </li>
-                    </ul>
-                </div>
             </section>
         </div>
     </div>
