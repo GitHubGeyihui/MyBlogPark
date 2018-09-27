@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyBlogPark.Areas.Admin.ViewModels;
+using MyBlogPark.Core;
 using MyBlogPark.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Add(ArticleAdd info)
         {
             if (ModelState.IsValid)
@@ -35,6 +37,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.IsShowHome = true;
                 model.Status = true;
                 model.UserID = LoginUser.ID;
+                model.Discription = StringHelper.ReplaceHtmlTag(model.Content,150);
                 dbContext.article.Add(model);
                 int res = dbContext.SaveChanges();
                 if (res > 0)

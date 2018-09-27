@@ -18,6 +18,7 @@ namespace MyBlogPark.Controllers
             {
                 return Content("博客不存在");
             }
+            ViewBag.AritcleList = dbContext.article.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
             return View(model);
         }
         public ActionResult Article(string blog,int id)
@@ -28,7 +29,7 @@ namespace MyBlogPark.Controllers
             {
                 return Content("博文不存在"); 
             }
-
+            
         //在判断文章存不存在
             var model = dbContext.article.Where(m => m.ID == id).FirstOrDefault();
             if (model == null)
