@@ -503,9 +503,12 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\ViewModels\ArticleAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\CatalogAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\BlogApply.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserInfo.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserPassword.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -889,6 +892,8 @@
     <Content Include="Content\UEditor.net_1_4_3_3\third-party\video-js\font\vjs.woff" />
     <Content Include="config.json" />
     <Content Include="controller.ashx" />
+    <Content Include="Areas\Admin\Views\Setting\Password.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Info.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -921,7 +926,6 @@
     <Content Include="Views\Blog\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\AdminBase\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

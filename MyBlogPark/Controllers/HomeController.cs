@@ -67,7 +67,6 @@ namespace MyBlogPark.Controllers
             MvcCaptcha mvcCaptcha = new MvcCaptcha("ExampleCaptcha");
             string userInput = HttpContext.Request.Form["ValidateCode"];
             string validatingInstanceId = HttpContext.Request.Form[mvcCaptcha.ValidatingInstanceKey];
-             //var dbuser = dbContext.user.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
             if (mvcCaptcha.Validate(userInput, validatingInstanceId))
             {
                 if (ModelState.IsValid)
