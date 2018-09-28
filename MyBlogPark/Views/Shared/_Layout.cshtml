@@ -1,6 +1,5 @@
 ﻿@{
     var LoginUser = Session["loginUser"] as MyBlogPark.Models.User;
-    var list = ViewBag.CatalogList as List<Catalog>;
 }
 <!DOCTYPE html>
 <html>
@@ -162,17 +161,17 @@
 
         <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="#">首页</a></li>
-                <li><a href="#">项目</a></li>
+                <li class="am-active"><a href="/">首页</a></li>
+                <li><a href="#">咨询</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        菜单 <span class="am-icon-caret-down"></span>
+                        栏目 <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">标题</li>
-                        <li><a href="#">关于我们</a></li>
-                        <li><a href="#">关于字体</a></li>
-                        <li><a href="#">TIPS</a></li>
+                        <li class="am-dropdown-header">园子栏目</li>
+                        <li><a href="#">ASP.Net技术</a></li>
+                        <li><a href="#">Python技术</a></li>
+                        <li><a href="#">JAVA技术 </a></li>
                     </ul>
                 </li>
             </ul>
@@ -182,8 +181,28 @@
                     <input type="text" class="am-form-field am-input-sm" placeholder="搜索文章">
                 </div>
                 <button type="submit" class="am-btn am-btn-default am-btn-sm">搜索</button>
-            </form>
+                @if (LoginUser == null)
+                {
+                    <button type="button" class="am-btn am-btn-success am-btn-sm am-align-right" onclick="window.location.href='/home/login'">登 录</button>
+                    <button type="button" class="am-btn am-btn-warning am-btn-sm am-align-right" onclick="window.location.href='/home/register'">注 册</button>
 
+                }
+                else
+                {
+                    if (LoginBlog == null)
+                    {
+                        <button type="button" class="am-btn am-btn-success am-btn-sm am-align-right" onclick="window.location.href='/admin/homes/index'">申请博客</button>
+
+                    }
+                    else
+                    {
+                        <button type="button" class="am-btn am-btn-success am-btn-sm am-align-right" onclick="window.location.href='/admin/homes/index'">管理</button>
+                        <button type="button" class="am-btn am-btn-warning am-btn-sm am-align-right" onclick="window.location.href='/@LoginBlog.Identity'">@LoginUser.Name 的博客</button>
+
+                    }
+                }
+            </form>
+          
         </div>
     </header>
     @RenderBody()

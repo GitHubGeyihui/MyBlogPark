@@ -1,4 +1,5 @@
-﻿using MyBlogPark.Core;
+﻿using BotDetect.Web.Mvc;
+using MyBlogPark.Core;
 using MyBlogPark.Models;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ namespace MyBlogPark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User {
+                var user = new User
+                {
                     Name = info.Name,
                     Pwd = info.Pwd,
                     Email = info.Email,
@@ -44,7 +46,7 @@ namespace MyBlogPark.Controllers
                 {
                     //浏览器-（cookie）-》服务器（去查找cookie对应的session）-cookie对应的session可能有多个，所以通过key来取得
                     Session["loginUser"] = user;
-                    return Redirect("/");              
+                    return Redirect("/");
                 }
                 else
                 {
@@ -53,7 +55,7 @@ namespace MyBlogPark.Controllers
             }
             return View(info);
         }
-        public ActionResult Login ()
+        public ActionResult Login()
         {
             ViewBag.Message = "Your contact page.";
 
@@ -62,22 +64,47 @@ namespace MyBlogPark.Controllers
         [HttpPost]
         public ActionResult Login(UserLogin info)
         {
-            if (ModelState.IsValid)
+            MvcCaptcha mvcCaptcha = new MvcCaptcha("ExampleCaptcha");
+            string userInput = HttpContext.Request.Form["ValidateCode"];
+            string validatingInstanceId = HttpContext.Request.Form[mvcCaptcha.ValidatingInstanceKey];
+             //var dbuser = dbContext.user.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
+            if (mvcCaptcha.Validate(userInput, validatingInstanceId))
             {
-                var dbuser = dbContext.user.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
-                if(dbuser!=null && dbuser.Pwd==info.Pwd)
+                if (ModelState.IsValid)
                 {
-                    Session["loginUser"] = dbuser;
-                    //把当前用户的博客记录起来
-                  var blog =  dbContext.blog.Where(m => m.UserID == dbuser.ID && m.Status).FirstOrDefault();
-                    if (blog != null)
+                    var dbuser = dbContext.user.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
+                    if (dbuser != null && dbuser.Pwd == info.Pwd)
                     {
-                        Session["loginBlog"] = blog;
+                        Session["loginUser"] = dbuser;
+                        //把当前用户的博客记录起来
+                        var blog = dbContext.blog.Where(m => m.UserID == dbuser.ID && m.Status).FirstOrDefault();
+                        if (blog != null)
+                        {
+                            Session["loginBlog"] = blog;
+                            return Redirect("/"+blog.Identity);
+                        }
+                        else
+                        {
+                             return Redirect("/");  
+                        }
+                      
                     }
-                    return Redirect("/"); 
+
                 }
+                else
+                {
+                    ModelState.AddModelError("Name", "账号或密码不正确！");
+                }
+
+            }
+            else
+            {
+                ModelState.AddModelError("ValidateCode", "验证码不正确");
             }
             return View(info);
+
+
         }
+
     }
 }

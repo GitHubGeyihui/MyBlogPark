@@ -67,7 +67,58 @@
             </section>
         </div>
     </div>
-    <div class="am-u-sm-7"></div>
+    <div class="am-u-sm-7">
+        @for (int i = 0; i < 20; i++)
+        {
+        <article class="blog-main">
+            <h2 class="am-accordion-title blog-title">
+                <a href="#">这是一条测试内容</a>
+            </h2>
+            <h4 class="am-article-meta blog-meta">by <a href="">open</a> @DateTime.Now <a href="#">字体</a></h4>
+            <div class="am-g blog-content">
+                <div class="am-u-lg-12">
+                    无限币一次交易需3次确认，每次确认需3秒，交易确认速度非常快。由于比特币交易共需要6个确认，共需时约1小时，莱特币交易确认共需时15分钟，无限币被用于日常普遍的交易，更贴合实际。
+                </div>
+            </div>
+        </article>
+        <hr class="am-article-divider blog-hr" />
+        }
+        <section>
+            <ul data-am-widget="pagination"
+                class="am-pagination am-pagination-default">
+
+                <li class="am-pagination-first ">
+                    <a href="#" class="">第一页</a>
+                </li>
+                <li class="am-pagination-prev ">
+                    <a href="#" class="">上一页</a>
+                </li>
+                <li class="">
+                    <a href="#" class="">1</a>
+                </li>
+                <li class="am-active">
+                    <a href="#" class="am-active">2</a>
+                </li>
+                <li class="">
+                    <a href="#" class="">3</a>
+                </li>
+                <li class="">
+                    <a href="#" class="">4</a>
+                </li>
+                <li class="">
+                    <a href="#" class="">5</a>
+                </li>
+
+                <li class="am-pagination-next ">
+                    <a href="#" class="">下一页</a>
+                </li>
+
+                <li class="am-pagination-last ">
+                    <a href="#" class="">最末页</a>
+                </li>
+            </ul>
+        </section>
+    </div>
     <div class="am-u-sm-3">
         <div class="am-panel-group">
             <section class="am-panel am-panel-default">

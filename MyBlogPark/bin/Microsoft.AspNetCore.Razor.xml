@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNetCore.Razor</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNetCore.Razor.TagHelpers.TagMode">
+            <summary>
+            The mode in which an element should render.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag">
+            <summary>
+            Include both start and end tags.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing">
+            <summary>
+            A self-closed tag.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly">
+            <summary>
+            Only a start tag.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure">
+            <summary>
+            The structure the element should be written in.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.Unspecified">
+            <summary>
+            If no other tag helper applies to the same element and specifies a <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure"/>,
+            <see cref="F:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing"/> will be used.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing">
+            <summary>
+            Element can be written as &lt;my-tag-helper&gt;&lt;/my-tag-helper&gt; or &lt;my-tag-helper /&gt;.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag">
+            <summary>
+            Element can be written as &lt;my-tag-helper&gt; or &lt;my-tag-helper /&gt;.
+            </summary>
+            <remarks>Elements with a <see cref="F:Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag"/> structure will never have any content.</remarks>
+        </member>
+    </members>
+</doc>

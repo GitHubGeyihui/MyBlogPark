@@ -1,7 +1,13 @@
 ﻿@model UserLogin
+@using BotDetect.Web.Mvc;
 @{
+    /**/
+
     ViewBag.Title = "登录";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
+    exampleCaptcha.UserInputID= "ValidateCode";
+
 }
 @section scripts{
 
@@ -10,12 +16,13 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <style type="text/css">
         .field-validation-error {
-            color: pink; 
+            color: pink;
         }
     </style>
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
 }
 <div class="am-g" style="margin-top:50px;">
-    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <div class="am-u-lg-5 am-u-md-6 am-u-sm-centered">
         <h1 style="text-align:center;">登录</h1>
         <hr>
         <form method="post" class="am-form" action="Login">
@@ -30,6 +37,8 @@
             <label for="ValidateCode">验证码:</label>
             @Html.TextBoxFor(m => m.ValidateCode, new { @type = "text" })
             @Html.ValidationMessageFor(m => m.ValidateCode)
+            <br />
+            @Html.Captcha(exampleCaptcha)@*生成验证码（利用NuGet包下载captcha）*@
             <br />
             <label for="remember-me">
                 <input id="remember-me" type="checkbox">
