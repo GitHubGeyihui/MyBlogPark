@@ -1,10 +1,12 @@
-﻿@model  Article
+﻿
 @{
 
     Layout = "~/Views/Blog/_Layout.cshtml";
-    ViewBag.Title = Model.Title;
+    var articleModel = ViewBag.Article as Article;
+    ViewBag.Title = articleModel.Title;
+
 }
- 
+
 @section scripts{
     <style>
         @@media only screen and (min-width: 1200px) {
@@ -60,34 +62,48 @@
             text-align: center;
         }
     </style>
-
+    <script type="text/javascript">
+        function addUp(id) {
+            //没登录的不让点赞·已经点赞后不让点赞
+            $.post("/api/up", { id: id }, function (data) {
+                if (data.status) {
+                    $("#upi").text((parseInt($("#upi").text()) + 1))
+                }
+                else {
+                    alert("点赞失败")
+                }
+            }, "json");
+        }
+    </script>
 }
 
 <div class="am-g am-g-fixed blog-g-fixed" style="margin-top:80px">
     <div class="am-u-md-8">
         <article class="blog-main">
             <h3 class="am-article-title blog-title">
-                <a href="#">@Model.Title</a>
+                <a href="#">@articleModel.Title</a>
             </h3>
-            <h4 class="am-article-meta blog-meta">by <a href="">open</a> @DateTime.Now <a href="#">字体</a></h4>
 
             <div class="am-g blog-content">
                 <div class="am-u-lg-12">
-                   @Html.Raw(Model.Content)@*显示其原来的格式*@
+                    @Html.Raw(articleModel.Content)@*显示其原来的格式*@
                 </div>
             </div>
+            <h2 class="am-article-meta blog-meta">
+                by <a href="">3 </a>@DateTime.Now <a href="#">字体</a>
+                <span onclick="addUp(@articleModel.ID)">点赞(<i id="upi">@articleModel.UP</i>)</span>
+            </h2>
         </article>
-        <hr class="am-article-divider blog-hr"> 
+        <hr class="am-article-divider blog-hr">
     </div>
 
     <div class="am-u-md-4 blog-sidebar">
         <div class="am-panel-group">
             <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">关于我</div>
+                <div class="am-panel-hd">@Model.NiName</div>
                 <div class="am-panel-bd">
                     <p>
-                        前所未有的中文云端字型服务，让您在 web 平台上自由使用高品质中文字体，跨平台、可搜寻，而且超美。云端字型是我们的事业，推广字型学知识是我们的志业。从字体出发，关心设计与我们的生活，justfont blog
-                        正是為此而生。
+                        @Model.Discription
                     </p>
                     <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
                 </div>

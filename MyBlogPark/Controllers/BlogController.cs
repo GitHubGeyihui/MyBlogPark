@@ -19,6 +19,7 @@ namespace MyBlogPark.Controllers
                 return Content("博客不存在");
             }
             ViewBag.AritcleList = dbContext.article.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
+
             ViewBag.CatalogList = dbContext.catalog.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
             return View(model);
         }
@@ -37,7 +38,11 @@ namespace MyBlogPark.Controllers
             {
                 return Content("博文不存在");
             }
-            return View(model);
+            ViewBag.Article = model; 
+
+            ViewBag.CatalogList = dbContext.catalog.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
+
+            return View(blogModel);
         }
-    }
+    } 
 }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
 {
-    public class SettingController : Controller
+    public class SettingController : AdminBaseController
     {
         // GET: Admin/Setting
         public ActionResult Info()

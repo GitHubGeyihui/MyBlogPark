@@ -15,8 +15,10 @@ namespace MyBlogPark.Models
         [StringLength(250)]
         public string Discription { set; get; }//博客描述
         public string Content { set; get; }//内容
+        public int UP { set; get; }//点赞
         public int UserID { set; get; }
-        public int BlogID { set; get; }
+        public int BlogID  { set; get; }
+        public int Views { set; get; }//文章点击数
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }

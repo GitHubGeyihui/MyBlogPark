@@ -13,6 +13,17 @@ namespace MyBlogPark.Controllers
     {
         public ActionResult Index()
         {
+
+            //读取全站的博客分类 
+            var key = "index_catalog";
+            //读首页的缓存
+            var list = CacheHelper.RedCache<List<Catalog>>(key);
+            if (list == null)
+            {
+                list = dbContext.catalog.ToList();
+                CacheHelper.WriteCache(key,list,10,false);//十秒绝对失效
+            }
+            ViewBag.catalogs = list;
             return View();
         }
 
@@ -80,13 +91,13 @@ namespace MyBlogPark.Controllers
                         if (blog != null)
                         {
                             Session["loginBlog"] = blog;
-                            return Redirect("/"+blog.Identity);
+                            return Redirect("/" + blog.Identity);
                         }
                         else
                         {
-                             return Redirect("/");  
+                            return Redirect("/");
                         }
-                      
+
                     }
 
                 }

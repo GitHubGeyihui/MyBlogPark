@@ -37,6 +37,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.IsShowHome = true;
                 model.Status = true;
                 model.UserID = LoginUser.ID;
+                model.UP = 0;
+                model.Views = 0;
                 model.Discription = StringHelper.ReplaceHtmlTag(model.Content,150);
                 dbContext.article.Add(model);
                 int res = dbContext.SaveChanges();

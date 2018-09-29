@@ -500,6 +500,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\APIController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomesController.cs" />
@@ -512,6 +513,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\CacheHelper.cs" />
     <Compile Include="Core\DottextCount.cs" />
     <Compile Include="Core\MyWebViewPage.cs" />
     <Compile Include="Core\StringHelper .cs" />
@@ -926,6 +928,7 @@
     <Content Include="Views\Blog\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\API\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
