@@ -344,8 +344,14 @@ D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.Razor.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csprojAssemblyReference.cache
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CoreCompileInputs.cache
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csprojAssemblyReference.cache
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll.config
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll.config

@@ -53,3 +53,6 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.csproj.Co
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll.config

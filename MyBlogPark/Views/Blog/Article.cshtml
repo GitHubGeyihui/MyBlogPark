@@ -2,7 +2,7 @@
 @{
 
     Layout = "~/Views/Blog/_Layout.cshtml";
-    var articleModel = ViewBag.Article as Article;
+    var articleModel = ViewBag.Article as MyBGO.Framework.Models.Article;
     ViewBag.Title = articleModel.Title;
 
 }
@@ -64,7 +64,7 @@
     </style>
     <script type="text/javascript">
         function addUp(id) {
-            //没登录的不让点赞·已经点赞后不让点赞
+            //没登录的不让点赞
             $.post("/api/up", { id: id }, function (data) {
                 if (data.status) {
                     $("#upi").text((parseInt($("#upi").text()) + 1))
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <h2 class="am-article-meta blog-meta">
-                by <a href="">3 </a>@DateTime.Now <a href="#">字体</a>
+                作者:<a href="">谷羽</a><a href="#"> @articleModel.AddTime</a>
                 <span onclick="addUp(@articleModel.ID)">点赞(<i id="upi">@articleModel.UP</i>)</span>
             </h2>
         </article>

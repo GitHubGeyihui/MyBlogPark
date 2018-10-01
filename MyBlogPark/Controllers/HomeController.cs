@@ -1,4 +1,5 @@
 ﻿using BotDetect.Web.Mvc;
+using MyBGO.Framework.Models;
 using MyBlogPark.Core;
 using MyBlogPark.Models;
 using System;
@@ -57,7 +58,7 @@ namespace MyBlogPark.Controllers
                 {
                     //浏览器-（cookie）-》服务器（去查找cookie对应的session）-cookie对应的session可能有多个，所以通过key来取得
                     Session["loginUser"] = user;
-                    return Redirect("/");
+                    return Redirect("/"); 
                 }
                 else
                 {

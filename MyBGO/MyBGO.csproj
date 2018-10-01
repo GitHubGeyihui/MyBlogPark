@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -148,7 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BlogArticleController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomesController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -392,6 +398,16 @@
     <Content Include="Content\Plugin\jquery\src\var\support.js" />
     <Content Include="Content\Plugin\jquery\src\var\toString.js" />
     <Content Include="Content\Plugin\jquery\src\wrap.js" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\css\jquery.treegrid.css" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\img\collapse.png" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\img\expand.png" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\img\file.png" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\img\folder.png" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\js\jquery.cookie.js" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\js\jquery.treegrid.bootstrap2.js" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\js\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\js\jquery.treegrid.js" />
+    <Content Include="Content\Plugin\maxazan-jquery-treegrid-447d662\js\jquery.treegrid.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -599,9 +615,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Homes\Index.cshtml" />
     <Content Include="Views\BlogArticle\Index.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Setting\Catalog.cshtml" />
+    <Content Include="Views\Setting\AddCatalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -615,6 +633,12 @@
     <None Include="packages.config" />
     <Content Include="Content\Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Content\Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="MyBGO.Framework\MyBGO.Framework.csproj">
+      <Project>{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}</Project>
+      <Name>MyBGO.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

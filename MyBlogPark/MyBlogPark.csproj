@@ -514,27 +514,12 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\CacheHelper.cs" />
-    <Compile Include="Core\DottextCount.cs" />
     <Compile Include="Core\MyWebViewPage.cs" />
-    <Compile Include="Core\StringHelper .cs" />
-    <Compile Include="Core\UEditor\Config.cs" />
-    <Compile Include="Core\UEditor\ConfigHandler.cs" />
-    <Compile Include="Core\UEditor\CrawlerHandler.cs" />
-    <Compile Include="Core\UEditor\Handler.cs" />
-    <Compile Include="Core\UEditor\ListFileHandler.cs" />
-    <Compile Include="Core\UEditor\NotSupportedHandler.cs" />
-    <Compile Include="Core\UEditor\PathFormater.cs" />
-    <Compile Include="Core\UEditor\UploadHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Catalog.cs" />
-    <Compile Include="Models\Blog.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewModels\UserLogin.cs" />
-    <Compile Include="Models\ViewModels\UserRegister.cs" />
+    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -939,6 +924,19 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyBGO\MyBGO.csproj">
+      <Project>{2fa19aa9-80a5-4551-9a7e-2e67e8f76ede}</Project>
+      <Name>MyBGO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyBGO\MyBGO.Framework\MyBGO.Framework.csproj">
+      <Project>{5394c5b7-aedc-4e0a-b3b0-2368c93888f7}</Project>
+      <Name>MyBGO.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MyBGO.Framework.Core;
+using MyBGO.Framework.Models;
 using MyBlogPark.Areas.Admin.ViewModels;
 using MyBlogPark.Core;
 using MyBlogPark.Models;
@@ -9,7 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+ 
 namespace MyBlogPark
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -20,11 +22,7 @@ namespace MyBlogPark
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            using (var dottextCount = new DottextCount())
-            {
-                //数据库不存在则创建
-                var res = dottextCount.Database.CreateIfNotExists();
-            }
+            EFInit.Setting();
             //配置AutoMap 
             Mapper.Initialize(cfg =>
             {

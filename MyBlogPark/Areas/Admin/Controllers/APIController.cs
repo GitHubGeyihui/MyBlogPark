@@ -19,6 +19,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         /// <param name="dependency"></param>
         /// <param name="absoluteExpiration"></param>
         /// <param name="slidingExpiration"></param>
+
+        // CacheItemUpdateCallback 这个回调函数 其实像一个时钟的效果 ，他每次过期的时候又会把缓存存储回去然后等下一次失效的时候又会触发一次。循环，类似一个定时器的效果，相当于定时更新数据库
         public void MyCacheItemUpdateCallback(
             string key,
             CacheItemUpdateReason reason,
@@ -28,25 +30,25 @@ namespace MyBlogPark.Areas.Admin.Controllers
             out TimeSpan slidingExpiration)
         {
             try
-            { 
+            {
                 //根据key去取得ID然后读取缓存值 缓存值=点赞数 然后把它记录到数据库中。
-                string idster = key.Substring(key.LastIndexOf("_")+1,key.Length - key.LastIndexOf("_") - 1);
+                string idster = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
                 int id = Convert.ToInt32(idster);
-                 //得到缓存
+                //得到缓存
                 var value = HttpRuntime.Cache.Get(key);
                 var article = dbContext.article.Where(m => m.ID == id).First();
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
-               
                 //准备失效，但回调函数里还是可以读取到缓存的
-                expensiveObject = DateTime.Now.ToString();
+                expensiveObject = value;
+                HttpRuntime.Cache.Remove(key);
             }
             catch (Exception)
             {
                 expensiveObject = DateTime.Now.ToString();
             }
             dependency = null;
-            absoluteExpiration = DateTime.UtcNow.AddSeconds(5);
+            absoluteExpiration = DateTime.UtcNow.AddSeconds(-1);
             slidingExpiration = Cache.NoSlidingExpiration;
         }
         // GET: Admin/API
@@ -61,16 +63,38 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 {
                     var article = dbContext.article.Where(m => m.ID == id).First();
                     up = article.UP;
-                    //现在点赞表没有映射到数据库,所以就先设为1 。文章打开的时候直接读文章表文章表也是点在数
+                    //文章打开的时候直接读文章表文章表也是点在数
                 }
-                HttpRuntime.Cache.Insert(key, ++up, null, DateTime.UtcNow.AddSeconds(20), Cache.NoSlidingExpiration, MyCacheItemUpdateCallback);
+                else
+                {
+                    up = Convert.ToInt32(obj);
+                }
+                up = up + 1;
+                //CacheHelper.WriteCache("hello", "eqe", 6, false);
+                HttpRuntime.Cache.Insert(key, up, null, DateTime.UtcNow.AddSeconds(10), Cache.NoSlidingExpiration, CacheItemPriority.Normal, MyCacheItemPriority);
             }
-            catch (Exception )
+            catch (Exception)
             {
-
                 return Json(new { status = false });
             }
             return Json(new { status = true });
         }
+
+        private void MyCacheItemPriority(string key, object value, CacheItemRemovedReason reason)
+        {
+            if (reason == CacheItemRemovedReason.Expired)
+            {
+                //根据key去取得ID然后读取缓存值 缓存值=点赞数 然后把它记录到数据库中。
+                string idster = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
+                int id = Convert.ToInt32(idster);
+                var article = dbContext.article.Where(m => m.ID == id).First();
+                article.UP = Convert.ToInt32(value);
+                dbContext.SaveChanges();
+            }
+
+             
+        }
+
+
     }
 }

@@ -13,5 +13,14 @@ namespace MyBGO.Controllers
         {
             return View();
         }
+        public ActionResult Catalog()
+        {
+            return View();
+        }
+        public ActionResult AddCatalog()
+        {
+            return View();
+        }
+
     }
 }

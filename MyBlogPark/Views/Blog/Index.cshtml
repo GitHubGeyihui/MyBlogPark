@@ -1,10 +1,10 @@
-﻿@*通过强类型视图显示*@
-@model Blog
+﻿ @*通过强类型视图显示*@
+@model MyBGO.Framework.Models.Blog
 @{
     Layout = "~/Views/Blog/_Layout.cshtml";
     ViewBag.Title = Model.Title;
-    var list = ViewBag.AritcleList as List<Article>;
-    var listCatalogList = ViewBag.CatalogList as List<Catalog>;
+    var list = ViewBag.AritcleList as List<MyBGO.Framework.Models.Article>;
+    var listCatalogList = ViewBag.CatalogList as List<MyBGO.Framework.Models.Catalog>;
 
 }
 
@@ -66,7 +66,7 @@
     @*日期插件的css及jQuery*@
     <style type="text/css">
         .Calendar {
-            font-family: Verdana;
+            font-family: Verdana; 
             font-size: 9pt;
             background-color: #EEE;
             text-align: center;

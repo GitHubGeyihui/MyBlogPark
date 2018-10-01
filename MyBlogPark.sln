@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogPark.Tests", "MyBlogP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBGO", "MyBGO\MyBGO.csproj", "{2FA19AA9-80A5-4551-9A7E-2E67E8F76EDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBGO.Framework", "MyBGO\MyBGO.Framework\MyBGO.Framework.csproj", "{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2FA19AA9-80A5-4551-9A7E-2E67E8F76EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FA19AA9-80A5-4551-9A7E-2E67E8F76EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FA19AA9-80A5-4551-9A7E-2E67E8F76EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5394C5B7-AEDC-4E0A-B3B0-2368C93888F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,6 @@
-﻿using MyBlogPark.Core;
+﻿using MyBGO.Framework.Core;
+using MyBGO.Framework.Models;
+using MyBlogPark.Core;
 using MyBlogPark.Models;
 using System;
 using System.Collections.Generic;

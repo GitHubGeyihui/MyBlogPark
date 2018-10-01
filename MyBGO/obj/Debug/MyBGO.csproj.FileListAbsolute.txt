@@ -49,6 +49,8 @@ D:\毕业设计\MyBlogPark\MyBGO\bin\roslyn\vbc.rsp
 D:\毕业设计\MyBlogPark\MyBGO\bin\roslyn\VBCSCompiler.exe
 D:\毕业设计\MyBlogPark\MyBGO\bin\roslyn\VBCSCompiler.exe.config
 D:\毕业设计\MyBlogPark\MyBGO\bin\Antlr3.Runtime.dll
+D:\毕业设计\MyBlogPark\MyBGO\bin\EntityFramework.dll
+D:\毕业设计\MyBlogPark\MyBGO\bin\EntityFramework.SqlServer.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.Agent.Intercept.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.DependencyCollector.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -59,6 +61,7 @@ D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.ApplicationInsights.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.Web.Infrastructure.dll
+D:\毕业设计\MyBlogPark\MyBGO\bin\MyBGO.Framework.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\Newtonsoft.Json.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Diagnostics.DiagnosticSource.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.Helpers.dll
@@ -69,6 +72,10 @@ D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.WebPages.Deployment.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.WebPages.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.WebPages.Razor.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\WebGrease.dll
+D:\毕业设计\MyBlogPark\MyBGO\bin\MyBGO.Framework.pdb
+D:\毕业设计\MyBlogPark\MyBGO\bin\MyBGO.Framework.dll.config
+D:\毕业设计\MyBlogPark\MyBGO\bin\EntityFramework.xml
+D:\毕业设计\MyBlogPark\MyBGO\bin\EntityFramework.SqlServer.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.Helpers.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.Mvc.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\System.Web.Optimization.xml
