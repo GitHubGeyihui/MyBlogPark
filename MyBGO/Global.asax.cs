@@ -1,4 +1,7 @@
-﻿using MyBGO.Framework.Core;
+﻿using AutoMapper;
+using MyBGO.Framework.Core;
+using MyBGO.Framework.Models;
+using MyBGO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +20,16 @@ namespace MyBGO
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-             
+
             EFInit.Setting();
-
-
+            //配置AutoMap 
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CatalogAdd, WebCatalog>();
+            }
+          );
         }
-    }
+
+    } 
 }
+

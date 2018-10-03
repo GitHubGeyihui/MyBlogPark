@@ -1,14 +1,73 @@
 ﻿
-@{
-    Layout = null;
+@section Header{
+    <script src="~/Content/Plugin/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="~/Content/Plugin/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/Plugin/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#example1').DataTable({
+                ajax: '/BlogArticle/Load',
+                columns:
+                    [
+                        { data: 'name' },
+                        { data: 'position' },
+                        { data: 'salary' },
+                        { data: 'state_date' },
+                        { data: 'office' },
+                        { data: 'extn' }
+                    ]
+            })
+            //$('#example2').DataTable({
+            //    'paging': true,
+            //    'lengthChange': false,
+            //    'searching': false,
+            //    'ordering': true,
+            //    'info': true,
+            //    'autoWidth': false
+            //})
+
+        });
+    </script>
 }
 
+<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
         首页
         <small>博客文章</small>
     </h1>
 </section>
+
+<!-- Main content -->
 <section class="content">
-    文章列表 
-</section> 
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">博客文章</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>Browser</th>
+                                <th>Platform(s)</th>
+                                <th>Engine version</th>
+                                <th>CSS grade</th>
+                                <th>CSS grade</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

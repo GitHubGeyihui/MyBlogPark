@@ -4,7 +4,7 @@ namespace MyBlogPark.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration 
     {
-        public override string AreaName 
+        public override string AreaName    
         {
             get 
             {

@@ -21,8 +21,9 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.Optimization.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.dll
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.dll
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\BotDetect.Web.Mvc.dll
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.ValueTuple.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\BotDetect.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBlogPark.pdb
@@ -39,6 +40,8 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.WebPages.Razor.
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.Web.Optimization.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.pdb
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\AutoMapper.xml
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll.config
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\EntityFramework.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\System.ValueTuple.xml
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\zh-Hans\System.Web.Helpers.resources.dll
@@ -53,6 +56,3 @@ D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.csproj.Co
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.dll
 D:\毕业设计\MyBlogPark\MyBlogPark.Tests\obj\Debug\MyBlogPark.Tests.pdb
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.pdb
-D:\毕业设计\MyBlogPark\MyBlogPark.Tests\bin\Debug\MyBGO.Framework.dll.config

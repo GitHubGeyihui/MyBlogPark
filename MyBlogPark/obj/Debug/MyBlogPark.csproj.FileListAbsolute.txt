@@ -225,6 +225,8 @@ D:\毕业设计\MyBlogPark\MyBlogPark\bin\Microsoft.Extensions.WebEncoders.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\Microsoft.Net.Http.Headers.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\Microsoft.Web.Infrastructure.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\Microsoft.Win32.Registry.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\Newtonsoft.Json.Bson.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\Newtonsoft.Json.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\System.Buffers.dll
@@ -248,6 +250,10 @@ D:\毕业设计\MyBlogPark\MyBlogPark\bin\System.Web.WebPages.Deployment.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\System.Web.WebPages.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\System.Web.WebPages.Razor.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\WebGrease.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll.config
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll.config
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\AutoMapper.pdb
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\AutoMapper.xml
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\EntityFramework.xml
@@ -344,14 +350,8 @@ D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.Razor.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csprojAssemblyReference.cache
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CoreCompileInputs.cache
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.pdb
-D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csprojAssemblyReference.cache
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.pdb
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.dll.config
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.pdb
-D:\毕业设计\MyBlogPark\MyBlogPark\bin\MyBGO.Framework.dll.config

@@ -10,6 +10,7 @@ namespace MyBGO.Framework.Models
     public class WebCatalog
     {
         public int ID { set; get; }
+        public int PID { set; get; }//记录副级
         [Required]
         [StringLength(20)]
         public string Name { set; get; }

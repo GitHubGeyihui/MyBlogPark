@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,6 +58,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -153,12 +160,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogArticleController.cs" />
     <Compile Include="Controllers\HomesController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CatalogAdd.cs" />
+    <Compile Include="Models\CatalogModify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +221,14 @@
     <Content Include="Content\Plugin\bootstrap\js\tooltip.js" />
     <Content Include="Content\Plugin\bootstrap\js\transition.js" />
     <Content Include="Content\Plugin\bootstrap\package.js" />
+    <Content Include="Content\Plugin\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="Content\Plugin\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Plugin\datatables.net-bs\js\dataTables.bootstrap.js" />
+    <Content Include="Content\Plugin\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\Plugin\datatables.net-bs\License.txt" />
+    <Content Include="Content\Plugin\datatables.net\js\jquery.dataTables.js" />
+    <Content Include="Content\Plugin\datatables.net\js\jquery.dataTables.min.js" />
+    <Content Include="Content\Plugin\datatables.net\License.txt" />
     <Content Include="Content\Plugin\dist\css\AdminLTE.css" />
     <Content Include="Content\Plugin\dist\css\AdminLTE.min.css" />
     <Content Include="Content\Plugin\dist\css\alt\AdminLTE-bootstrap-social.css" />
@@ -593,6 +611,12 @@
     <Content Include="Content\Plugin\bootstrap-colorpicker\spec\support\jasmine.json" />
     <Content Include="Content\Plugin\bootstrap-colorpicker\src\less\colorpicker.less" />
     <Content Include="Content\Plugin\bootstrap-colorpicker\src\sass\_colorpicker.scss" />
+    <Content Include="Content\Plugin\datatables.net-bs\.bower.json" />
+    <Content Include="Content\Plugin\datatables.net-bs\bower.json" />
+    <Content Include="Content\Plugin\datatables.net-bs\Readme.md" />
+    <Content Include="Content\Plugin\datatables.net\.bower.json" />
+    <Content Include="Content\Plugin\datatables.net\bower.json" />
+    <Content Include="Content\Plugin\datatables.net\Readme.md" />
     <None Include="Content\Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.min.js" />
@@ -604,7 +628,9 @@
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -619,11 +645,10 @@
     <Content Include="Views\BlogArticle\Index.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
     <Content Include="Views\Setting\Catalog.cshtml" />
-    <Content Include="Views\Setting\AddCatalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />

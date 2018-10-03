@@ -1,4 +1,9 @@
-﻿@section Header
+﻿@model CatalogAdd
+@{
+    var dataList = ViewBag.DataList as List<WebCatalog>;
+}
+
+@section Header
 {
     <link href="~/Content/Plugin/maxazan-jquery-treegrid-447d662/css/jquery.treegrid.css" rel="stylesheet" />
     <script src="~/Content/Plugin/maxazan-jquery-treegrid-447d662/js/jquery.treegrid.min.js"></script>
@@ -6,8 +11,11 @@
     <script type="text/javascript">
         $(function () {
             $('.tree').treegrid();
-        });
 
+            $('#btnadd').click(function () {
+                $("#modal-default").modal("show");
+            });
+        });
     </script>
 }
 <section class="content-header">
@@ -16,48 +24,91 @@
         <small>全站分类</small>
     </h1>
 </section>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">新增分类</h4>
+            </div>
+            @using (Html.BeginForm("addcatalog", "setting", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PID)
+                        @*下拉框从数据库读取信息*@
+                        @Html.DropDownListFor(m => m.PID, ViewBag.ParentList as List<SelectListItem>, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PID)
+                    </div>
+                    <div class="form-group">
+                        <label>Text</label>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            }
+        </div>
+
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <section class="content">
     <div class="box-header with-border">
         @*头部*@
-        分类添加
+
+        <button id="btnadd" type="button" class="btn btn-primary ">分类添加</button>
     </div>
     <!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover tree">
             <tr>
                 <th>分类名称</th>
-                <th>ID</th> 
+                <th>ID</th>
                 <th>添加时间</th>
                 <th>状态</th>
                 <th>操作</th>
             </tr>
-            <tr class="treegrid-1 ">
-                <td>John Doe</td>
-                <td>183</td>
+            @{var firstList = dataList.Where(m => m.PID == 0).ToList();}
+            @for (int i = 0; i < firstList.Count; i++)
+            {
+                <tr class="treegrid-@firstList[i].ID">
+                    <td>@firstList[i].Name</td>
+                    <td>@firstList[i].ID</td>
+                    <td>@firstList[i].AddTime.ToString("yyyy-MM-dd hh:mm")</td>
+                    <td>@firstList[i].Status</td>
+                    <td><button class="btn-default">修改</button></td>
+                </tr>
+                var secondList = dataList.Where(m => m.PID == firstList[i].ID).ToList();
+                for (int j = 0; j < secondList.Count; j++)
+                {
+                    <tr class="treegrid-@secondList[j].ID treegrid-parent-@firstList[i].ID">
+                        <td>@secondList[j].Name</td>
+                        <td>@secondList[j].ID</td>
+                        <td>@secondList[j].AddTime.ToString("yyyy-MM-dd hh:mm")</td>
+                        <td>@secondList[j].Status</td>
+                        <td><button class="btn-default">修改</button></td>
+                    </tr>
+                }
+            }
 
-                <td>@DateTime.Today</td>
-                <td>启用</td>
-                <td><button class="btn btn-default"></button></td>
+            @*<tr class="treegrid-3 treegrid-parent-2">
+            <td>John Doe</td>
+            <td>183</td>
 
-            </tr>
-            <tr class="treegrid-2 treegrid-parent-1">
-                <td>John Doe</td> 
-                <td>183</td>
-                
-                <td>@DateTime.Today</td>
-                <td>启用</td>
-                <td><button class="btn btn-default"></button></td>
-                
-            </tr>
-            <tr class="treegrid-3 treegrid-parent-2">
-                <td>John Doe</td>
-                <td>183</td>
-                
-                <td>@DateTime.Today</td>
-                <td>启用</td>
-                <td><button class="btn btn-default"></button></td>
-                
-            </tr>
+            <td>@DateTime.Today</td>
+            <td>启用</td>
+            <td><button class="btn btn-default"></button></td>
+
+        </tr>*@
         </table>
     </div>
     <!-- /.box-body -->
