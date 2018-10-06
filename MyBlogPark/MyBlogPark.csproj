@@ -505,6 +505,7 @@
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ArticleUpdate.cs" />
     <Compile Include="Areas\Admin\ViewModels\ArticleAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\CatalogAdd.cs" />
     <Compile Include="Areas\Admin\ViewModels\BlogApply.cs" />
@@ -881,6 +882,8 @@
     <Content Include="controller.ashx" />
     <Content Include="Areas\Admin\Views\Setting\Password.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\Info.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Catalog\Update.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

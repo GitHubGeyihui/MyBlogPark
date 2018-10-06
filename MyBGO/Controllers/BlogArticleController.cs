@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +13,35 @@ namespace MyBGO.Controllers
         {
             return View();
         }
-        public JsonResult Load()
+
+        public JsonResult Load(int sEcho, int? iDisplayStart, int? iDisplayLength, string KeyWords)
         {
-            return Json(new { data =new object[]{ new { name = "谷羽", position = "广元", salary = 123, state_date = "asdfa", office = true, extn = "123" } } },JsonRequestBehavior.AllowGet);
+            var list = new object[] {
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 123, state_date = "asd@@fa", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 156323, state_date = "asd/fa", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 12783, state_date = "as8dfa", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 1283, state_date = "asdfa", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 17823, state_date = "asd8fa", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 1263, state_date = "asdf78a", office = true, extn = "123" },
+                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 127783, state_date = "asd78fa", office = true, extn = "123" },
+  
+            };
+            if (iDisplayStart == 20)
+            {
+                list = list.Take(4).ToList().ToArray();
+            }
+            //Json返回的格式 new { draw=2,recordsTotal=24,recordsFiltered=24, data =list }
+            //draw:表示请求次数，每次返回去不能是一样的否则数据不会刷新
+            //recordsTotal:总记录数
+            //recordsFiltered：过滤后的总记录数
+            //data:具体的数据对象数组
+            return Json(new { draw = sEcho, recordsTotal = 24, recordsFiltered = 24, data = list }, JsonRequestBehavior.AllowGet);
+        }
+        private long ConvertDateTimeToInt(System.DateTime time)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+            long t = (time.Ticks - startTime.Ticks) / 10000;   //除10000调整为13位      
+            return t;
         }
     }
-}   
+}

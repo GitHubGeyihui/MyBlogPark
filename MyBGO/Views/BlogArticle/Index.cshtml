@@ -4,29 +4,110 @@
     <link href="~/Content/Plugin/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <script src="~/Content/Plugin/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#example1').DataTable({
-                ajax: '/BlogArticle/Load',
-                columns:
-                    [
-                        { data: 'name' },
-                        { data: 'position' },
-                        { data: 'salary' },
-                        { data: 'state_date' },
-                        { data: 'office' },
-                        { data: 'extn' }
-                    ]
-            })
-            //$('#example2').DataTable({
-            //    'paging': true,
-            //    'lengthChange': false,
-            //    'searching': false,
-            //    'ordering': true,
-            //    'info': true,
-            //    'autoWidth': false
-            //})
 
+        //把公共的设置项都放在这里，就不需要每个页面都设置一遍了，放在jQuery对象上是为了避免污染全局变量
+        $.dataTablesSettings = {
+            "aLengthMenu": [10, 25, 50, 100],
+            "bAutoWidth": false,
+            "bDeferRender": true,
+            "bLengthChange": false,
+            "sAjaxSource": "/BlogArticle/Load",
+            "bPaginate": true,
+            "bServerSide": true,
+            "bStateSave": true, //保存页面的状态
+            //"bSort": true,
+            "iDisplayLength": 10,
+            searching: false,//是否显示搜索框
+              "aaSorting": [[0, "asc"]],//默认排序
+            "bFilter": true,
+            columns: [
+                { title: "编号", data: "name" },
+                { title: "账号", data: "position" },
+                { title: "密码", data: "salary" },
+                { title: "状态", data: "state_date" },
+                {
+                    title: "时间",
+                    data: function (data, type, full) {
+                        if (data.office) {
+                            return '<i class="fa fa-check-circle-o" style="color:green"></i>';
+                        }
+                        else {
+                            return '<i class="fa fa-window-close" style="color:red"></i> <input onclick="alert(' + data.extn + ')" type="button" value="修改"/>';
+                        }
+                    }
+                },
+                {
+                    title: "操作码", data: function (data) {
+                        return '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">修改</button><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">删除</button>';
+                    }
+                },
+            ],
+            aoColumnDefs: [{
+                'bSortable': false,
+                'aTargets': [1, 2, 3, 4]
+            }],
+            //汉化
+            language: {
+                "sSearch": "搜索：",
+                "lengthMenu": "_MENU_ 条记录每页",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            },
+            "fnServerParams": function (aoData) {
+                aoData._rand = Math.random();
+                aoData.draw = 12;
+            },
+            "fnDrawCallback": function () {
+
+            }
+        }
+
+        var dataTable;
+
+        $(function () {
+
+            dataTable = $("#example1").dataTable($.dataTablesSettings);
+
+            $('#btn_search').click(function () {
+                //这里重新设置参数
+                $.dataTablesSettings.fnServerParams = function (aoData) {
+                    aoData._rand = Math.random();
+                    aoData.push(
+                        { "name": "KeyWords", "value": $('#KeyWords').val() }
+                    );
+                }
+                //搜索就是设置参数，然后销毁datatable重新再建一个
+                dataTable.fnDestroy(false);
+                dataTable = $("#example1").dataTable($.dataTablesSettings);
+                //搜索后跳转到第一页
+                //dataTable.fnPageChange(0);
+            });
         });
+
+        function openOprate(id) {
+            //得到了id 我们就可以通过它 去读取服务器读取数据
+            //通过ajax 的post方法 可以发起异步请求 然后后台返回一个json
+            //$.post(
+            //    "/loaduser",
+            //    { "id": id },
+            //    function (data)
+            //    {
+            //        alert(data.name);
+            //        //成功获取对象
+            //        //打开模态框
+            //    },
+            //    "json"
+            //);
+            $("#modal-default").modal({
+                show: true
+            });
+        }
     </script>
 }
 
@@ -38,29 +119,43 @@
     </h1>
 </section>
 
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Default Modal</h4>
+            </div>
+            <div class="modal-body">
+                <p>测试</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">博客文章</h3>
+                    <div class="ibox-tools">
+                        <span>关键字</span>
+                        @Html.TextBox("KeyWords", null, new { @class = "m-wrap small" })
+                        <a class="btn btn-primary btn-sm" title='搜索' id="btn_search" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>名称</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                                <th>CSS grade</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <table id="example1" class="table table-bordered table-striped"></table>
                 </div>
                 <!-- /.box-body -->
             </div>

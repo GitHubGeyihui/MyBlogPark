@@ -1,4 +1,4 @@
-﻿@model List<MyBGO.Framework.Models.Catalog>
+﻿@model List<Catalog>
 @{
     ViewBag.Title = "Catalog";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -6,18 +6,19 @@
 
 <form method="post" action="" id="listform">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+        <div class="panel-head">
+            <strong class="icon-reorder"> 分类列表</strong>
+        </div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="/admin/catalog/add"> 新增栏目</a> </li>
-                <li> <a class="button border-main icon-plus-square-o" href="save"> 保存</a> </li>
-
+                <li>
+                    <a class="button border-main icon-plus-square-o" href="/admin/catalog/add"> 新增栏目</a>
+                </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
                 <th style="width:5% ;padding-left:20px;">ID</th>
-                <th width="10%">排序</th>
                 <th width="10%">分类名称</th>
                 <th width="10%">更新时间</th>
                 <th width="10%">操作</th>
@@ -28,46 +29,33 @@
                         <td style="padding-left:20px;">
                             @Model[i].ID
                         </td>
-                        <td><input type="text" name="sort[1]" value="1" style="width:40px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
                         <td>
                             @Model[i].Name
                         </td>
                         <td> @Model[i].AddTime.ToString("yyyy-MM-dd")</td>
                         <td>
                             <div class="button-group">
-                                <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a>
-                                <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)">
+                                <a class="button border-main" href="/admin/Catalog/update/@Model[i].ID"><span class="icon-edit"></span> 修改</a>
+                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
                                     <span class="icon-trash-o"></span> 删除
                                 </a>
                             </div>
                         </td>
                     </tr>
-                 }
+                }
 
-
-
-                <tr>
-                    <td style="padding-left:21px;">
-                        <input type="checkbox" id="checkall" />
-                        全选
-                    </td>
-                    <td colspan="7" style="text-align:left;padding-left:20px;">
-                        <a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()">
-                            删除
-                        </a>
-                </tr>
-                <tr>
-                    <td colspan="8">
-                        <div class="pagelist" style="text-align:left;">
-                            <a href="">上一页</a>
-                            <span class="current">1</span>
-                            <a href="">2</a>
-                            <a href="">3</a>
-                            <a href="">下一页</a>
-                            <a href="">尾页</a>
-                        </div>
-                    </td>
-                </tr>
+                @*<tr>
+                        <td colspan="8">
+                            <div class="pagelist" style="text-align:left;">
+                                <a href="">上一页</a>
+                                <span class="current">1</span>
+                                <a href="">2</a>
+                                <a href="">3</a>
+                                <a href="">下一页</a>
+                                <a href="">尾页</a>
+                            </div>
+                        </td>
+                    </tr>*@
 
 
         </table>
@@ -80,10 +68,17 @@
 
     }
 
-    //单个删除
-    function del(id, mid, iscid) {
+    function del(id) {
         if (confirm("您确定要删除吗?")) {
-
+            $.post("/admin/Catalog/delete", { id: id },
+                function (data) {
+                    if (data == 1) {
+                        window.location.href = "/admin/Catalog/index";
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                });
         }
     }
 

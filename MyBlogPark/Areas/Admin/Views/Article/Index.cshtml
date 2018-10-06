@@ -1,7 +1,12 @@
-﻿@model List<MyBGO.Framework.Models.Article>
+﻿@model List<Article>
+
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var totalCount = (int)ViewBag.TotalCount;
+    var pageSize = (int)ViewBag.PageSize;
+    //总页
+    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
+    var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
 }
 
 <form method="post" action="" id="listform">
@@ -9,52 +14,48 @@
         <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="/admin/article/add"> 新增随笔 </a> </li>
-
+                <li> <a class="button border-main icon-plus-square-o" href="/admin/article/add"> 新增随笔</a> </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th style="width:20% ;padding-left:10px;">ID</th>
-                <th width="30%">标题  </th>
+                <th width="50" style="text-align:left; padding-left:10px;">ID</th>
+                <th width="60%">分类名称</th>
                 <th width="10%">更新时间</th>
-                <th width="10%">操作</th>
+                <th style="text-align:left;">操作</th>
             </tr>
             <volist name="list" id="vo">
                 @for (int i = 0; i < Model.Count; i++)
-                {<tr>
-                        <td style="padding-left:20px;">
+                {
+                    <tr>
+                        <td style="text-align:left; padding-left:20px;">
                             @Model[i].ID
-                        </td>   
-                        <td>
-                            @Model[i].Title
-                        </td> 
-                        <td> @Model[i].AddTime.ToString("yyyy-MM-dd")</td>
-                        <td>
+                        </td>
+                        <td>@Model[i].Title</td>
+                        <td>@Model[i].AddTime.ToString("yyyy-MM-dd")</td>
+                        <td style="text-align:left;">
                             <div class="button-group">
-                                <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a>
-                                <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)">
+                                <a class="button border-main" href="/admin/article/update/@Model[i].ID">
+                                    <span class="icon-edit"></span> 修改
+                                </a>
+                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
                                     <span class="icon-trash-o"></span> 删除
                                 </a>
                             </div>
                         </td>
                     </tr>
                 }
-
                 <tr>
                     <td colspan="8">
-                        <div class="pagelist" style="text-align:left;">
-                            <a href="">上一页</a>
-                            <span class="current">1</span>
-                            <a href="">2</a>
-                            <a href="">3</a>
-                            <a href="">下一页</a>
-                            <a href="">尾页</a>
+                        <div class="pagelist">
+                            <a href="/admin/article/index?p=1">首页</a>
+                            <a href="/admin/article/index?p=@(p-1)">上一页</a>
+                            <span class="current">@p</span>
+                            <a href="/admin/article/index?p=@(p+1)">下一页</a>
+                            <a href="/admin/article/index?p=@pageCount">尾页</a>
                         </div>
                     </td>
                 </tr>
-
-
         </table>
     </div>
 </form>
@@ -66,9 +67,17 @@
     }
 
     //单个删除
-    function del(id, mid, iscid) {
+    function del(id) {
         if (confirm("您确定要删除吗?")) {
-
+            $.post("/admin/article/delete", { id: id },
+                function (data) {
+                    if (data == 1) {
+                        window.location.href = "/admin/article/index";
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                });
         }
     }
 
@@ -120,6 +129,8 @@
             return false;
         }
     }
+
+
     //批量首页显示
     function changeishome(o) {
         var Checkbox = false;
@@ -177,6 +188,8 @@
             return false;
         }
     }
+
+
     //批量移动
     function changecate(o) {
         var Checkbox = false;
@@ -225,5 +238,5 @@
             return false;
         }
     }
-</script>
 
+</script>

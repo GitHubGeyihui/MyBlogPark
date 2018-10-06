@@ -11,7 +11,7 @@ namespace MyBlogPark.Areas.Admin.ViewModels
     {
 
         [DisplayName("栏目")]
-        public string CatalogID { set; get; }
+        public int CatalogID { set; get; }
 
         [StringLength(100)]
         [DisplayName("博客标题")]

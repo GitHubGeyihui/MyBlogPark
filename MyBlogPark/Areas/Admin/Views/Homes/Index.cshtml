@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="zh-cn"> 
 <head>
@@ -12,17 +10,17 @@
     <meta name="renderer" content="webkit">
     <title>后台管理の中心</title>
     <link href="~/Areas/Admin/Content/css/pintuer.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/css/admin.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/css/admin.css?t=1" rel="stylesheet" />
     <script src="~/Areas/Admin/Content/js/jquery.js"></script>
 </head>
 <body style="background-color:#f2f9fd;">
     <div class="header bg-main"> 
         <div class="logo margin-big-left fadein-top">
             <h1>
-                <img src="~/Areas/Admin/Content/images/1.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心
+                <img src="~/Areas/Admin/Content/images/1.jpg" class="radius-circle rotate-hover" height="50" alt=""/>后台管理中心
             </h1>
         </div>
-        <div class="head-l">
+        <div class="head-l" style="float:right;">
             <a class="button button-little bg-green" href="/" target="_blank"><span class="icon-home"></span> 园子首页</a> &nbsp;&nbsp;
             @if (LoginBlog != null)
             {
@@ -53,7 +51,7 @@
         @if (LoginBlog != null)
         {
             <h2><span class="icon-pencil-square-o"></span>内容管理</h2>
-            <ul>
+           <ul style="display:block">
                 <li><a href="../catalog/index" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
                 <li><a href="../article/index" target="right"><span class="icon-caret-right"></span>随笔管理</a></li>
                 <li><a href="../comment/index" target="right"><span class="icon-caret-right"></span>评论管理</a></li>

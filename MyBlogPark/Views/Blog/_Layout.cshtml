@@ -1,6 +1,6 @@
-﻿@model MyBGO.Framework.Models.Blog
+﻿@model Blog
 @{ 
-    var list = ViewBag.CatalogList as List<MyBGO.Framework.Models.Catalog>;
+    var list = ViewBag.CatalogList as List<Catalog>;
 }
 <!DOCTYPE html>
 <html>
@@ -126,7 +126,7 @@
                                 <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
 
                             }
-
+                            }
                         </ul>
                     </li>
                 </ul>
@@ -144,7 +144,7 @@
     @RenderBody()
     <footer class="footer">
         <p>
-            © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a> 16301002 <a href="#" target="_blank">谷羽</a>の博客园
+            ©@DateTime.Now.Year <a href="#" target="_blank">SCITC</a> 16301002 <a href="#" target="_blank">谷羽</a>の博客园
         </p>
     </footer>
     <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>

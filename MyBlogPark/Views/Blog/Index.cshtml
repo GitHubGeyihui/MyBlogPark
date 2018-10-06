@@ -1,10 +1,10 @@
 ﻿ @*通过强类型视图显示*@
-@model MyBGO.Framework.Models.Blog
+@model Blog
 @{
     Layout = "~/Views/Blog/_Layout.cshtml";
     ViewBag.Title = Model.Title;
-    var list = ViewBag.AritcleList as List<MyBGO.Framework.Models.Article>;
-    var listCatalogList = ViewBag.CatalogList as List<MyBGO.Framework.Models.Catalog>;
+    var list = ViewBag.AritcleList as List<Article>;
+    var listCatalogList = ViewBag.CatalogList as List<Catalog>;
 
 }
 

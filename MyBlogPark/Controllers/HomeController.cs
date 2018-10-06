@@ -92,7 +92,7 @@ namespace MyBlogPark.Controllers
                         if (blog != null)
                         {
                             Session["loginBlog"] = blog;
-                            return Redirect("/" + blog.Identity);
+                            return Redirect("/" );
                         }
                         else
                         {
