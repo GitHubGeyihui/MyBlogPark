@@ -19,15 +19,15 @@ namespace MyBlogPark.Areas.Admin.Controllers
         public ActionResult Index(int p = 1)
         {
             int pageSize = 6;
-            ViewBag.CatalogList = dbContext.catalog.ToList();
-            var listArticle = dbContext.article.OrderBy(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
-            ViewBag.TotalCount = dbContext.article.Count();
+            ViewBag.CatalogList = dbContext.Catalog.ToList();
+            var listArticle = dbContext.Article.OrderBy(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
+            ViewBag.TotalCount = dbContext.Article.Count();
             ViewBag.PageSize = pageSize;
             return View(listArticle);
         }
         public ActionResult Add()
         {
-            ViewBag.CatalogList = dbContext.catalog.ToList();
+            ViewBag.CatalogList = dbContext.Catalog.ToList();
             return View();
         }
         [HttpPost]
@@ -46,7 +46,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.UP = 0;
                 model.Views = 0;
                 model.Discription = StringHelper.ReplaceHtmlTag(model.Content, 150);
-                dbContext.article.Add(model);
+                dbContext.Article.Add(model);
                 int res = dbContext.SaveChanges();
                 if (res > 0)
                 {
@@ -62,8 +62,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         }
         public ActionResult Update(int id)
         {
-            ViewBag.CatalogList = dbContext.catalog.ToList();
-            var model = dbContext.article.FirstOrDefault(m => m.ID == id);
+            ViewBag.CatalogList = dbContext.Catalog.ToList();
+            var model = dbContext.Article.FirstOrDefault(m => m.ID == id);
             var info = new ArticleUpdate
             {
                 Content = model.Content,
@@ -79,12 +79,12 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var model = dbContext.article.FirstOrDefault(m => m.ID == info.ID);
+                var model = dbContext.Article.FirstOrDefault(m => m.ID == info.ID);
                 model.Content = info.Content;
                 model.Title = info.Title;
                 model.CatalogID = info.CatalogID;
                 model.Discription = StringHelper.ReplaceHtmlTag(model.Content, 150);
-                dbContext.article.Add(model);
+                dbContext.Article.Add(model);
                 dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 int res = dbContext.SaveChanges();
                 if (res > 0)
@@ -103,9 +103,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
         public int Delete(int id)
         {
            
-                var model = dbContext.article.FirstOrDefault(m => m.ID == id);
+                var model = dbContext.Article.FirstOrDefault(m => m.ID == id);
                
-                dbContext.article.Attach(model);
+                dbContext.Article.Attach(model);
                 dbContext.Entry(model).State = System.Data.Entity.EntityState.Deleted;
                 int res = dbContext.SaveChanges();
                 if (res > 0)

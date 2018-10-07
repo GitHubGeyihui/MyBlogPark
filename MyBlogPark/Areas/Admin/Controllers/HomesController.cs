@@ -36,14 +36,14 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.EditTime = DateTime.Now;
                 model.Status = true;
                 model.UserID = LoginUser.ID;
-                dbContext.blog.Add(model);
+                dbContext.Blog.Add(model);
                 int res = dbContext.SaveChanges();
                 //ToDo: 这里放到事务里面（这里有些不懂的，明天早上再来看看{已经解决}）
                 if (res > 0)
                 {
                     LoginUser.BlogID = model.ID;//取到ID
                     //将要修改的实体附加到上下文中
-                    dbContext.user.Attach(LoginUser);
+                    dbContext.User.Attach(LoginUser);
                     //修改实体的状态，改为“修改”状态
                     dbContext.Entry<User>(LoginUser).State = System.Data.Entity.EntityState.Modified;
                     res = dbContext.SaveChanges();

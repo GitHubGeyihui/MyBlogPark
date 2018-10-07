@@ -54,8 +54,7 @@
             </div>
             <div class="field">
                 <script id="editor" name="content" type="text/plain" style="width:100%;height:500px;">
-               
-
+                    @*@Html.EditorFor(m => m.Content, new { @class = "input" })*@
                 </script> 
                 <div class="tips">
                     @Html.ValidationMessageFor(m => m.Content)

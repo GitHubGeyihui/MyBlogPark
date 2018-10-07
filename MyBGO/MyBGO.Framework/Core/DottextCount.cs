@@ -15,11 +15,11 @@ namespace MyBGO.Framework.Core
              
          }
         public DbSet<Admin> Admin { set; get; }//创建管理员表 
-        public DbSet<User> user { set; get; }//创建用户表
-        public DbSet<Blog> blog { set; get; }//创建博客表
-        public DbSet<Catalog> catalog { set; get; }//创建栏目表
-        public DbSet<Article> article { set; get; }//创建随笔表
-        public DbSet<WebCatalog> webCatalog { set; get; }//创建全站分类表
+        public DbSet<User> User { set; get; }//创建用户表
+        public DbSet<Blog> Blog { set; get; }//创建博客表
+        public DbSet<Catalog> Catalog { set; get; }//创建栏目表
+        public DbSet<Article> Article { set; get; }//创建随笔表
+        public DbSet<WebCatalog> WebCatalog { set; get; }//创建全站分类表
 
 
     }

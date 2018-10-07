@@ -8,7 +8,6 @@ namespace MyBlogPark.Models
 {
     public class UserRegister
     {
-
         [Required]
         [StringLength(20)]
         [Display(Name="用户名")]
@@ -21,10 +20,10 @@ namespace MyBlogPark.Models
         [StringLength(20)]
         [Display(Name = "密码")]
         public string Pwd { set; get; }
-        [Required]
-        [StringLength(10)]
-        [Display(Name = "验证码")]
-        public string ValidateCode { set; get; }
+        [Display(Name = "确认密码")]
+        [DataType(DataType.Password)]
+        [Compare("Pwd", ErrorMessage = "两次密码必须一样")]
+        public string PasswordConfirm { get; set; }
 
 
     }

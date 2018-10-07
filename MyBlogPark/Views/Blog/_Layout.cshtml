@@ -1,5 +1,5 @@
 ﻿@model Blog
-@{ 
+@{
     var list = ViewBag.CatalogList as List<Catalog>;
 }
 <!DOCTYPE html>
@@ -129,8 +129,12 @@
                             }
                         </ul>
                     </li>
-                </ul>
 
+                    @if (LoginBlog != null)
+                    {
+                        <li><a href="/admin/homes/index">管理</a></li>
+                    }
+                </ul>
                 <form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" role="search">
                     <div class="am-form-group">
                         <input type="text" class="am-form-field am-input-sm" placeholder="搜索文章">

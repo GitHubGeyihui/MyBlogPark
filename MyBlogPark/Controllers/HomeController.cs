@@ -21,7 +21,7 @@ namespace MyBlogPark.Controllers
             var list = CacheHelper.RedCache<List<Catalog>>(key);
             if (list == null)
             {
-                list = dbContext.catalog.ToList();
+                list = dbContext.Catalog.ToList();
                 CacheHelper.WriteCache(key,list,10,false);//十秒绝对失效
             }
             ViewBag.catalogs = list;
@@ -52,7 +52,7 @@ namespace MyBlogPark.Controllers
                     LastLoginTime = DateTime.Now,
                     Status = true
                 };
-                dbContext.user.Add(user);
+                dbContext.User.Add(user);
                 var res = dbContext.SaveChanges();
                 if (res > 0)
                 {
@@ -83,12 +83,12 @@ namespace MyBlogPark.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dbuser = dbContext.user.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
+                    var dbuser = dbContext.User.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
                     if (dbuser != null && dbuser.Pwd == info.Pwd)
                     {
                         Session["loginUser"] = dbuser;
                         //把当前用户的博客记录起来
-                        var blog = dbContext.blog.Where(m => m.UserID == dbuser.ID && m.Status).FirstOrDefault();
+                        var blog = dbContext.Blog.Where(m => m.UserID == dbuser.ID && m.Status).FirstOrDefault();
                         if (blog != null)
                         {
                             Session["loginBlog"] = blog;

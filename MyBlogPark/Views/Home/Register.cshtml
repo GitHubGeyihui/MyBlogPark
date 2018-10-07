@@ -30,9 +30,9 @@
             @Html.PasswordFor(m => m.Pwd, new { @type = "password" })
             @Html.ValidationMessageFor(m => m.Pwd)
             <br>
-            <label for="ValidateCode">验证码:</label>
-            @Html.TextBoxFor(m => m.ValidateCode, new { @type = "text" })
-            @Html.ValidationMessageFor(m => m.ValidateCode)
+            <label for="PasswordConfirm">确认密码：</label>
+            @Html.PasswordFor(m => m.PasswordConfirm, new { @type = "password" })
+            @Html.ValidationMessageFor(m => m.PasswordConfirm)
             <label for="remember-me">
                 <input id="remember-me" type="checkbox" name="">
                 同意用户协议

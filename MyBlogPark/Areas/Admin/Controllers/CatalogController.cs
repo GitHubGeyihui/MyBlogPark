@@ -16,7 +16,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         // GET: Admin/Catalog
         public ActionResult Index()
         {
-            var list = dbContext.catalog.ToList();
+            var list = dbContext.Catalog.ToList();
             return View(list);
         }
         public ActionResult Add()
@@ -34,7 +34,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.EditTime = DateTime.Now;
                 model.BlogID = LoginBlog.ID;
                 model.Status = true;
-                dbContext.catalog.Add(model);
+                dbContext.Catalog.Add(model);
                 int res = dbContext.SaveChanges();
                 if (res>0)
                 {
@@ -46,7 +46,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         }
         public ActionResult Update(int id)
         {
-            var model = dbContext.catalog.FirstOrDefault(m => m.ID == id);       
+            var model = dbContext.Catalog.FirstOrDefault(m => m.ID == id);       
             return View(model);
         }
         [HttpPost]
@@ -55,9 +55,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var model = dbContext.catalog.FirstOrDefault(m => m.ID == info.ID);
+                var model = dbContext.Catalog.FirstOrDefault(m => m.ID == info.ID);
                 model.Name = info.Name;
-                dbContext.catalog.Add(model);          
+                dbContext.Catalog.Add(model);          
                 dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 int res = dbContext.SaveChanges();
                 if (res > 0)
@@ -76,9 +76,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
         public int Delete(int id)
         {
 
-            var model = dbContext.catalog.FirstOrDefault(m => m.ID == id);
+            var model = dbContext.Catalog.FirstOrDefault(m => m.ID == id);
 
-            dbContext.catalog.Attach(model);
+            dbContext.Catalog.Attach(model);
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Deleted;
             int res = dbContext.SaveChanges();
             if (res > 0)

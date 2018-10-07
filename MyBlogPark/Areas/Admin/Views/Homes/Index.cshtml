@@ -38,10 +38,11 @@
         <ul style="display:block">
             @if (LoginBlog != null)
             {
-                <li><a href="apply" target="right"><span class="icon-caret-right"></span>博客设置</a></li>
+                <li><a href="../setting/Config" target="right"><span class="icon-caret-right"></span>博客设置</a></li>
             }
             else
             {
+
                 <li><a href="apply" target="right"><span class="icon-caret-right"></span>博客申请</a></li>
 
             }
@@ -74,13 +75,28 @@ $(function(){
     </script>
     <ul class="bread">
         <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
-        <li><a href="#" id="a_leader_txt">网站信息</a></li>
+        @if (LoginBlog != null)
+        {
+            <li><a href="#" id="a_leader_txt">我的随笔</a></li>
+        }
+        else
+        {
+            <li><a href="#" id="a_leader_txt">申请博客</a></li>
+        }
         <li>
             <b>当前语言：</b><span style="color:red;">中文</span>
         </li>
     </ul>
     <div class="admin">
-        <iframe scrolling="auto" rameborder="0" src="Apply" name="right" style="width:100%;height:100%;"></iframe>
+        @if (LoginBlog != null)
+        {
+            <iframe scrolling="auto" rameborder="0" src="/admin/article/index" name="right" style="width:100%;height:100%;"></iframe>
+
+        }
+        else
+        {
+            <iframe scrolling="auto" rameborder="0" src="Apply" name="right" style="width:100%;height:100%;"></iframe>
+        }
     </div>
     <div style="text-align:center;">
     </div>

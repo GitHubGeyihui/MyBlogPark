@@ -36,7 +36,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 int id = Convert.ToInt32(idster);
                 //得到缓存
                 var value = HttpRuntime.Cache.Get(key);
-                var article = dbContext.article.Where(m => m.ID == id).First();
+                var article = dbContext.Article.Where(m => m.ID == id).First();
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
                 //准备失效，但回调函数里还是可以读取到缓存的
@@ -61,7 +61,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 int up = 0;
                 if (obj == null)
                 {
-                    var article = dbContext.article.Where(m => m.ID == id).First();
+                    var article = dbContext.Article.Where(m => m.ID == id).First();
                     up = article.UP;
                     //文章打开的时候直接读文章表文章表也是点在数
                 }
@@ -87,7 +87,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 //根据key去取得ID然后读取缓存值 缓存值=点赞数 然后把它记录到数据库中。
                 string idster = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
                 int id = Convert.ToInt32(idster);
-                var article = dbContext.article.Where(m => m.ID == id).First();
+                var article = dbContext.Article.Where(m => m.ID == id).First();
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
             }

@@ -21,14 +21,14 @@ namespace MyBGO.Controllers
         {
             var list = new List<SelectListItem>();
             list.Add(new SelectListItem() { Text = "无", Value = "0" });
-            var catalogList = dbContext.webCatalog.Where(m => m.PID == 0).ToList();
+            var catalogList = dbContext.WebCatalog.Where(m => m.PID == 0).ToList();
             foreach (var item in catalogList)
             {
                 list.Add(new SelectListItem() { Text = item.Name, Value = item.ID.ToString() });
             }
             ViewBag.ParentList = list;
 
-            ViewBag.DataList = dbContext.webCatalog.ToList();
+            ViewBag.DataList = dbContext.WebCatalog.ToList();
 
             return View();
         }
@@ -43,7 +43,7 @@ namespace MyBGO.Controllers
                 model.Status = true;
                 model.Total = 0;
                 model.Refleshs = 0;
-                dbContext.webCatalog.Add(model);
+                dbContext.WebCatalog.Add(model);
                 if (dbContext.SaveChanges() > 0)
                 {
                     return Redirect("/setting/catalog");
