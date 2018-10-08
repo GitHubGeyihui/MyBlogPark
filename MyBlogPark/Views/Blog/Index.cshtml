@@ -1,11 +1,14 @@
-﻿ @*通过强类型视图显示*@
+﻿@*通过强类型视图显示*@
 @model Blog
 @{
     Layout = "~/Views/Blog/_Layout.cshtml";
     ViewBag.Title = Model.Title;
     var list = ViewBag.AritcleList as List<Article>;
-    var listCatalogList = ViewBag.CatalogList as List<Catalog>;
+    var totalCount = (int)ViewBag.TotalCount;
+    var pageSize = (int)ViewBag.PageSize;
 
+    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :totalCount / pageSize + 1;
+    var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
 }
 
 @section scripts{
@@ -66,7 +69,7 @@
     @*日期插件的css及jQuery*@
     <style type="text/css">
         .Calendar {
-            font-family: Verdana; 
+            font-family: Verdana;
             font-size: 9pt;
             background-color: #EEE;
             text-align: center;
@@ -219,117 +222,39 @@
     </script>
 
 }
-<div class="am-g  am-g blog-g-fixed" style="margin-top:50px">
-    <div class="am-u-md-8 am-u-lg-9">
-
-        @*@ViewBag.ArticleList*@
-        @if (list != null)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                <article class="blog-main">
-                    <h3 class="am-article-title blog-title">
-                        <a href="#">@list[i].Title</a>
-                    </h3>
-                    <h4 class="am-article-meta blog-meta">发布于：@list[i].AddTime.ToString("yyyy-MM-dd")</h4>
-                    <div class="am-g blog-content">
-                        <div class="am-u-lg-12">
-                            @if (i == 0)
-                            {
-                                @Html.Raw(list[i].Content)
-                            }
-                            else
-                            {
-                                @list[i].Discription
-                            }
-                        </div>
-                    </div>
-                </article>
-                <hr class="am-article-divider blog-hr"/>
-            }
-        }
-        else
-        {
-            <p>123</p>
-        }
-        <ul class="am-pagination blog-pagination">
-            <li class="am-pagination-prev"><a href="">&laquo; 上一页</a></li>
-            <li class="am-pagination-next"><a href="">下一页 &raquo;</a></li>
-        </ul>
-    </div>
-
-    <div class="am-u-md-4 am-u-lg-3 blog-sidebar">
-        <div class="am-panel-group">
-            <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">@Model.NiName</div>
-                <div class="am-panel-bd">
-                    <p>
-                        @Model.Discription
-                    </p>
-                </div>
-            </section>
-            <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">时间</div>
-                <div class="am-panel-bd">
-
-                    <div class="Calendar">
-                        <div id="idCalendarPre"><<</div>
-                        <div id="idCalendarNext">>></div>
-                        <span id="idCalendarYear">2008</span>年 <span id="idCalendarMonth">8</span>月
-                        <table cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <td>日</td>
-                                    <td>一</td>
-                                    <td>二</td>
-                                    <td>三</td>
-                                    <td>四</td>
-                                    <td>五</td>
-                                    <td>六</td>
-                                </tr>
-                            </thead>
-                            <tbody id="idCalendar"></tbody>
-                        </table>
-                    </div>
-                    <script language="JavaScript">
-                        var cale = new Calendar("idCalendar", {
-                            SelectDay: new Date().setDate(10),
-                            onSelectDay: function (o) { o.className = "onSelect"; },
-                            onToday: function (o) { o.className = "onToday"; },
-                            onFinish: function () {
-                                $("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
-                                var flag = [10, 15, 20];
-                                for (var i = 0, len = flag.length; i < len; i++) {
-                                    this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('您选择的日期是：" + this.Year + "/" + this.Month + "/" + flag[i] + "');return false;\">" + flag[i] + "</a>";
-                                }
-                            }
-                        });
-                        $("idCalendarPre").onclick = function () { cale.PreMonth(); }
-                        $("idCalendarNext").onclick = function () { cale.NextMonth(); }
-                    </script>
-                </div>
-            </section>
-            <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">博客栏目</div>
-                <ul class="am-list blog-list">
-                    @foreach (var item in listCatalogList)
+@*@ViewBag.ArticleList*@
+@if (list != null)
+{
+    for (int i = 0; i < list.Count; i++)
+    {
+        <article class="blog-main">
+            <h3 class="am-article-title blog-title">
+                <a href="/@Model.Identity/p/@(list[i].ID).html">@list[i].Title</a>
+            </h3>
+            <h4 class="am-article-meta blog-meta">发布于：@list[i].AddTime.ToString("yyyy-MM-dd")</h4>
+            <div class="am-g blog-content">
+                <div class="am-u-lg-12">
+                    @if (i == 0)
                     {
-                        <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
+                        @Html.Raw(list[i].Content)
                     }
-                </ul>
-            </section>
-            <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">热门博客</div>
-                <ul class="am-list blog-list">
-                    <li><a href="#">Google fonts 的字體（sans-serif 篇）</a></li>
-                    <li><a href="#">[but]服貿最前線？－再訪桃園機場</a></li>
-                    <li><a href="#">到日星鑄字行學字型</a></li>
-                    <li><a href="#">glyph font vs. 漢字（上）</a></li>
-                    <li><a href="#">浙江民間書刻體上線</a></li>
-                    <li><a href="#">[極短篇] Android v.s iOS，誰的字體好讀？</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-
-</div> 
+                    else
+                    {
+                        @list[i].Discription
+                    }
+                </div>
+            </div>
+        </article>
+        <hr class="am-article-divider blog-hr">
+    }
+}
+<ul class="am-pagination blog-pagination">
+    @if (p != 1)
+    {
+        <li class="am-pagination-prev"><a href="/@Model.Identity/@(p-1)">&laquo; 上一页</a></li>
+    }
+    @if (p < pageCount)
+    {
+        <li class="am-pagination-next"><a href="/@Model.Identity/@(p+1)">下一页 &raquo;</a></li>
+    }
+</ul>

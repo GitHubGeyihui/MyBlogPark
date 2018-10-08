@@ -96,59 +96,10 @@
             background: #2d3e50;
         }
     </style>
+    <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
     @RenderSection("scripts", required: false)
 </head>
 <body>
-    @*<header class="am-topbar am-topbar-fixed-top">
-            <div class="am-container">
-                <h1 class="am-topbar-brand">
-                    <a href="/">谷羽の博客园</a>
-                </h1>
-
-                <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
-                        data-am-collapse="{target: '#collapse-head'}">
-                    <span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
-                </button>
-
-                <div class="am-collapse am-topbar-collapse" id="collapse-head">
-                    <ul class="am-nav am-nav-pills am-topbar-nav">
-                        <li class="am-active"><a href="#">首页</a></li>
-                        <li><a href="#">项目</a></li>
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                                下拉菜单 <span class="am-icon-caret-down"></span>
-                            </a>
-                            <ul class="am-dropdown-content">
-                            </ul>
-                        </li>
-                    </ul>
-                    @if (LoginUser == null)
-                    {
-                        <div class="am-topbar-right">
-                            <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm" onclick="window.location.href='/Home/Register'">
-                                <span class="am-icon-pencil"></span>
-                                注册
-                            </button>
-                        </div>
-
-                        <div class="am-topbar-right">
-                            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" onclick="window.location.href='/Home/Login'">
-                                <span class="am-icon-user"></span>
-                                登录
-                            </button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="am-topbar-right">
-                            <ul class="am-nav am-nav-pills am-topbar-nav">
-                                <li><a href="/admin/homes/Index"> 欢迎：@LoginUser.Name</a></li>
-                            </ul>
-                        </div>
-                    }
-                </div>
-            </div>
-        </header>*@
     <header class="am-topbar">
         <h1 class="am-topbar-brand">
             <a href="/">谷羽の博客园</a>
@@ -205,17 +156,13 @@
 
         </div>
     </header>
-    <div class="am-g  am-g blog-g-fixed" style="margin-top:50px">
-        <div class="am-u-md-8 am-u-lg-9">
-            @RenderBody()
-        </div>
-    </div>
+            @RenderBody()   
     <footer class="footer am-topbar-fixed-bottom">
         <p>
             © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a>16301002 <a href="#" target="_blank">谷羽</a> の博客园
         </p>
     </footer>
-    <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
+  
 </body>
 </html>
 

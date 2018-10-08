@@ -1,7 +1,7 @@
 ﻿@model Blog
 @{
     var list = ViewBag.CatalogList as List<Catalog>;
-}
+    var hostArticleList = ViewBag.HotArticleList as List<Article>;}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -125,7 +125,7 @@
                             {
                                 <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
 
-                            } 
+                            }
                         </ul>
                     </li>
 
@@ -145,12 +145,90 @@
             </div>
         </div>
     </header>
-    @RenderBody()
+    <div class="am-g  am-g blog-g-fixed" style="margin-top:50px">
+        <div class="am-u-md-8 am-u-lg-9">
+            @RenderBody()
+        </div>
+        <div class="am-u-md-4 am-u-lg-3 blog-sidebar">
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">@Model.NiName</div>
+                    <div class="am-panel-bd">
+                        <p>
+                            @Model.Discription
+                        </p>
+                    </div>
+                </section>
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">时间</div>
+                    <div class="am-panel-bd">
+
+                        <div class="Calendar">
+                            <div id="idCalendarPre"><<</div>
+                            <div id="idCalendarNext">>></div>
+                            <span id="idCalendarYear">2008</span>年 <span id="idCalendarMonth">8</span>月
+                            <table cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <td>日</td>
+                                        <td>一</td>
+                                        <td>二</td>
+                                        <td>三</td>
+                                        <td>四</td>
+                                        <td>五</td>
+                                        <td>六</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="idCalendar"></tbody>
+                            </table>
+                        </div>
+                        <script language="JavaScript">
+                            var cale = new Calendar("idCalendar", {
+                                SelectDay: new Date().setDate(10),
+                                onSelectDay: function (o) { o.className = "onSelect"; },
+                                onToday: function (o) { o.className = "onToday"; },
+                                onFinish: function () {
+                                    $("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+                                    var flag = [10, 15, 20];
+                                    for (var i = 0, len = flag.length; i < len; i++) {
+                                        this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('您选择的日期是：" + this.Year + "/" + this.Month + "/" + flag[i] + "');return false;\">" + flag[i] + "</a>";
+                                    }
+                                }
+                            });
+                            $("idCalendarPre").onclick = function () { cale.PreMonth(); }
+                            $("idCalendarNext").onclick = function () { cale.NextMonth(); }
+                        </script>
+                    </div>
+                </section>
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">博客栏目</div>
+                    <ul class="am-list blog-list">
+                        @foreach (var item in list)
+                        {
+                            <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
+                        }
+                    </ul>
+                </section>
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">热门博文</div>
+                    <ul class="am-list blog-list">
+                        @foreach (var item in hostArticleList)
+                        {
+                            <li><a href="/@Model.Identity/Article/@item.ID">@item.Title</a></li>
+                        }
+
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <p>
             ©@DateTime.Now.Year <a href="#" target="_blank">SCITC</a> 16301002 <a href="#" target="_blank">谷羽</a>の博客园
         </p>
     </footer>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
 </body>
 </html>
