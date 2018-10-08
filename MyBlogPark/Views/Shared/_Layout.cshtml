@@ -202,13 +202,17 @@
                     }
                 }
             </form>
-          
+
         </div>
     </header>
-    @RenderBody()
+    <div class="am-g  am-g blog-g-fixed" style="margin-top:50px">
+        <div class="am-u-md-8 am-u-lg-9">
+            @RenderBody()
+        </div>
+    </div>
     <footer class="footer am-topbar-fixed-bottom">
         <p>
-            © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a> 16301002 <a href="#" target="_blank">谷羽</a>.pingl 博客园
+            © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a>16301002 <a href="#" target="_blank">谷羽</a> の博客园
         </p>
     </footer>
     <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>

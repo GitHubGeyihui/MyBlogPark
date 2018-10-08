@@ -83,30 +83,27 @@ namespace MyBlogPark.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dbuser = dbContext.User.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
-                    if (dbuser != null && dbuser.Pwd == info.Pwd)
+                    var dbUser = dbContext.User.Where(m => m.Name.ToLower() == info.Name.ToLower()).FirstOrDefault();
+                    if (dbUser != null && dbUser.Pwd == info.Pwd)
                     {
-                        Session["loginUser"] = dbuser;
+                        Session["loginUser"] = dbUser;
                         //把当前用户的博客记录起来
-                        var blog = dbContext.Blog.Where(m => m.UserID == dbuser.ID && m.Status).FirstOrDefault();
+                        var blog = dbContext.Blog.Where(m => m.UserID == dbUser.ID && m.Status).FirstOrDefault();
                         if (blog != null)
                         {
                             Session["loginBlog"] = blog;
-                            return Redirect("/" );
+                            return Redirect("/"+blog.Identity);
                         }
                         else
                         {
                             return Redirect("/");
                         }
-
                     }
-
                 }
                 else
                 {
                     ModelState.AddModelError("Name", "账号或密码不正确！");
                 }
-
             }
             else
             {
@@ -114,8 +111,15 @@ namespace MyBlogPark.Controllers
             }
             return View(info);
 
-
         }
-
+        public ActionResult LogOff()
+        {
+            Session["loginUser"] = null;
+            Session["loginBlog"] = null;
+            Session.Abandon();//取消当前会话
+            Session.RemoveAll();
+            Session.Clear();
+            return Redirect("/");
+        }
     }
 }

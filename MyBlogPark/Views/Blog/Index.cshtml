@@ -231,7 +231,7 @@
                     <h3 class="am-article-title blog-title">
                         <a href="#">@list[i].Title</a>
                     </h3>
-                    <h4 class="am-article-meta blog-meta">by <a href="">open</a> @DateTime.Now.Day <a href="#">字体</a></h4>
+                    <h4 class="am-article-meta blog-meta">发布于：@list[i].AddTime.ToString("yyyy-MM-dd")</h4>
                     <div class="am-g blog-content">
                         <div class="am-u-lg-12">
                             @if (i == 0)
@@ -245,7 +245,7 @@
                         </div>
                     </div>
                 </article>
-                <hr class="am-article-divider blog-hr">
+                <hr class="am-article-divider blog-hr"/>
             }
         }
         else
@@ -266,7 +266,6 @@
                     <p>
                         @Model.Discription
                     </p>
-                    <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
                 </div>
             </section>
             <section class="am-panel am-panel-default">
