@@ -3,14 +3,16 @@
 @{
     Layout = "~/Views/Blog/_Layout.cshtml";
     ViewBag.Title = Model.Title;
-    var list = ViewBag.AritcleList as List<Article>;
+    var list = ViewBag.ArticleList as List<Article>;
+
     var totalCount = (int)ViewBag.TotalCount;
     var pageSize = (int)ViewBag.PageSize;
 
-    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :totalCount / pageSize + 1;
+    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :
+        totalCount / pageSize + 1;
     var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
-}
 
+ }
 @section scripts{
     <style>
         @@media only screen and (min-width: 1200px) {

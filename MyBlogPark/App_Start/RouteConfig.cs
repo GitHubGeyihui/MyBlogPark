@@ -14,10 +14,10 @@ namespace MyBlogPark
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-              name: "Blog",
-              url: "{blog}",
-              defaults: new { controller = "Blog", action = "Index" },
-              constraints: new { blog = "\\w+" }
+                name: "Blog",
+                url: "{blog}",
+                defaults: new { controller = "Blog", action = "Index", p = UrlParameter.Optional },
+                constraints: new { blog = "\\w+" }
           );//博客的路由
 
             routes.MapRoute(
@@ -27,13 +27,14 @@ namespace MyBlogPark
             constraints: new { id = "\\d+" }
         );//博文的路由
 
-          // BotDetect requests must not be routed 验证码配置
-            routes.IgnoreRoute("{*botdetect}",new{ botdetect = @"(.*)BotDetectCaptcha\.ashx" });
-             
+            // BotDetect requests must not be routed 验证码配置
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "MyBlogPark.Controllers" }
             );
         }
     }

@@ -1,7 +1,8 @@
 ﻿@model Blog
 @{
     var list = ViewBag.CatalogList as List<Catalog>;
-    var hostArticleList = ViewBag.HotArticleList as List<Article>;}
+    var hostArticleList = ViewBag.HotArticleList as List<Article>;
+}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -214,7 +215,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in hostArticleList)
                         {
-                            <li><a href="/@Model.Identity/Article/@item.ID">@item.Title</a></li>
+                            <li><a href="/@Model.Identity/article/@item.ID">@item.Title</a></li>
                         }
 
                     </ul>
