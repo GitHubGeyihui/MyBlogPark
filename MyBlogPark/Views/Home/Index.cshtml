@@ -1,188 +1,104 @@
 ﻿@{
     ViewBag.Title = "博客园首页";
+    var articleList = ViewBag.ListArticle as List<Article>;
+
+    var userList = ViewBag.ListUser as List<User>;
+    var hostArticleList = ViewBag.HotArticleList as List<ArticleDetail>;
+
+    var list = ViewBag.ArticleList as List<Article>;
 }
-<div style="        border: 1px solid red;
-        background-image: url('../../Content/Img/13.jpg');
+<div style="
+        border: 1px solid red;
+        /*background-image: url('../../Content/Img/13.jpg');*/
         background-repeat: no-repeat;
         background-size: 100%">
-       <div class="am-g">
+    <div class="am-g">
         <div class="am-u-sm-2">
             <div class="am-panel-group">
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">关于我</div>
-                    <div class="am-panel-bd">
-                        <p>
-                            前所未有的中文云端字型服务，让您在 web 平台上自由使用高品质中文字体，跨平台、可搜寻，而且超美。云端字型是我们的事业，推广字型学知识是我们的志业。从字体出发，关心设计与我们的生活，justfont blog
-                            正是為此而生。
-                        </p>
-                        <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
-                    </div>
-                </section>
-                <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">文章目录</div>
+                    <div class="am-panel-hd">博文分类</div>
                     <ul class="am-list blog-list">
-                        <li><a href="#">Google fonts 的字體（sans-serif 篇）</a></li>
-                        <li><a href="#">[but]服貿最前線？－再訪桃園機場</a></li>
-                        <li><a href="#">到日星鑄字行學字型</a></li>
-                        <li><a href="#">glyph font vs. 漢字（上）</a></li>
-                        <li><a href="#">浙江民間書刻體上線</a></li>
-                        <li><a href="#">[極短篇] Android v.s iOS，誰的字體好讀？</a></li>
+                        <li><a href="#">.NET技术</a></li>
+                        <li><a href="#">编程语言</a></li>
+                        <li><a href="#">软件设计</a></li>
+                        <li><a href="#">软件设计</a></li>
                     </ul>
                 </section>
-
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">团队成员</div>
-                    <div class="am-panel-bd">
-                        <ul class="am-avg-sm-4 blog-team">
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="am-panel-hd">友情链接</div>
+                    <ul class="am-list blog-list">
+                        <li><a href="https://www.zhihu.com/">知乎</a></li>
+                        <li><a href="https://www.baidu.com/">百度搜索</a></li>
+                        <li><a href="https://www.bilibili.com/">哔哩哔哩动画</a></li>
+                        <li><a href="https://github.com/">GitHub</a></li>
+                    </ul>
+                </section>
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">推荐博客</div>
+                    <ul class="am-list blog-list">
+                        <li><a href="#">小岛上</a></li>
+                        <li><a href="#">友情岁月</a></li>
+                        <li><a href="#">小年之久</a></li>
+                        <li><a href="#">秋叶原</a></li>
+                    </ul>
                 </section>
             </div>
         </div>
         <div class="am-u-sm-7">
-            @for (int i = 0; i < 10; i++)
+            @foreach (var item in hostArticleList)
             {
-                <article class="blog-main">
-                    <h2 class="am-accordion-title blog-title">
-                        <a href="#">这是一条测试内容</a>
-                    </h2>
-                    <h4 class="am-article-meta blog-meta">by <a href="">open</a> @DateTime.Now <a href="#">字体</a></h4>
-                    <div class="am-g blog-content">
-                        <div class="am-u-lg-12">
-                            无限币一次交易需3次确认，每次确认需3秒，交易确认速度非常快。由于比特币交易共需要6个确认，共需时约1小时，莱特币交易确认共需时15分钟，无限币被用于日常普遍的交易，更贴合实际。
+                for (int i = 0; i < hostArticleList.Count; i++)
+                {
+                    <article class="blog-main">
+                        <h2 class="am-accordion-title blog-title">
+                            <a href="/@item.BlogIdentity/p/@(item.ID).html">@hostArticleList[i].Title</a>
+                        </h2>
+                        <h4 class="am-article-meta blog-meta"><a href="">@User.Identity.Name</a> 创建于 @hostArticleList[i].AddTime.ToString("yyyy-MM-dd")</h4>
+                        <div class="am-g blog-content">
+                            <div class="am-u-lg-12">
+                                @hostArticleList[i].Discription
+                            </div>
                         </div>
-                    </div>
-                </article>
-                <hr class="am-article-divider blog-hr" />
+                    </article>
+                    <hr class="am-article-divider blog-hr" />
+
+                }
             }
             <section>
-                <ul data-am-widget="pagination"
-                    class="am-pagination am-pagination-default">
-
-                    <li class="am-pagination-first ">
-                        <a href="#" class="">第一页</a>
-                    </li>
-                    <li class="am-pagination-prev ">
-                        <a href="#" class="">上一页</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="am-active">1</a>
-                    </li>
-                    <li class="am-active">
-                        <a href="#" class="">2</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">3</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">4</a>
-                    </li>
-                    <li class="">
-                        <a href="#" class="">5</a>
-                    </li>
-
-                    <li class="am-pagination-next ">
-                        <a href="#" class="">下一页</a>
-                    </li>
-
-                    <li class="am-pagination-last ">
-                        <a href="#" class="">最末页</a>
-                    </li>
-                </ul>
+                <ul data-am-widget="pagination" class="am-pagination am-pagination-default"></ul>
             </section>
         </div>
         <div class="am-u-sm-3">
             <div class="am-panel-group">
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">关于我</div>
+                    <div class="am-panel-hd">谷羽の博客园</div>
                     <div class="am-panel-bd">
                         <p>
-                            前所未有的中文云端字型服务，让您在 web 平台上自由使用高品质中文字体，跨平台、可搜寻，而且超美。云端字型是我们的事业，推广字型学知识是我们的志业。从字体出发，关心设计与我们的生活，justfont blog
-                            正是為此而生。
+                            谷羽の博客园是一个基于ASP.NET MVC和EF的一个多用户博客系统。涉及知识点。有缓存 有队列.....
                         </p>
-                        <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
                     </div>
                 </section>
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">文章目录</div>
+                    <div class="am-panel-hd">热门文章</div>
                     <ul class="am-list blog-list">
-                        <li><a href="#">Google fonts 的字體（sans-serif 篇）</a></li>
-                        <li><a href="#">[but]服貿最前線？－再訪桃園機場</a></li>
-                        <li><a href="#">到日星鑄字行學字型</a></li>
-                        <li><a href="#">glyph font vs. 漢字（上）</a></li>
-                        <li><a href="#">浙江民間書刻體上線</a></li>
-                        <li><a href="#">[極短篇] Android v.s iOS，誰的字體好讀？</a></li>
+                        @foreach (var item in hostArticleList)
+                        {
+                            <li><a href="/@item.BlogIdentity/p/@(item.ID).html">@item.Title</a></li>
+                        }
+
                     </ul>
                 </section>
 
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">团队成员</div>
+                    <div class="am-panel-hd">博主排名</div>
                     <div class="am-panel-bd">
                         <ul class="am-avg-sm-4 blog-team">
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt="" />
-                            </li>
-                            <li>
-                                <img class="am-thumbnail"
-                                     src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt="" />
-                            </li>
+                            @for (int i = 0; i < userList.Count; i++)
+                            {
+                                <li>
+                                    <img src="~/Content/Img/1.jpg" width="70" height="70" />
+                                </li>
+                            }
                         </ul>
                     </div>
                 </section>

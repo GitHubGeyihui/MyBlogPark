@@ -25,6 +25,16 @@ namespace MyBlogPark.Controllers
                 CacheHelper.WriteCache(key,list,10,false);//十秒绝对失效
             }
             ViewBag.catalogs = list;
+            ViewBag.ListArticle = dbContext.Article.OrderBy(m => m.ID).Take(10).ToList();
+            ViewBag.ListUser = dbContext.User.OrderBy(m => m.ID).Take(8).ToList();
+             //ViewBag.HotArticleList = dbContext.Article.OrderByDescending(m => m.Views).Take(6).ToList();
+            List<ArticleDetail> c = dbContext.Database.SqlQuery<ArticleDetail>(@"SELECT a.*,b.[Identity] as BlogIdentity,u.Name as UserName
+             FROM [dbo].[Articles] as a
+             left join Blogs as b
+             on a.BlogID = b.ID
+             left join Users as u
+             on a.UserID = u.ID").ToList();
+            ViewBag.HotArticleList = c;
             return View();
         }
 

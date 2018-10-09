@@ -52,7 +52,8 @@ namespace MyBlogPark.Controllers
         //右侧栏热门博文
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            base.OnActionExecuting(filterContext);
+            
+             base.OnActionExecuting(filterContext);
         }
         private void GetViewBag(Blog blog)
         {

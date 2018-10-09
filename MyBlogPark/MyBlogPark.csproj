@@ -519,6 +519,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticleDetail.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -570,6 +571,8 @@
     <Content Include="Content\AmazeUI-2.7.2\assets\js\app.js" />
     <Content Include="Content\AmazeUI-2.7.2\assets\js\handlebars.min.js" />
     <Content Include="Content\Img\13.jpg" />
+    <Content Include="Content\Img\1.jpg" />
+    <Content Include="Content\Img\2.jpg" />
     <Content Include="Content\UEditor.net_1_4_3_3\dialogs\anchor\anchor.html" />
     <Content Include="Content\UEditor.net_1_4_3_3\dialogs\attachment\attachment.css" />
     <Content Include="Content\UEditor.net_1_4_3_3\dialogs\attachment\attachment.html" />

@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using MyBGO.Framework.Core;
 using MyBGO.Framework.Models;
 using MyBlogPark.Areas.Admin.ViewModels;
-using MyBlogPark.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
