@@ -5,7 +5,6 @@ using MyBlogPark.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Controllers
@@ -14,7 +13,7 @@ namespace MyBlogPark.Controllers
     {
         public ActionResult Index()
         {
-
+          
             //读取全站的博客分类 
             var key = "index_catalog";
             //读首页的缓存
@@ -131,5 +130,15 @@ namespace MyBlogPark.Controllers
             Session.Clear();
             return Redirect("/");
         }
+        //右侧栏热门博文
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+        }
+        private void GetViewBag(Blog blog)
+        {
+            ViewBag.HotArticleList = dbContext.Article.Where(m => m.BlogID == blog.ID).OrderByDescending(m => m.Views).Take(3).ToList();
+        }
+
     }
 }

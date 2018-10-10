@@ -2,58 +2,104 @@
 @{
     var list = ViewBag.CatalogList as List<Catalog>;
     var hostArticleList = ViewBag.HotArticleList as List<Article>;
+  
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>谷羽の博客园</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
+    <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
     <style>
-        @@media only screen and (min-width: 1200px) {
-            .blog-g-fixed {
-                max-width: 1200px;
-            }
-        }
-
-        @@media only screen and (min-width: 641px) {
-            .blog-sidebar {
-                font-size: 1.4rem;
-            }
-        }
-
-        .blog-main {
-            padding: 20px 0;
-        }
-
-        .blog-title {
-            margin: 10px 0 20px 0;
-        }
-
-        .blog-meta {
-            font-size: 14px;
-            margin: 10px 0 20px 0;
-            color: #222;
-        }
-
-            .blog-meta a {
-                color: #27ae60;
-            }
-
-        .blog-pagination a {
-            font-size: 1.4rem;
-        }
-
-        .blog-team li {
-            padding: 4px;
-        }
-
-        .blog-team img {
-            margin-bottom: 0;
-        }
-
-        .blog-content img,
-        .blog-team img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .blog-footer {
-            padding: 10px 0;
+        .get {
+            background: #1E5B94;
+            color: #fff;
             text-align: center;
+            padding: 100px 0;
+        }
+
+        .get-title {
+            font-size: 200%;
+            border: 2px solid #fff;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .get-btn {
+            background: #fff;
+        }
+
+        .detail {
+            background: #fff;
+        }
+
+        .detail-h2 {
+            text-align: center;
+            font-size: 150%;
+            margin: 40px 0;
+        }
+
+        .detail-h3 {
+            color: #1f8dd6;
+        }
+
+        .detail-p {
+            color: #7f8c8d;
+        }
+
+        .detail-mb {
+            margin-bottom: 30px;
+        }
+
+        .hope {
+            background: #0bb59b;
+            padding: 50px 0;
+        }
+
+        .hope-img {
+            text-align: center;
+        }
+
+        .hope-hr {
+            border-color: #149C88;
+        }
+
+        .hope-title {
+            font-size: 140%;
+        }
+
+        .about {
+            background: #fff;
+            padding: 40px 0;
+            color: #7f8c8d;
+        }
+
+        .about-color {
+            color: #34495e;
+        }
+
+        .about-title {
+            font-size: 180%;
+            padding: 30px 0 50px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #7f8c8d;
+            margin: 0;
+            padding: 15px 0;
+            text-align: center;
+            background: #2d3e50;
         }
     </style>
     <style type="text/css">
@@ -103,6 +149,10 @@
 
         #idCalendar td.onSelect {
             font-weight: bold;
+        }
+
+        #idCalendar {
+            height: 300px;
         }
     </style>
     <script type="text/javascript">
@@ -209,104 +259,7 @@
             }
         };
     </script>
-}
 
-
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>谷羽の博客园</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
-    <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
-    <style>
-        .get {
-            background: #1E5B94;
-            color: #fff;
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        .get-title {
-            font-size: 200%;
-            border: 2px solid #fff;
-            padding: 20px;
-            display: inline-block;
-        }
-
-        .get-btn {
-            background: #fff;
-        }
-
-        .detail {
-            background: #fff;
-        }
-
-        .detail-h2 {
-            text-align: center;
-            font-size: 150%;
-            margin: 40px 0;
-        }
-
-        .detail-h3 {
-            color: #1f8dd6;
-        }
-
-        .detail-p {
-            color: #7f8c8d;
-        }
-
-        .detail-mb {
-            margin-bottom: 30px;
-        }
-
-        .hope {
-            background: #0bb59b;
-            padding: 50px 0;
-        }
-
-        .hope-img {
-            text-align: center;
-        }
-
-        .hope-hr {
-            border-color: #149C88;
-        }
-
-        .hope-title {
-            font-size: 140%;
-        }
-
-        .about {
-            background: #fff;
-            padding: 40px 0;
-            color: #7f8c8d;
-        }
-
-        .about-color {
-            color: #34495e;
-        }
-
-        .about-title {
-            font-size: 180%;
-            padding: 30px 0 50px 0;
-            text-align: center;
-        }
-
-        .footer p {
-            color: #7f8c8d;
-            margin: 0;
-            padding: 15px 0;
-            text-align: center;
-            background: #2d3e50;
-        }
-    </style>
     @RenderSection("scripts", required: false)
 </head>
 <body>
@@ -391,6 +344,7 @@
                                 </thead>
                                 <tbody id="idCalendar"></tbody>
                             </table>
+                          
                         </div>
                         <script language="JavaScript">
                             var cale = new Calendar("idCalendar", {
@@ -415,7 +369,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in list)
                         {
-                            <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
+                            <li><a href="/@Model.Identity/@item.BlogID">@item.Name</a></li>
                         }
                     </ul>
                 </section>
@@ -424,7 +378,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in hostArticleList)
                         {
-                            <li><a href="/@Model.Identity/article/@item.ID">@item.Title</a></li>
+                            <li><a href="/@Model.Identity/p/@(item.ID).html">@item.Title</a></li>
                         }
                     </ul>
                 </section>
@@ -438,6 +392,7 @@
         </p>
     </footer>
     <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
+
 </body>
 </html>
 

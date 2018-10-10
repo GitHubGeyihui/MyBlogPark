@@ -12,7 +12,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         // GET: Admin/Catalog
         public ActionResult Index()
         {
-            var list = dbContext.Catalog.ToList();
+            var b = Session["LoginBlog"] as Blog;
+            var list = dbContext.Catalog.Where(o => o.BlogID == b.ID).ToList();
             return View(list);
         }
         public ActionResult Add()
@@ -51,6 +52,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 var model = dbContext.Catalog.FirstOrDefault(m => m.ID == info.ID);
                 model.Name = info.Name;
                 dbContext.Catalog.Add(model);          

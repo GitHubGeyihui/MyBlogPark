@@ -20,7 +20,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             int pageSize = 6;
             ViewBag.CatalogList = dbContext.Catalog.ToList();
-            var listArticle = dbContext.Article.OrderBy(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
+            var b = Session["LoginBlog"] as Blog;
+            var listArticle = dbContext.Article.Where(o=>o.UserID==b.UserID).OrderBy(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.TotalCount = dbContext.Article.Count();
             ViewBag.PageSize = pageSize;
             return View(listArticle);

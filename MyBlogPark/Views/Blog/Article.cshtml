@@ -4,7 +4,8 @@
     ViewBag.Title = articleModel.Title;
 }
 
-@section scripts{
+@section scripts
+{
     <style>
         @@media only screen and (min-width: 1200px) {
             .blog-g-fixed {
@@ -61,21 +62,22 @@
     </style>
     <script type="text/javascript">
         function addUp(id) {
-            //没登录的不让点赞
-            $.post("/api/up", { id: id }, function (data) {
-                if (data.status) {
-                    $("#upi").text((parseInt($("#upi").text()) + 1))
-                }
-                else {
-                    alert("点赞失败")
-                }
-            }, "json");
+            $.post("/api/up", { id: id },
+                function (data) {
+                    if (data.status) {
+                        $("#upi").text((parseInt($("#upi").text()) + 1));
+                    }
+                    else {
+                        alert("点赞失败");
+                    }
+                }, "json");
         }
     </script>
 }
-<div class="am-g am-g-fixed blog-g-fixed" >
+
+<div class="am-g am-g-fixed blog-g-fixed">
     <div class="am-u-md-12">
-        <article class="blog-main"> 
+        <article class="blog-main">
             <h3 class="am-article-title blog-title">
                 <a href="#">@articleModel.Title</a>
             </h3>

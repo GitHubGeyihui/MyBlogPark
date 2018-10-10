@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyBGO.Framework.Models;
+using MyBlogPark.Models;
 
 namespace MyBlogPark.Controllers
 {
@@ -20,7 +21,6 @@ namespace MyBlogPark.Controllers
                 return Content("博客不存在");
             }
             int pageSize = 6;
-
             ViewBag.ArticleList = dbContext.Article.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.TotalCount = dbContext.Article.Where(m => m.BlogID == model.ID).Count();
             ViewBag.PageSize = pageSize;
@@ -51,8 +51,7 @@ namespace MyBlogPark.Controllers
         }
         //右侧栏热门博文
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            
+        {           
              base.OnActionExecuting(filterContext);
         }
         private void GetViewBag(Blog blog)

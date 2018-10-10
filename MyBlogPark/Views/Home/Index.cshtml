@@ -4,8 +4,6 @@
 
     var userList = ViewBag.ListUser as List<User>;
     var hostArticleList = ViewBag.HotArticleList as List<ArticleDetail>;
-
-    var list = ViewBag.ArticleList as List<Article>;
 }
 <div style="
         border: 1px solid red;
@@ -45,25 +43,25 @@
             </div>
         </div>
         <div class="am-u-sm-7">
-            @foreach (var item in hostArticleList)
+            
+            @for (int i = 0; i < hostArticleList.Count; i++)
             {
-                for (int i = 0; i < hostArticleList.Count; i++)
-                {
-                    <article class="blog-main">
-                        <h2 class="am-accordion-title blog-title">
-                            <a href="/@item.BlogIdentity/p/@(item.ID).html">@hostArticleList[i].Title</a>
-                        </h2>
-                        <h4 class="am-article-meta blog-meta"><a href="">@User.Identity.Name</a> 创建于 @hostArticleList[i].AddTime.ToString("yyyy-MM-dd")</h4>
-                        <div class="am-g blog-content">
-                            <div class="am-u-lg-12">
-                                @hostArticleList[i].Discription
-                            </div>
-                        </div>
-                    </article>
-                    <hr class="am-article-divider blog-hr" />
 
-                }
-            }
+                <article class="blog-main">
+                    <h4 class="am-article-title blog-title">
+                        <a href="/@hostArticleList[i].BlogIdentity/p/@(hostArticleList[i].ID).html" style="font-size:16px;">@hostArticleList[i].Title</a>
+                    </h4>
+                    <h4 class="am-article-meta blog-meta">by <a href="">open</a> posted on @hostArticleList[i].AddTime.ToString("yyyy-MM-dd") under <a href="#"></a></h4>
+
+                    <div class="am-g blog-content">
+                        <div class="am-u-lg-12">
+                            @hostArticleList[i].Discription
+                        </div>
+                    </div>
+                </article>
+
+                <hr class="am-article-divider blog-hr">
+            }               
             <section>
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default"></ul>
             </section>
@@ -85,7 +83,6 @@
                         {
                             <li><a href="/@item.BlogIdentity/p/@(item.ID).html">@item.Title</a></li>
                         }
-
                     </ul>
                 </section>
 
@@ -102,6 +99,8 @@
                         </ul>
                     </div>
                 </section>
+
+
             </div>
         </div>
 
