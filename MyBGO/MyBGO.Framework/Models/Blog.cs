@@ -13,11 +13,9 @@ namespace MyBGO.Framework.Models
         [Required]
         [StringLength(20)]
         public string NiName { set; get; }
-
         [Required]
         [StringLength(20)]
         public string Identity { set; get; }//博客标识符 
-
         [StringLength(100)]
         public string Title { set; get; }
         [StringLength(100)]

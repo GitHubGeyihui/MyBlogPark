@@ -12,9 +12,7 @@ namespace MyBGO.Framework.Models
 
         [Required]
         [StringLength(20)]
-        public string Name { set; get; }
-
-        
+        public string Name { set; get; } 
         public int BlogID { set; get; }
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }

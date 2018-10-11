@@ -18,6 +18,8 @@ namespace MyBGO.Framework.Models
         public int UP { set; get; }//点赞
         public int UserID { set; get; }
         public int BlogID  { set; get; }
+        [StringLength(20)]
+        public string BlogNiName { set; get; }//文章作者显示其呢称
         public int Views { set; get; }//文章点击数
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }
