@@ -1,5 +1,4 @@
-﻿
-using MyBGO.Models;
+﻿using MyBGO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace MyBGO.Controllers
 {
     public class SettingController : BaseController
     {
-        public new ActionResult  Index( )
+        public  ActionResult Index()
         {
             return View();
         }
@@ -19,16 +18,18 @@ namespace MyBGO.Controllers
 
             public ActionResult Catalog()
         {
-            var list = new List<SelectListItem>();
-            list.Add(new SelectListItem() { Text = "无", Value = "0" });
-            var catalogList = dbContext.WebCatalog.Where(m => m.PID == 0).ToList();
+            var list = new List<SelectListItem>
+            {
+                new SelectListItem() { Text = "无", Value = "0" }
+            };
+            var catalogList = dbContext.Webcatalog.Where(m => m.PID == 0).ToList();
             foreach (var item in catalogList)
             {
                 list.Add(new SelectListItem() { Text = item.Name, Value = item.ID.ToString() });
             }
             ViewBag.ParentList = list;
 
-            ViewBag.DataList = dbContext.WebCatalog.ToList();
+            ViewBag.DataList = dbContext.Webcatalog.ToList();
 
             return View();
         }
@@ -43,7 +44,7 @@ namespace MyBGO.Controllers
                 model.Status = true;
                 model.Total = 0;
                 model.Refleshs = 0;
-                dbContext.WebCatalog.Add(model);
+                dbContext.Webcatalog.Add(model);
                 if (dbContext.SaveChanges() > 0)
                 {
                     return Redirect("/setting/catalog");

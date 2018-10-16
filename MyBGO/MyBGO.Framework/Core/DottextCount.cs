@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using MyBGO.Framework.Models;
-using System.Runtime.Remoting.Contexts;
 
 namespace MyBGO.Framework.Core
 {
@@ -19,7 +14,8 @@ namespace MyBGO.Framework.Core
         public DbSet<Blog> Blog { set; get; }//创建博客表
         public DbSet<Catalog> Catalog { set; get; }//创建栏目表
         public DbSet<Article> Article { set; get; }//创建随笔表
-        public DbSet<WebCatalog> WebCatalog { set; get; }//创建全站分类表
+        public DbSet<WebCatalog> Webcatalog { set; get; }//创建随笔表
+        public DbSet<Comment> Comment { set; get; }//创建评论
 
 
     }

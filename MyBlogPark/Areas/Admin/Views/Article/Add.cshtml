@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "新增随笔";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var catalogList = ViewBag.CatalogList as List<MyBGO.Framework.Models.Catalog>;
+    var catalogList = ViewBag.CatalogList as List<Catalog>;
     var selectItemList = new List<SelectListItem>();
     for (int i = 0; i < catalogList.Count; i++)
     {
@@ -64,9 +64,9 @@
                 <label>栏目 ：</label>
             </div>
             <div class="field">
-                @Html.DropDownListFor(m => m.Title, selectItemList, new { @class = "input" })
+                @Html.DropDownListFor(m => m.CatalogID,selectItemList, new { @class = "input" })
                 <div class="tips">
-                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.ValidationMessageFor(m => m.CatalogID)
                 </div>
             </div>
         </div>

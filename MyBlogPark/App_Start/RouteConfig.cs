@@ -22,11 +22,11 @@ namespace MyBlogPark
           );//博客的路由
 
             routes.MapRoute(
-            name: "BlogArticle",
-            url: "{blog}/p/{id}.html",
-            defaults: new { controller = "Blog", action = "Article" },
-            constraints: new { id = "\\d+" }
-        );//博文的路由
+                 name: "BlogArticle",
+                 url: "{blog}/p/{id}.html",
+                 defaults: new { controller = "Blog", action = "Article" },
+                 constraints: new { id = "\\d+" }
+             );//博文的路由
 
             // BotDetect requests must not be routed 验证码配置
             routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });

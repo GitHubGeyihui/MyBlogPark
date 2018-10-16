@@ -8,6 +8,7 @@ namespace MyBGO.Framework.Models
 {
     public class User
     {
+        [Key]
         public int ID { set; get; }
         [Required]
         [StringLength(20)] 

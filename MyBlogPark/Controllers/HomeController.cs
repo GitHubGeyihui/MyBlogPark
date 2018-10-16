@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
+
 namespace MyBlogPark.Controllers
 {
     public class HomeController : BaseController
@@ -24,6 +25,7 @@ namespace MyBlogPark.Controllers
                 CacheHelper.WriteCache(key,list,10,false);//十秒绝对失效
             }
             ViewBag.catalogs = list;
+            ViewBag.blog = dbContext.Blog;
             ViewBag.ListArticle = dbContext.Article.OrderBy(m => m.ID).Take(10).ToList();
             ViewBag.ListUser = dbContext.User.OrderBy(m => m.ID).Take(8).ToList();
              //ViewBag.HotArticleList = dbContext.Article.OrderByDescending(m => m.Views).Take(6).ToList();
@@ -36,7 +38,6 @@ namespace MyBlogPark.Controllers
             ViewBag.HotArticleList = c;
             return View();
         }
-
         public ActionResult Register()
         {
             ViewBag.Message = "Your application description page.";
@@ -67,12 +68,12 @@ namespace MyBlogPark.Controllers
                 {
                     //浏览器-（cookie）-》服务器（去查找cookie对应的session）-cookie对应的session可能有多个，所以通过key来取得
                     Session["loginUser"] = user;
-                    return Redirect("/"); 
+                    return Redirect("/");
                 }
                 else
                 {
                     return Content("注册失败");
-                }
+                }         
             }
             return View(info);
         }

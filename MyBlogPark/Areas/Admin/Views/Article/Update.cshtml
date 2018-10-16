@@ -66,9 +66,9 @@
                 <label>栏目 ：</label>
             </div>
             <div class="field">
-                @Html.DropDownListFor(m => m.Title, selectItemList, new { @class = "input" })
+                @Html.DropDownListFor(m => m.CatalogID, selectItemList, new { @class = "input" })
                 <div class="tips">
-                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.ValidationMessageFor(m => m.CatalogID)
                 </div>
             </div>
         </div>

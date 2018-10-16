@@ -55,6 +55,7 @@
     <Compile Include="Core\DottextCount.cs" />
     <Compile Include="Core\EFInit.cs" />
     <Compile Include="Core\StringHelper .cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\WebCatalog.cs" />
     <Compile Include="UEditor\Config.cs" />
     <Compile Include="UEditor\ConfigHandler.cs" />

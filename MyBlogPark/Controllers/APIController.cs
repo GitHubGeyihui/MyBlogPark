@@ -1,17 +1,16 @@
 ﻿using MyBlogPark.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 
-namespace MyBlogPark.Areas.Admin.Controllers
+namespace MyBlogPark.Controllers
 {
-    public class APIController : AdminBaseController
+    public class APiController : BaseController
     {
         /// <summary>
-        /// 当记录点赞数失效的时候，记录这个函数
+        /// 当记录点赞数失效的时候 执行这个函数
         /// </summary>
         /// <param name="key"></param>
         /// <param name="reason"></param>
@@ -19,28 +18,25 @@ namespace MyBlogPark.Areas.Admin.Controllers
         /// <param name="dependency"></param>
         /// <param name="absoluteExpiration"></param>
         /// <param name="slidingExpiration"></param>
-
-        // CacheItemUpdateCallback 这个回调函数 其实像一个时钟的效果 ，他每次过期的时候又会把缓存存储回去然后等下一次失效的时候又会触发一次。循环，类似一个定时器的效果，相当于定时更新数据库
-        public void MyCacheItemUpdateCallback(
-            string key,
-            CacheItemUpdateReason reason,
-            out object expensiveObject,
-            out CacheDependency dependency,
-            out DateTime absoluteExpiration,
-            out TimeSpan slidingExpiration)
+        private void MyCacheItemUpdateCallback(string key, CacheItemUpdateReason reason, out object expensiveObject, out CacheDependency dependency, out DateTime absoluteExpiration, out TimeSpan slidingExpiration)
         {
             try
             {
-                //根据key去取得ID然后读取缓存值 缓存值=点赞数 然后把它记录到数据库中。
-                string idster = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
-                int id = Convert.ToInt32(idster);
+                //根据key 去取得id 然后读取缓存值 缓存值就是点赞数 然后把它记录到数据库中。
+                string idstr = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
+                int id = Convert.ToInt32(idstr);
+
                 //得到缓存
                 var value = HttpRuntime.Cache.Get(key);
+
                 var article = dbContext.Article.Where(m => m.ID == id).First();
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
-                //准备失效，但回调函数里还是可以读取到缓存的
+
+                //虽然准备失效了 但是在这个回调函数里面还是可以读取到缓存的
+
                 expensiveObject = value;
+
                 HttpRuntime.Cache.Remove(key);
             }
             catch (Exception)
@@ -51,27 +47,28 @@ namespace MyBlogPark.Areas.Admin.Controllers
             absoluteExpiration = DateTime.UtcNow.AddSeconds(-1);
             slidingExpiration = Cache.NoSlidingExpiration;
         }
-        // GET: Admin/API
+
+        // GET: Api
         public ActionResult Up(int id)
         {
             try
             {
-                var key = "arcticle_up_" + id;
+                var key = "article_up_" + id;
                 var obj = CacheHelper.RedCache(key);
                 int up = 0;
                 if (obj == null)
                 {
                     var article = dbContext.Article.Where(m => m.ID == id).First();
                     up = article.UP;
-                    //文章打开的时候直接读文章表文章表也是点在数
+                    //这里应该读取数据库 我们这里因为没有 所有就先写为1 文章打开的时候 直接读文章表 文本表也是这个点赞数
                 }
                 else
                 {
                     up = Convert.ToInt32(obj);
                 }
                 up = up + 1;
-                //CacheHelper.WriteCache("hello", "eqe", 6, false);
-                HttpRuntime.Cache.Insert(key, up, null, DateTime.UtcNow.AddSeconds(10), Cache.NoSlidingExpiration, CacheItemPriority.Normal, MyCacheItemPriority);
+                CacheHelper.WriteCache("sdfdsfdsfds", "ddd", 6, false);
+                HttpRuntime.Cache.Insert(key, up, null, DateTime.UtcNow.AddSeconds(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, MyCacheItemRemovedCallback);
             }
             catch (Exception)
             {
@@ -80,21 +77,18 @@ namespace MyBlogPark.Areas.Admin.Controllers
             return Json(new { status = true });
         }
 
-        private void MyCacheItemPriority(string key, object value, CacheItemRemovedReason reason)
+        private void MyCacheItemRemovedCallback(string key, object value, CacheItemRemovedReason reason)
         {
             if (reason == CacheItemRemovedReason.Expired)
             {
-                //根据key去取得ID然后读取缓存值 缓存值=点赞数 然后把它记录到数据库中。
-                string idster = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
-                int id = Convert.ToInt32(idster);
+                //根据key 去取得id 然后读取缓存值 缓存值就是点赞数 然后把它记录到数据库中。
+                string idstr = key.Substring(key.LastIndexOf("_") + 1, key.Length - key.LastIndexOf("_") - 1);
+                int id = Convert.ToInt32(idstr);
+
                 var article = dbContext.Article.Where(m => m.ID == id).First();
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
             }
-
-             
         }
-
-
     }
 }

@@ -28,6 +28,13 @@ namespace MyBlogPark.Controllers
                 return Session["loginBlog"] as Blog;
             }
         }
+        protected Catalog LoginCatalog
+        {
+            get
+            {
+                return Session["loginCatalog"] as Catalog;
+            }
+        }
         protected DottextCount dbContext = new DottextCount();//封装EF的使用
 
     }

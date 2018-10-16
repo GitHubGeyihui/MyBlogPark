@@ -8,6 +8,7 @@ namespace MyBGO.Framework.Models
 {
     public class Blog
     {
+        [Key]
         public int ID { set; get; }
 
         [Required]
@@ -23,6 +24,7 @@ namespace MyBGO.Framework.Models
         [StringLength(250)]
         public string Discription { set; get; }//博客描述
         public int UserID { set; get; }
+        public string LOGO { set; get; }
         public int ThemeID { set; get; }//皮肤，zhutiID
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }

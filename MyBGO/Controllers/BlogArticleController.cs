@@ -11,22 +11,18 @@ namespace MyBGO.Controllers
         // GET: BlogArticle
         public ActionResult Index()
         {
+
             return View();
         }
 
         public JsonResult Load(int sEcho, int? iDisplayStart, int? iDisplayLength, string KeyWords)
         {
             var list = new object[] {
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 123, state_date = "asd@@fa", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 156323, state_date = "asd/fa", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 12783, state_date = "as8dfa", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 1283, state_date = "asdfa", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 17823, state_date = "asd8fa", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 1263, state_date = "asdf78a", office = true, extn = "123" },
-                new { name = "谷羽"+DateTime.Now.Second, position = "广元", salary = 127783, state_date = "asd78fa", office = true, extn = "123" },
+                new { name = @User.Identity.Name, position = "广元", salary = 123, state_date = "asd@@fa", office = true, extn = "123" },
+               
   
             };
-            if (iDisplayStart == 20)
+            if (iDisplayStart == null)
             {
                 list = list.Take(4).ToList().ToArray();
             }

@@ -2,7 +2,6 @@
 @using BotDetect.Web.Mvc;
 @{
 
-
     ViewBag.Title = "登录";
     Layout = "~/Views/Shared/_Layout.cshtml";
     MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
@@ -16,7 +15,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <style type="text/css">
         .field-validation-error {
-            color: pink;
+            color: red;
         }
     </style>
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />

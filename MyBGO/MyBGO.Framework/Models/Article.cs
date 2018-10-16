@@ -8,6 +8,7 @@ namespace MyBGO.Framework.Models
 {
     public class Article
     {
+        [Key]
         public int ID { set; get; }
         public int CatalogID { set; get; }
         [StringLength(100)]
@@ -19,12 +20,11 @@ namespace MyBGO.Framework.Models
         public int UserID { set; get; }
         public int BlogID  { set; get; }
         [StringLength(20)]
-        public string BlogNiName { set; get; }//文章作者显示其呢称
-        public int Views { set; get; }//文章点击数
+        public string Views { set; get; }//文章点击数
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }
         public bool IsShowHome { set; get; }//是否显示在首页
-
+        public int LeveMax  { set; get; }//评论最大楼层ID 
     }
 } 

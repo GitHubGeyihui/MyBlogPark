@@ -4,9 +4,6 @@
     var hostArticleList = ViewBag.HotArticleList as List<Article>;
   
 }
-
-
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -20,6 +17,7 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
+
     <style>
         .get {
             background: #1E5B94;
@@ -284,10 +282,9 @@
                         </a>
                         <ul class="am-dropdown-content">
                             <li class="am-dropdown-header">我的栏目</li>
-                            @foreach (var item in list)
+                            @foreach(var item in list)
                             {
                                 <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
-
                             }
                         </ul>
                     </li>
@@ -369,7 +366,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in list)
                         {
-                            <li><a href="/@Model.Identity/@item.BlogID">@item.Name</a></li>
+                            <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
                         }
                     </ul>
                 </section>

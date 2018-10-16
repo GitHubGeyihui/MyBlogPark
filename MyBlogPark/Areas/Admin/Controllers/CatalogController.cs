@@ -13,6 +13,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var b = Session["LoginBlog"] as Blog;
+           
             var list = dbContext.Catalog.Where(o => o.BlogID == b.ID).ToList();
             return View(list);
         }
@@ -82,7 +83,6 @@ namespace MyBlogPark.Areas.Admin.Controllers
             if (res > 0)
             {
                 return 1;
-
             }
             else
             {
