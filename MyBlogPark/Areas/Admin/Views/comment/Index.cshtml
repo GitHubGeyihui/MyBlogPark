@@ -1,0 +1,43 @@
+﻿@model List<Comment>
+@{
+    ViewBag.Title = "评论管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" action="" id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+        <div class="padding border-bottom">
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="50" style="text-align:left; padding-left:10px;">ID</th>
+                <th width="30%">评论文章名称</th>
+                <th width="30%">评论内容</th>
+                <th width="20%">评论时间</th>
+                <th style="text-align:left;width:10%;">操作</th>
+            </tr>
+            <volist name="list" id="vo">
+
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+
+    //单个删除
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
+            $.post("/admin/article/delete", { id: id },
+                function (data) {
+                    if (data == 1) {
+                        window.location.href = "/admin/article/index";
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                });
+        }
+    }
+  </script>  
+

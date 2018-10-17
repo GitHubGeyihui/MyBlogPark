@@ -16,5 +16,7 @@ namespace MyBGO.Framework.Models
         public DateTime AddTime { set; get; }
         public int To_UserID { set; get; }
         public int BlogID { set; get; }
+
+        public virtual User User { set; get; }
     }
 }

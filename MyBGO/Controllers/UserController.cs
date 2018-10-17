@@ -9,9 +9,10 @@ namespace MyBGO.Controllers
     public class UserController : BaseController
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(int p=1)
         {
+            ViewBag.ListUser = dbContext.User.OrderBy(m => m.ID).Skip((p - 1) * 10).Take(10).ToList();
             return View();
         }
     }
-}
+} 

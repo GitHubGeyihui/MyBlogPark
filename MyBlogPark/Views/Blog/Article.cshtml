@@ -4,6 +4,8 @@
     ViewBag.NiName = blogModel.Identity;
     var articleModel = ViewBag.Article as Article;
     ViewBag.Title = articleModel.Title;
+    var commentList = ViewBag.commentList as List<Comment>;
+    ViewBag.commentList = commentList;
     //    var totalCount = (int)ViewBag.TotalCount;
     //    var pageSize = (int)ViewBag.PageSize;
     //    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :
@@ -80,6 +82,10 @@
                     }
                 }, "json");
         }
+        function setToUser(uid,name) {
+            $("#to_UserID").val(uid);
+            $("#toName").val(name);
+        }
     </script>
 }
 <div class="am-g am-g-fixed blog-g-fixed">
@@ -101,7 +107,7 @@
         </article>
         <hr class="am-article-divider blog-hr">
         <ul class="am-comments-list am-comments-list-flip">
-            <li class="am-comment">
+            @*<li class="am-comment">
                 <a href="#link-to-user-home">
                     <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48">
                 </a><div class="am-comment-main">
@@ -129,8 +135,48 @@
                         <p><a href="#lurenyi">@@路人乙</a> 朕知道了！</p>
                     </div>
                 </div>
-            </li>
+            </li>*@
         </ul>
+        <ul class="am-comments-list am-comments-list-flip">
+            @if (commentList != null)
+            {
+                for (int i = 0; i < commentList.Count; i++)
+                {
+
+                    <li class="am-comment">
+                        <a href="javascript:void()" onclick="setToUser(@commentList[i].UserID,@commentList[i].User.Name)">
+                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48">
+                        </a>
+                        <div class="am-comment-main">
+                            <header class="am-comment-hd">
+                                <div class="am-comment-meta">
+                                    <a href="#link-to-user" class="am-comment-author">@commentList[i].User.Name</a>
+                                    评论于 <time datetime="@(((DateTime)commentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))" title="">@(((DateTime)commentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))</time>
+                                </div>
+                            </header>
+                            <div class="am-comment-bd">
+                                <p>@commentList[i].Contents</p>
+                            </div>
+                            <footer class="am-comment-footer">
+                                <div class="am-comment-actions">
+                                    <a href="">
+                                        <i class="am-icon-thumbs-up"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="am-icon-thumbs-down"></i>
+                                    </a>
+                                    <a href="#miao" onclick="reply(@commentList[i].ID,'@commentList[i].User.Name');"><i class="am-icon-reply"></i></a>
+                                </div>
+                            </footer>
+                        </div>
+                    </li>
+                }
+
+            }
+            
+            
+        </ul>
+
         <script type="text/javascript">
             function reply(To_UserID, BlogID) {
                 $('input[name="To_UserID"]').val(To_UserID);
@@ -138,11 +184,11 @@
             }
         </script>
     </div>
-    <form class="am-form" method="post">
+    <form class="am-form" method="post" action="/Blog/Article">
         <fieldset>
-            <legend id="replylegend">回复</legend>
+            <legend id="replylegend">回复：<span id="toName">@articleModel.UserID</span></legend>
             <input type="hidden" name="id" value="@articleModel.ID" />
-            <input type="hidden" name="pid" value="0" />
+            <input type="hidden" name="to_UserID" id="to_UserID" value="@articleModel.UserID" />
             <div class="am-form-group">
                 <label for="doc-ta-1">内容</label>
                 <textarea class="" name="content" rows="5" id="doc-ta-1"></textarea>

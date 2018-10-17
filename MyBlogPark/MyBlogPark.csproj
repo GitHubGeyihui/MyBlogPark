@@ -500,6 +500,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
     <Compile Include="Controllers\APiController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatalogController.cs" />
@@ -872,6 +873,7 @@
     <Content Include="Areas\Admin\Views\Article\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Catalog\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\Config.cshtml" />
+    <Content Include="Areas\Admin\Views\comment\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

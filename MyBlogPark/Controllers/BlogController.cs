@@ -47,10 +47,38 @@ namespace MyBlogPark.Controllers
             }
             ViewBag.Article = model;
 
-            ViewBag.CatalogList = dbContext.Catalog.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
-
+            ViewBag.CatalogList = dbContext.Catalog.Where(m => m.ArticleID == model.ID).OrderByDescending(m => m.ID).ToList();
+            ViewBag.commentList = dbContext.Comment.Where(m => m.ArticleID == id).ToList();
             return View(blogModel);
           
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Article(string content, int id, int to_UserID)
+        {
+            var model = dbContext.Article.Where(m => m.ID == id).FirstOrDefault();
+            if (model == null)
+            {
+                return Content("博文不存在");
+            }
+            if (to_UserID == 0)
+            {
+                to_UserID = model.UserID;
+            }
+            var comment = new Comment
+            {
+                AddTime = DateTime.Now,
+                ArticleID = id,
+                Contents = content,
+                To_UserID = to_UserID,
+                UserID = LoginUser.ID,
+                BlogID = 0
+            };
+            ViewBag.commentList = comment;
+            dbContext.Comment.Add(comment);
+            dbContext.SaveChanges();
+            Blog b = dbContext.Blog.First(o=>o.UserID== LoginUser.ID);
+            return Redirect("/"+b.Identity+"/p/"+id+".html");
         }
         //右侧栏热门博文
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
