@@ -14,5 +14,8 @@ namespace MyBGO.Framework.Models
         public DateTime EditTime { set; get; }
 
         public bool Status{ set; get; }
+
+        public int UserID { set; get; }
+        public virtual User User { set; get; }
     }
 }

@@ -6,6 +6,8 @@
     //总页
     var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
     var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
+    var listArticle = ViewBag.Catalog as Catalog;
+  //  ViewBag.Name = listArticle.Name;
 }
 
 <form method="post" action="" id="listform">
@@ -19,32 +21,33 @@
         <table class="table table-hover text-center">
             <tr>
                 <th width="50" style="text-align:left; padding-left:10px;">ID</th>
-                <th width="30%">分类名称</th>
-                <th width="30%">随笔名称</th>
+                <th width="20%">分类ID</th>
+                <th width="40%">随笔名称</th>
                 <th width="20%">更新时间</th>
                 <th style="text-align:left;width:10%;">操作</th>
             </tr>
             <volist name="list" id="vo">
                 @for (int i = 0; i < Model.Count; i++)
                 {
-                    <tr>
-                        <td style="text-align:left; padding-left:20px;">
-                            @Model[i].ID
-                        </td>
-                        <td>@Model[i].CatalogID</td>
-                        <td>@Model[i].Title</td>
-                        <td>@Model[i].AddTime.ToString("yyyy-MM-dd")</td>
-                        <td style="text-align:left;">
-                            <div class="button-group">
-                                <a class="button border-main" href="/admin/article/update/@Model[i].ID">
-                                    <span class="icon-edit"></span> 修改
-                                </a>
-                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
-                                    <span class="icon-trash-o"></span> 删除
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <td style="text-align:left; padding-left:20px;">
+                        @Model[i].ID
+                    </td>
+                    <td>@Model[i].CatalogID</td>
+                    <td>@Model[i].Title</td>
+                    <td>@Model[i].AddTime.ToString("yyyy-MM-dd")</td>
+                    <td style="text-align:left;">
+                        <div class="button-group">
+                            <a class="button border-main" href="/admin/article/update/@Model[i].ID">
+                                <span class="icon-edit"></span> 修改
+                            </a>
+                                 
+                            <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
+                                <span class="icon-trash-o"></span> 删除
+                            </a>
+                        </div>
+                    </td>
+                </tr>
                 }
                 <tr>
                     <td colspan="8">

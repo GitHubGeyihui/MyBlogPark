@@ -18,7 +18,29 @@
                 <th style="text-align:left;width:10%;">操作</th>
             </tr>
             <volist name="list" id="vo">
-
+                @*@for (int i = 0; i < Model.Count; i++)
+                {<tr>
+                        <td style="padding-left:20px;">
+                            @Model[i].ID
+                        </td>
+                        <td>
+                            @Model[i].ArticleID
+                        </td>
+                        <td>
+                            @Model[i].Contents
+                        </td>
+                        <td>
+                            @Model[i].AddTime.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            <div class="button-group">                
+                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
+                                    <span class="icon-trash-o"></span> 删除
+                                </a>
+                            </div>
+                        </td>
+                 </tr>
+                }*@
         </table>
     </div>
 </form>
@@ -28,10 +50,10 @@
     //单个删除
     function del(id) {
         if (confirm("您确定要删除吗?")) {
-            $.post("/admin/article/delete", { id: id },
+            $.post("/admin/comment/delete", { id: id },
                 function (data) {
                     if (data == 1) {
-                        window.location.href = "/admin/article/index";
+                        window.location.href = "/admin/comment/index";
                     }
                     else {
                         alert("删除失败");
@@ -39,5 +61,5 @@
                 });
         }
     }
-  </script>  
+</script>
 

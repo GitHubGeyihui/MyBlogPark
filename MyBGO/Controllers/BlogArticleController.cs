@@ -1,4 +1,5 @@
-﻿using MyBGO.Framework.Models;
+﻿using MyBGO.App_Start;
+using MyBGO.Framework.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,37 +11,37 @@ namespace MyBGO.Controllers
 {
     public class BlogArticleController : BaseController
     {
-       
+
         // GET: BlogArticle
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var article = dbContext.Article;
-            return Json(article.ToList());
+            if (page <= 0) page = 1;
+            int pSize = 5;
+            int sk = Convert.ToInt32((page - 1) * pSize);
+
+            var nList = dbContext.Article.OrderByDescending(n => n.ID)
+                .Skip(sk).Take(pSize).ToList();
+
+            MyPager p = new MyPager(dbContext.Article.Count(), page, pSize, 5);
+            ViewBag.Pager = p.ToHTML();
+
+            return View(nList);
         }
-        ///// <returns></returns>
-        //public JsonResult Load(int sEcho, int? iDisplayStart, int? iDisplayLength, string KeyWords)
-        //{
-        //    var list = new object[] {
-        //         new { name = 213 , position = "广州", salary = 123, state_date = "sdfdsf", office = false, extn = "2443" },
-
-        //    };
-
-        //    if (iDisplayStart == null)
-        //    {
-        //        list = list.Take(4).ToList().ToArray();
-        //    }
-        //    Json返回的格式 new { draw = 2, recordsTotal = 24, recordsFiltered = 24, data = list }
-        //    draw: 表示请求次数，每次返回去不能是一样的否则数据不会刷新
-        //     recordsTotal:总记录数
-        //     recordsFiltered：过滤后的总记录数
-        //     data:具体的数据对象数组
-        //    return Json(new { draw = sEcho, recordsTotal = 24, recordsFiltered = 24, data = list }, JsonRequestBehavior.AllowGet);
-        //}
-        private long ConvertDateTimeToInt(System.DateTime time)
+        public ActionResult StuList(int page = 1)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
-            long t = (time.Ticks - startTime.Ticks) / 10000;   //除10000调整为13位      
-            return t;
+            if (page < 1)
+            {
+                page = 1;
+
+            }
+            int pageSize = 10;
+            int sk = (page - 1) * pageSize;
+            var nList = dbContext.Article.OrderByDescending(o => o.ID).Skip(sk).ToList();
+            //生成分页操作
+            MyPager p = new MyPager(sk, page, pageSize, 5);
+            ViewBag.pager = p.ToHTML();
+            return View(nList);
         }
+
     }
 }

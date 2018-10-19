@@ -11,4 +11,3 @@ D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.cspro
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.dll
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.pdb
-D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.csprojAssemblyReference.cache

@@ -95,7 +95,7 @@
                 <a href="#">@articleModel.Title</a>
             </h3>
             <h2 class="am-article-meta blog-meta">
-                作者:<a href="#">@blogModel.NiName   </a>发布于:<a> @articleModel.AddTime</a>
+                作者:<a href="#">@blogModel.NiName</a>发布于:<a> @articleModel.AddTime</a>
                 <span onclick="addUp(@articleModel.ID)">点赞(<i id="upi">@articleModel.UP</i>)</span>
             </h2>
             <div class="am-g blog-content">
@@ -186,7 +186,7 @@
     </div>
     <form class="am-form" method="post" action="/Blog/Article">
         <fieldset>
-            <legend id="replylegend">回复：<span id="toName">@articleModel.UserID</span></legend>
+            <legend id="replylegend">回复：<span id="toName">@articleModel.Blog.NiName</span></legend>
             <input type="hidden" name="id" value="@articleModel.ID" />
             <input type="hidden" name="to_UserID" id="to_UserID" value="@articleModel.UserID" />
             <div class="am-form-group">

@@ -12,8 +12,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         // GET: Admin/Catalog
         public ActionResult Index()
         {
-            var b = Session["LoginBlog"] as Blog;
-           
+            var b = Session["LoginBlog"] as Blog;       
             var list = dbContext.Catalog.Where(o => o.BlogID == b.ID).ToList();
             return View(list);
         }

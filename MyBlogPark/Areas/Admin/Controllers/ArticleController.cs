@@ -1,13 +1,9 @@
-﻿ using AutoMapper;
+﻿using AutoMapper;
 using MyBGO.Framework.Core;
 using MyBGO.Framework.Models;
 using MyBlogPark.Areas.Admin.ViewModels;
-using MyBlogPark.Core;
-using MyBlogPark.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
@@ -16,17 +12,21 @@ namespace MyBlogPark.Areas.Admin.Controllers
     {
         // GET: Admin/Article
         //分页
-        public ActionResult Index(int p = 1)
+        public ActionResult Index(int p = 1 )
         {
             int pageSize = 6;
             ViewBag.CatalogList = dbContext.Catalog.ToList();
+            var c = Session["LoginCatalog"] as Catalog;
             var b = Session["LoginBlog"] as Blog;
             var listArticle = dbContext.Article.Where(o=>o.UserID==b.UserID).OrderBy(m => m.ID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.TotalCount = dbContext.Article.Count();
             ViewBag.PageSize = pageSize;
+           // ViewBag.listCatalog = dbContext.Article.Where(m => m.CatalogName == c.Name).ToList();
             return View(listArticle);
+           
         }
-        public ActionResult Add()
+
+            public ActionResult Add()
         {
             ViewBag.CatalogList = dbContext.Catalog.ToList();
             return View();
@@ -46,8 +46,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 model.UserID = LoginUser.ID;
                 model.UP = 0;
                 model.Views = "0";
-                model.Discription = StringHelper.ReplaceHtmlTag(model.Content, 150);
-                dbContext.Article.Add(model);
+                model.Discription = StringHelper.ReplaceHtmlTag(model.Content, 150);               
+                dbContext.Article.Add(model); 
                 int res = dbContext.SaveChanges();
                 if (res > 0)
                 {

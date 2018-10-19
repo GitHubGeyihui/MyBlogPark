@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MyPager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogArticleController.cs" />
@@ -618,6 +619,7 @@
     <Content Include="Content\Plugin\datatables.net\.bower.json" />
     <Content Include="Content\Plugin\datatables.net\bower.json" />
     <Content Include="Content\Plugin\datatables.net\Readme.md" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Content\Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.min.js" />

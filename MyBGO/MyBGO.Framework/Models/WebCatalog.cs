@@ -20,5 +20,7 @@ namespace MyBGO.Framework.Models
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }
+        public int AdminID { set; get; }
+        public virtual Admin Admin { set; get; }
     }
 }

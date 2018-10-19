@@ -13,8 +13,8 @@ namespace MyBlogPark.Areas.Admin.Controllers
         // GET: Admin/comment
         public ActionResult Index()
         {
-           
-                return View();
+            var Model = dbContext.Comment.ToList();
+            return View();
         }
         [HttpPost]
         public int Delete(int id)

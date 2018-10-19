@@ -71,8 +71,7 @@ namespace MyBlogPark.Controllers
                 ArticleID = id,
                 Contents = content,
                 To_UserID = to_UserID,
-                UserID = LoginUser.ID,
-                BlogID = 0
+                UserID = LoginUser.ID, 
             };
             ViewBag.commentList = comment;
             dbContext.Comment.Add(comment);

@@ -18,6 +18,7 @@ namespace MyBGO.Framework.Models
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }
         public int ArticleID { set; get; }
+        public virtual Blog Blog { set; get; }
 
     }
 }
