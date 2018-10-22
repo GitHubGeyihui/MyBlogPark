@@ -42,6 +42,23 @@ namespace MyBGO.Controllers
             ViewBag.pager = p.ToHTML();
             return View(nList);
         }
+        [HttpPost]
+        public int Delete(int id)
+        {
 
+            var model = dbContext.Article.FirstOrDefault(m => m.ID == id);
+
+            dbContext.Article.Attach(model);
+            dbContext.Entry(model).State = EntityState.Deleted;
+            int res = dbContext.SaveChanges();
+            if (res > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
     }
 }

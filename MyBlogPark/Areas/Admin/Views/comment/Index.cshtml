@@ -9,39 +9,41 @@
         <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
         </div>
-        <table class="table table-hover text-center">
-            <tr>
-                <th width="50" style="text-align:left; padding-left:10px;">ID</th>
-                <th width="30%">评论文章名称</th>
-                <th width="30%">评论内容</th>
-                <th width="20%">评论时间</th>
-                <th style="text-align:left;width:10%;">操作</th>
-            </tr>
-            <volist name="list" id="vo">
-                @*@for (int i = 0; i < Model.Count; i++)
-                {<tr>
-                        <td style="padding-left:20px;">
-                            @Model[i].ID
-                        </td>
-                        <td>
-                            @Model[i].ArticleID
-                        </td>
-                        <td>
-                            @Model[i].Contents
-                        </td>
-                        <td>
-                            @Model[i].AddTime.ToString("yyyy-MM-dd")
-                        </td>
-                        <td>
-                            <div class="button-group">                
-                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@Model[i].ID)">
-                                    <span class="icon-trash-o"></span> 删除
-                                </a>
-                            </div>
-                        </td>
-                 </tr>
-                }*@
-        </table>
+          <table class="table table-hover text-center">
+                            <tr>
+                                <th style="width:5% ;padding-left:20px;">用户名称</th>
+                                <th width="5%">评论文章</th>
+                                <th width="20%">评论内容</th>
+                                <th width="5%">评论时间</th>
+                                <th width="5%">操作</th>
+                            </tr>
+                            <volist name="list" id="">
+
+                                @foreach (var c in Model)
+                                {<tr>
+                                        <td style="padding-left:20px;">
+                                            @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.User.IP, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.Contents, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.AddTime.ToString("yyyy-MM-dd"), "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            <div class="button-group">
+                                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@c.ID)">
+                                                    <span class="icon-trash-o"></span>删除
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                        </table>
     </div>
 </form>
 <script type="text/javascript">

@@ -140,6 +140,32 @@ namespace MyBlogPark.Controllers
         {
             ViewBag.HotArticleList = dbContext.Article.Where(m => m.BlogID == blog.ID).OrderByDescending(m => m.Views).Take(3).ToList();
         }
+        [HttpPost]
+        public ActionResult Index(String ArticleGenre, String searchString)
+        {
+            /*获取Movie表中的’博文类型’数据，并将其封装在ViewBag中，给视图中的下拉列表使用*/
+            var genreList = new List<String>();
+            var genreQry = from d in dbContext.Article orderby d.Catalog.Blog.User.Name select d.Catalog.Blog.User.Name;
+             genreList.AddRange(genreQry.Distinct());
+            ViewBag.movieGenre = new SelectList(genreList);
 
+            //获取Movie表中全部数据
+            var articles = from a in dbContext.Article
+                         select a;
+
+            //判断参数是否有值，第一次请求参数是空的，所以就显示全部数据；当执行搜索后，表单会把两个参数传过来，就可以对数据过滤了；
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                articles = articles.Where(s => s.Content.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(ArticleGenre))
+            {
+                articles = articles.Where(x => x.Title == ArticleGenre);
+            }
+
+            //将封装好的数据传给视图
+            return View(articles);
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace MyBlogPark.Controllers
                 article.UP = Convert.ToInt32(value);
                 dbContext.SaveChanges();
 
-                //虽然准备失效了 但是在这个回调函数里面还是可以读取到缓存的
+                //虽然准备失效了 但是我们在这个回调函数里面还是可以读取到缓存的
 
                 expensiveObject = value;
 
@@ -54,7 +54,7 @@ namespace MyBlogPark.Controllers
             try
             {
                 var key = "article_up_" + id;
-                var obj = CacheHelper.RedCache(key);
+                var obj = CacheHelper.ReadCache(key);
                 int up = 0;
                 if (obj == null)
                 {
@@ -70,7 +70,7 @@ namespace MyBlogPark.Controllers
                 CacheHelper.WriteCache("sdfdsfdsfds", "ddd", 6, false);
                 HttpRuntime.Cache.Insert(key, up, null, DateTime.UtcNow.AddSeconds(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, MyCacheItemRemovedCallback);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { status = false });
             }
@@ -91,4 +91,5 @@ namespace MyBlogPark.Controllers
             }
         }
     }
+
 }

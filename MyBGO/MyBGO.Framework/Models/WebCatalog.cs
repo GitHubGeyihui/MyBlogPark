@@ -19,8 +19,7 @@ namespace MyBGO.Framework.Models
         public int Total { set; get; }//总的数量
         public DateTime AddTime { set; get; }
         public DateTime EditTime { set; get; }
-        public bool Status { set; get; }
-        public int AdminID { set; get; }
+        public bool Status { set; get; }   
         public virtual Admin Admin { set; get; }
     }
 }

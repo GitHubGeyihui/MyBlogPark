@@ -26,7 +26,7 @@ namespace MyBGO.Framework.Models
         public DateTime EditTime { set; get; }
         public bool Status { set; get; }
         public bool IsShowHome { set; get; }//是否显示在首页
-        public virtual Blog Blog { set; get; }
-       
+        public virtual Catalog Catalog { set; get; }
+
     }
 } 

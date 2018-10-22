@@ -4,13 +4,12 @@
     ViewBag.NiName = blogModel.Identity;
     var articleModel = ViewBag.Article as Article;
     ViewBag.Title = articleModel.Title;
-    var commentList = ViewBag.commentList as List<Comment>;
-    ViewBag.commentList = commentList;
-    //    var totalCount = (int)ViewBag.TotalCount;
-    //    var pageSize = (int)ViewBag.PageSize;
-    //    var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :
-    //totalCount / pageSize + 1;
-    //    var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
+    var CommentList = ViewBag.CommentList as List<Comment>;
+    ViewBag.CommentList = CommentList;
+    //var totalCount = (int)ViewBag.TotalCount;
+    //var pageSize = (int)ViewBag.PageSize;
+    //var pageCount = totalCount / pageSize == 0 ? totalCount / pageSize :totalCount / pageSize + 1;
+    //var p = Convert.ToInt32(Request.QueryString["p"] ?? "1");
 }
 
 @section scripts
@@ -70,19 +69,27 @@
             text-align: center;
         }
     </style>
-    <script type="text/javascript">
+    <script>
         function addUp(id) {
-            $.post("/api/up", { id: id },
-                function (data) {
-                    if (data.status) {
+            $.ajax({
+                url: "/api/up",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    if (msg.status) {
                         $("#upi").text((parseInt($("#upi").text()) + 1));
                     }
                     else {
                         alert("点赞失败");
                     }
-                }, "json");
+                },
+                error: function () {
+                    alert('调用异常！');
+                }
+
+            });
         }
-        function setToUser(uid,name) {
+        function setToUser(uid, name) {
             $("#to_UserID").val(uid);
             $("#toName").val(name);
         }
@@ -90,72 +97,56 @@
 }
 <div class="am-g am-g-fixed blog-g-fixed">
     <div class="am-u-md-12">
-        <article class="blog-main">
-            <h3 class="am-article-title blog-title">
-                <a href="#">@articleModel.Title</a>
-            </h3>
-            <h2 class="am-article-meta blog-meta">
-                作者:<a href="#">@blogModel.NiName</a>发布于:<a> @articleModel.AddTime</a>
-                <span onclick="addUp(@articleModel.ID)">点赞(<i id="upi">@articleModel.UP</i>)</span>
-            </h2>
-            <div class="am-g blog-content">
-                <div class="am-u-lg-11">
-                    @Html.Raw(articleModel.Content)@*显示其原来的格式*@
-                </div>
-            </div>
+        <ol class="grid">
+            <li class="grid__item">
+                <article class="blog-main">
+                    <h3 class="am-article-title blog-title">
+                        <a href="#">@articleModel.Title</a>
+                    </h3>
+                    <h2 class="am-article-meta blog-meta">
+                        作者:<a href="#">@blogModel.NiName</a>                  发布于:<a> @articleModel.AddTime</a>
 
-        </article>
-        <hr class="am-article-divider blog-hr">
-        <ul class="am-comments-list am-comments-list-flip">
-            @*<li class="am-comment">
-                <a href="#link-to-user-home">
-                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48">
-                </a><div class="am-comment-main">
-                    <header class="am-comment-hd">
-                        <div class="am-comment-meta">
-                            <a href="#link-to-user" class="am-comment-author">某人</a> 评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+
+                        <button class="icobutton icobutton--heart" style="color: rgb(239, 122, 122); font-size:18px;" onclick="addUp(@articleModel.ID)">
+                            <span class="fa fa-heart" style="transform: scale3d(1, 1, 1);"></span>
+                            <span class="icobutton__text icobutton__text--side">
+                                <i id="upi">@articleModel.UP</i>
+                            </span>
+
+                        </button>
+
+                    </h2>
+
+                    <div class="am-g blog-content">
+                        <div class="am-u-lg-11">
+                            @Html.Raw(articleModel.Content)@*显示其原来的格式*@
                         </div>
-                    </header><div class="am-comment-bd">
-                        <p>那，那是一封写给南部母亲的信。我茫然站在骑楼下，我又看到永远的樱子走到街心。其实雨下得并不大，却是一生一世中最大的一场雨。而那封信是这样写的，年轻的樱子知不知道呢？</p>
-                        <blockquote>妈：我打算在下个月和樱子结婚。</blockquote>
                     </div>
-                </div>
+
+                </article>
             </li>
-            <li class="am-comment am-comment-flip am-comment-secondary">
-                <a href="#link-to-user-home">
-                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48">
-                </a>
-                <div class="am-comment-main">
-                    <header class="am-comment-hd">
-                        <div class="am-comment-meta">
-                            <a href="#link-to-user" class="am-comment-author">某人</a> 评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-14 23:301</time>
-                        </div>
-                    </header>
-                    <div class="am-comment-bd">
-                        <p><a href="#lurenyi">@@路人乙</a> 朕知道了！</p>
-                    </div>
-                </div>
-            </li>*@
-        </ul>
+        </ol>
+        <hr class="am-article-divider blog-hr">
+
         <ul class="am-comments-list am-comments-list-flip">
-            @if (commentList != null)
+            @if (CommentList != null)
             {
-                for (int i = 0; i < commentList.Count; i++)
+                for (int i = 0; i < CommentList.Count; i++)
                 {
 
                     <li class="am-comment">
-                        <a href="javascript:void()" onclick="setToUser(@commentList[i].UserID,@commentList[i].User.Name)">
+                        <a href="javascript:void()" onclick="setToUser(@CommentList[i].Form_UserID,@CommentList[i].User.Name)">
                             <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48">
                         </a>
                         <div class="am-comment-main">
                             <header class="am-comment-hd">
                                 <div class="am-comment-meta">
-                                    <a href="#link-to-user" class="am-comment-author">@commentList[i].User.Name</a>
-                                    评论于 <time datetime="@(((DateTime)commentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))" title="">@(((DateTime)commentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))</time>
+                                    <a href="#link-to-user" class="am-comment-author">@CommentList[i].User.Name</a>
+                                    评论于 <time datetime="@(((DateTime)CommentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))" title="">@(((DateTime)CommentList[i].AddTime).ToString("yyyy-MM-dd hh:mm"))</time>
                                 </div>
                             </header>
                             <div class="am-comment-bd">
-                                <p>@commentList[i].Contents</p>
+                                <p>@CommentList[i].Contents</p>
                             </div>
                             <footer class="am-comment-footer">
                                 <div class="am-comment-actions">
@@ -165,7 +156,8 @@
                                     <a href="">
                                         <i class="am-icon-thumbs-down"></i>
                                     </a>
-                                    <a href="#miao" onclick="reply(@commentList[i].ID,'@commentList[i].User.Name');"><i class="am-icon-reply"></i></a>
+                                    <a href="#miao" onclick="reply(@CommentList[i].ID,'@CommentList[i].User
+                                        .Name');"><i class="am-icon-reply"></i></a>
                                 </div>
                             </footer>
                         </div>
@@ -173,8 +165,8 @@
                 }
 
             }
-            
-            
+
+
         </ul>
 
         <script type="text/javascript">
@@ -186,7 +178,7 @@
     </div>
     <form class="am-form" method="post" action="/Blog/Article">
         <fieldset>
-            <legend id="replylegend">回复：<span id="toName">@articleModel.Blog.NiName</span></legend>
+            <legend id="replylegend">回复：<span id="toName">@articleModel.Catalog.Blog.NiName</span></legend>
             <input type="hidden" name="id" value="@articleModel.ID" />
             <input type="hidden" name="to_UserID" id="to_UserID" value="@articleModel.UserID" />
             <div class="am-form-group">
@@ -203,6 +195,5 @@
         <li class="am-pagination-prev"><a href="#"> &laquo;上一页</a></li>
         <li class="am-pagination-next"><a href="#">下一页 &raquo;</a></li>
     </ul>
-
 </div>
 

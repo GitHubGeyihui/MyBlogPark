@@ -17,6 +17,13 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
+    <!--点赞动画-->
+
+    <link href="~/Content/dianzan/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/dianzan/css/icons.css" rel="stylesheet" />
+    <script src="~/Content/dianzan/js/dianzan.js"></script>
+    <script src="~/Content/dianzan/js/mo.min.js"></script>
+    
 
     <style>
         .get {
@@ -154,7 +161,7 @@
         }
     </style>
     <script type="text/javascript">
-        var $ = function (id) {
+        var $2 = function (id) {
             return "string" == typeof id ? document.getElementById(id) : id;
         };
         var Class = {
@@ -173,7 +180,7 @@
         var Calendar = Class.create();
         Calendar.prototype = {
             initialize: function (container, options) {
-                this.Container = $(container);//table结构容器
+                this.Container = $2(container);//table结构容器
                 this.Days = [];//日期列表
                 this.SetOptions(options);
                 this.Year = this.options.Year;
@@ -282,7 +289,7 @@
                         </a>
                         <ul class="am-dropdown-content">
                             <li class="am-dropdown-header">我的栏目</li>
-                            @foreach(var item in list)
+                            @foreach (var item in list)
                             {
                                 <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
                             }
@@ -341,7 +348,7 @@
                                 </thead>
                                 <tbody id="idCalendar"></tbody>
                             </table>
-                          
+
                         </div>
                         <script language="JavaScript">
                             var cale = new Calendar("idCalendar", {
@@ -366,7 +373,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in list)
                         {
-                            <li><a href="/@Model.Identity/@item.ID">@item.Name</a></li>
+                            <li><a href="/@Model.Identity/@item.Blog.ID">@item.Name</a></li>
                         }
                     </ul>
                 </section>
@@ -389,7 +396,8 @@
         </p>
     </footer>
     <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
-
+    <script src="~/Content/dianzan/js/mo.min.js"></script>
+    <script src="~/Content/dianzan/js/dianzan.js"></script>
 </body>
 </html>
 

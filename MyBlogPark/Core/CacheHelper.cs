@@ -62,7 +62,7 @@ namespace MyBlogPark.Core
             return _cache.Get(key) as T;
 
         }
-        public static object RedCache(string key) 
+        public static object ReadCache(string key) 
         {
             return _cache.Get(key);
 

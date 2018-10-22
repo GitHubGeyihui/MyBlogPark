@@ -16,6 +16,7 @@ namespace MyBGO.Framework.Models
         public bool Status{ set; get; }
 
         public int UserID { set; get; }
+        public int WebCatalog { set; get; }
         public virtual User User { set; get; }
     }
 }

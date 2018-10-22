@@ -108,3 +108,4 @@ D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.csproj.CoreCompileInputs.cache
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.dll
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.pdb
+D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\EntityFramework.resources.dll

@@ -355,3 +355,4 @@ D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CoreCompileInp
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.dll
 D:\毕业设计\MyBlogPark\MyBlogPark\obj\Debug\MyBlogPark.pdb
+D:\毕业设计\MyBlogPark\MyBlogPark\bin\zh-Hans\EntityFramework.resources.dll

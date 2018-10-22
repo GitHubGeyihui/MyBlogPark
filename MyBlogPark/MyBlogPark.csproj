@@ -571,6 +571,13 @@
     <Content Include="Content\AmazeUI-2.7.2\assets\js\amazeui.widgets.helper.min.js" />
     <Content Include="Content\AmazeUI-2.7.2\assets\js\app.js" />
     <Content Include="Content\AmazeUI-2.7.2\assets\js\handlebars.min.js" />
+    <Content Include="Content\dianzan\css\demo.css" />
+    <Content Include="Content\dianzan\css\demo.css 不要的.txt" />
+    <Content Include="Content\dianzan\css\font-awesome.min.css" />
+    <Content Include="Content\dianzan\css\icons.css" />
+    <Content Include="Content\dianzan\css\icons.css 改ico大小.txt" />
+    <Content Include="Content\dianzan\js\dianzan.js" />
+    <Content Include="Content\dianzan\js\mo.min.js" />
     <Content Include="Content\Img\13.jpg" />
     <Content Include="Content\Img\1.jpg" />
     <Content Include="Content\Img\2.jpg" />

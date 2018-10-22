@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MyBGO.App_Start;
 using MyBGO.Framework.Core;
+using MyBGO.Framework.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,34 @@ namespace MyBlogPark.Areas.Admin.Controllers
     public class CommentController : AdminBaseController
     {
         // GET: Admin/comment
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var Model = dbContext.Comment.ToList();
-            return View();
+            if (page <= 0) page = 1;
+            int pSize = 5;
+            int sk = Convert.ToInt32((page - 1) * pSize);
+            var u = Session["loginUser"] as User;
+            var nList = dbContext.Comment.Where(o => o.Form_UserID == u.ID).OrderByDescending(n => n.ID)
+                .Skip(sk).Take(pSize).ToList();
+
+            MyPager p = new MyPager(dbContext.Comment.Count(), page, pSize, 5);
+            ViewBag.Pager = p.ToHTML();
+
+            return View(nList);
+        }
+        public ActionResult StuList(int page = 1)
+        {
+            if (page < 1)
+            {
+                page = 1;
+
+            }
+            int pageSize = 10;
+            int sk = (page - 1) * pageSize;
+            var nList = dbContext.Comment.OrderByDescending(o => o.ID).Skip(sk).ToList();
+            //生成分页操作
+            MyPager p = new MyPager(sk, page, pageSize, 5);
+            ViewBag.pager = p.ToHTML();
+            return View(nList);
         }
         [HttpPost]
         public int Delete(int id)

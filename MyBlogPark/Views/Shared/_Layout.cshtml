@@ -1,7 +1,4 @@
-﻿@{
-    var LoginUser = Session["loginUser"] as User;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -11,8 +8,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
+
+    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png"/>
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
     <style>
         .get {
@@ -96,7 +93,7 @@
             background: #2d3e50;
         }
     </style>
-    <script src="~/Content/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     @RenderSection("scripts", required: false)
 </head>
 <body>
@@ -112,7 +109,7 @@
 
         <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="/">首页</a></li>    
+                <li class="am-active"><a href="/">首页</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         栏目 <span class="am-icon-caret-down"></span>
@@ -154,7 +151,7 @@
             </form>
         </div>
     </header>
-         @RenderBody()
+    @RenderBody()
     <footer class="footer am-topbar-fixed-bottom">
         <p>
             © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a>16301002 <a href="#" target="_blank">谷羽</a> の博客园

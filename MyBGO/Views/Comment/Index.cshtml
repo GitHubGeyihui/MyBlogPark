@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Comment>
+@section Header{
+    <script src="~/Content/Plugin/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="~/Content/Plugin/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/Plugin/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        首页
+        <small>用户评论</small>
+    </h1>
+</section>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Default Modal</h4>
+
+            </div>
+            <div class="modal-body">
+                <p>确认删除？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="ibox-tools">
+                        <span>关键字</span>
+                        @Html.TextBox("KeyWords", null, new { @class = "m-wrap small" })
+                        <a class="btn btn-primary btn-sm" title='搜索' id="btn_search" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
+                        <table class="table table-hover text-center">
+                            <tr>
+                                <th style="width:5% ;padding-left:20px;">用户名称</th>
+                                <th width="5%">评论文章</th>
+                                <th width="20%">评论内容</th>
+                                <th width="5%">评论时间</th>
+                                <th width="5%">操作</th>
+                            </tr>
+                            <volist name="list" id="">
+
+                                @foreach (var c in Model)
+                                {<tr>
+                                        <td style="padding-left:20px;">
+                                            @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.Contents, "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(c.AddTime.ToString("yyyy-MM-dd"), "", "", new { id = c.ID }, new { })
+                                        </td>
+                                        <td>
+                                            <div class="button-group">
+                                                <a class="button border-red" href="javascript:void(0)" onclick="return del(@c.ID)">
+                                                    <span class="icon-trash-o"></span>删除
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                        </table>
+                        @Html.Raw(ViewBag.Pager)
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped"></table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script type="text/javascript">
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
+            $.post("/Comment/delete", { id: id },
+                function (data) {
+                    if (data == 1) {
+                        window.location.href = "/Comment/index";
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                });
+        }
+    }
+</script>

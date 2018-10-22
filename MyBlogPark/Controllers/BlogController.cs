@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Linq;
 using System.Web.Mvc;
 using MyBGO.Framework.Models;
@@ -47,8 +47,8 @@ namespace MyBlogPark.Controllers
             }
             ViewBag.Article = model;
 
-            ViewBag.CatalogList = dbContext.Catalog.Where(m => m.ArticleID == model.ID).OrderByDescending(m => m.ID).ToList();
-            ViewBag.commentList = dbContext.Comment.Where(m => m.ArticleID == id).ToList();
+            ViewBag.CatalogList = dbContext.Catalog.Where(m => m.BlogID == model.ID).OrderByDescending(m => m.ID).ToList();
+            ViewBag.CommentList = dbContext.Comment.Where(m => m.ArticleID == id).ToList();
             return View(blogModel);
           
         }
@@ -71,7 +71,7 @@ namespace MyBlogPark.Controllers
                 ArticleID = id,
                 Contents = content,
                 To_UserID = to_UserID,
-                UserID = LoginUser.ID, 
+                Form_UserID = LoginUser.ID, 
             };
             ViewBag.commentList = comment;
             dbContext.Comment.Add(comment);
