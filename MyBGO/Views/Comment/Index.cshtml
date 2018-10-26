@@ -3,8 +3,8 @@
     <script src="~/Content/Plugin/datatables.net/js/jquery.dataTables.min.js"></script>
     <link href="~/Content/Plugin/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <script src="~/Content/Plugin/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript">
-    </script>
+
+
 }
 
 <!-- Content Header (Page header) -->
@@ -64,7 +64,7 @@
                                             @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
                                         </td>
                                         <td>
-                                            @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
+                                            @Html.ActionLink(c.Article.Title, "", "", new { id = c.ID }, new { })
                                         </td>
                                         <td>
                                             @Html.ActionLink(c.Contents, "", "", new { id = c.ID }, new { })

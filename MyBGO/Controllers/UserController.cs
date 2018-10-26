@@ -1,5 +1,7 @@
 ﻿using MyBGO.App_Start;
+using MyBlogPark.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -21,6 +23,13 @@ namespace MyBGO.Controllers
             MyPager p = new MyPager(dbContext.User.Count(), page, pSize, 5);
             ViewBag.Pager = p.ToHTML();
 
+            List<MyBGOArticleDetail> c = dbContext.Database.SqlQuery<MyBGOArticleDetail>(@"SELECT a.*,b.[Identity] as BlogIdentity,u.Name as UserName
+             FROM [Article] as a
+             left join Blog as b
+             on a.BlogID = b.ID
+             left join [User] as u
+             on a.UserID = u.ID").ToList();
+            ViewBag.HotArticleList = c;
             return View(nList);
         }
         public ActionResult StuList(int page = 1)

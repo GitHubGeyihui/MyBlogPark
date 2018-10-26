@@ -78,7 +78,7 @@
             <h3 class="am-article-title blog-title">
                 <a href="/@Model.Identity/p/@(list[i].ID).html">@list[i].Title</a>
             </h3>
-            <h4 class="am-article-meta blog-meta">发布于：@list[i].AddTime.ToString("yyyy-MM-dd")</h4>
+            <h4 class="am-article-meta blog-meta">@list[i].Catalog.Blog.NiName 发布于：@list[i].AddTime.ToString("yyyy-MM-dd")</h4>
             <div class="am-g blog-content">
                 <div class="am-u-lg-12">
                     @if (i == 0)

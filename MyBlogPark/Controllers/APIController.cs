@@ -1,4 +1,5 @@
-﻿using MyBlogPark.Core;
+﻿using MyBGO.Framework.MyModels;
+using MyBlogPark.Core;
 using System;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace MyBlogPark.Controllers
 {
     public class APiController : BaseController
     {
+       
         /// <summary>
         /// 当记录点赞数失效的时候 执行这个函数
         /// </summary>
@@ -70,7 +72,7 @@ namespace MyBlogPark.Controllers
                 CacheHelper.WriteCache("sdfdsfdsfds", "ddd", 6, false);
                 HttpRuntime.Cache.Insert(key, up, null, DateTime.UtcNow.AddSeconds(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, MyCacheItemRemovedCallback);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return Json(new { status = false });
             }

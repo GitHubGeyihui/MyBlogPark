@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using MyBGO.Framework.Models;
+
+using MyBGO.Framework.MyModels;
 using MyBlogPark.Areas.Admin.ViewModels;
 using System;
 using System.Linq;

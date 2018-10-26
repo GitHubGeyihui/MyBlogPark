@@ -49,28 +49,6 @@
                         @Html.TextBox("KeyWords", null, new { @class = "m-wrap small" })
                         <a class="btn btn-primary btn-sm" title='搜索' id="btn_search" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
 
-                        <ul class="list-group mt-3 mb-3">
-                            @*@foreach (var n in Model)
-                                {
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-sm-10">
-                                                <h5>
-                                                    @Html.ActionLink(n.Title, "Show", "Notice", new { id = n.ID }, new { })
-                                                </h5>
-                                                <small>@n.AddTime</small>
-                                            </div>
-                                            <div class="col-sm-2 text-right text-danger">
-                                                <a href="#" onclick="return del()">
-
-                                                    <i class="fa fa-remove"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                }*@
-                        </ul>
-
                         <table class="table table-hover text-center">
                             <tr>
                                 <th style="width:5% ;padding-left:20px;">文章名称</th>

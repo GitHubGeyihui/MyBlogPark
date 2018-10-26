@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using MyBGO.Framework.Models;
+﻿using MyBGO.Framework.MyModels;
 using MyBlogPark.Areas.Admin.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
@@ -49,9 +45,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("Pwd","密码错误!");
                 }
-                LoginUser.Pwd = info.NewPwd;
-                dbContext.User.Add(LoginUser);
-                dbContext.Entry(LoginUser).State = System.Data.Entity.EntityState.Modified;
+                var u = dbContext.User.Find(LoginUser.ID);
+                u.Pwd = info.NewPwd;
+                
                 int res = dbContext.SaveChanges();
                 if (res > 0)
                 {

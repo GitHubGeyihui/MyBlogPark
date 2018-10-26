@@ -26,13 +26,13 @@
         $(function () {
             $(".sidebar-menu .treeview-menu a").on("click", function () { //赋予标签，样式以click事件　
                 //alter(11);//执行。。。。
-                $('Iframe').attr("src", $(this).attr('href'));//取当前标签的属性给iframe 
-                return false; //不要再往下跳转 
+                $('Iframe').attr("src", $(this).attr('href'));//取当前标签的属性给iframe
+                return false; //不要再往下跳转
             });
             $("#Iframe").height($(".content-wrapper").height())//让iframe的高度等于它父级的高度
             $("#Iframe").width($(".content-wrapper").width())//让iframe的宽度等于它父级的宽度
         });
-        //通过js来控制iframe的宽度和高度 同事通过js来修改 iframe的src属性 达到动态修改。
+            //通过js来控制iframe的宽度和高度 同事通过js来修改 iframe的src属性 达到动态修改。
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -200,7 +200,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="user/index"><i class="fa fa-circle-o"></i> 博主管理</a></li>
+                            <li><a href="/User/index"><i class="fa fa-circle-o"></i> 博主管理</a></li>
                             <li><a href="/blogarticle/index"><i class="fa fa-circle-o"></i> 博客管理</a></li>
                             <li><a href="/Comment/index"><i class="fa fa-circle-o"></i> 评论管理</a></li>
                         </ul>
@@ -212,8 +212,7 @@
 
         <div class="content-wrapper">
             @*boder来跳转html的样式*@
-            <iframe src="/blogarticle/index" id="Iframe" frameborder="0" scrolling="no">
-        </iframe>
+            <iframe src="/blogarticle/index" id="Iframe" frameborder="0" scrolling="no"></iframe>
             @*<iframe src="https://www.baidu.com/s?ie=utf-8&wd=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93" id="Iframe" frameborder="0" scrolling="no" style="border:1px solid red;"></iframe>*@
         </div>
     </div>

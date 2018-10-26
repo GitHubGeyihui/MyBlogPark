@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB_MyBlogsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Admins">
+<Schema Namespace="DB_MyBlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Pwd" Type="nvarchar(max)" />
-    <Property Name="AddTime" Type="datetime" Nullable="false" />
-    <Property Name="EditTime" Type="datetime" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="WebCatalog" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="User_ID" Type="int" />
   </EntityType>
-  <EntityType Name="Articles">
+  <EntityType Name="Article">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -32,15 +28,15 @@
     <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="IsShowHome" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Blogs">
+  <EntityType Name="Blog">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NiName" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Identity" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="100" />
-    <Property Name="Signal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Signal" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Discription" Type="nvarchar" MaxLength="250" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="LOGO" Type="nvarchar(max)" />
@@ -49,7 +45,7 @@
     <Property Name="EditTime" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Catalogs">
+  <EntityType Name="Catalog">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -61,19 +57,18 @@
     <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="ArticleID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Comments">
+  <EntityType Name="Comment">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Contents" Type="nvarchar" MaxLength="400" Nullable="false" />
-    <Property Name="ArticleID" Type="int" Nullable="false" />
-    <Property Name="ArticleTitle" Type="nvarchar(max)" />
-    <Property Name="Form_UserID" Type="int" Nullable="false" />
+    <Property Name="ArticleID" Type="int" />
+    <Property Name="Form_UserID" Type="int" />
     <Property Name="AddTime" Type="datetime" Nullable="false" />
-    <Property Name="To_UserID" Type="int" Nullable="false" />
+    <Property Name="To_UserID" Type="int" />
   </EntityType>
-  <EntityType Name="Users">
+  <EntityType Name="User">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -83,13 +78,11 @@
     <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
     <Property Name="IP" Type="nvarchar" MaxLength="20" />
     <Property Name="AddTime" Type="datetime" Nullable="false" />
-    <Property Name="LastLoginTime" Type="datetime" Nullable="false" />
-    <Property Name="LoginTimes" Type="int" Nullable="false" />
     <Property Name="BlogID" Type="int" Nullable="false" />
     <Property Name="EditTime" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="WebCatalogs">
+  <EntityType Name="WebCatalog">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -103,119 +96,141 @@
     <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="Admin_ID" Type="int" />
   </EntityType>
-  <Association Name="FK_dbo_Admins_dbo_Users_UserID">
-    <End Role="Users" Type="Self.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+  <Association Name="FK__Admin__User_ID__534D60F1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Admins">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="Admin">
+        <PropertyRef Name="User_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Articles_dbo_Catalogs_CatalogID">
-    <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+  <Association Name="FK__Article__Catalog__4316F928">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="Article" Type="Self.Article" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Catalogs">
+      <Principal Role="Catalog">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Articles">
+      <Dependent Role="Article">
         <PropertyRef Name="CatalogID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Blogs_dbo_Users_UserID">
-    <End Role="Users" Type="Self.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Blogs" Type="Self.Blogs" Multiplicity="*" />
+  <Association Name="FK__Blog__UserID__3A81B327">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Blogs">
+      <Dependent Role="Blog">
         <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Catalogs_dbo_Blogs_BlogID">
-    <End Role="Blogs" Type="Self.Blogs" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
+  <Association Name="FK__Catalog__Article__403A8C7D">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Blogs">
+      <Principal Role="Blog">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Catalogs">
+      <Dependent Role="Catalog">
         <PropertyRef Name="BlogID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Comments_dbo_Users_Form_UserID">
-    <End Role="Users" Type="Self.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+  <Association Name="FK__Comment__Article__4BAC3F29">
+    <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="Article">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Comments">
+      <Dependent Role="Comment">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__Form_Us__4CA06362">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Comment">
         <PropertyRef Name="Form_UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_WebCatalogs_dbo_Admins_Admin_ID">
-    <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
-    <End Role="WebCatalogs" Type="Self.WebCatalogs" Multiplicity="*" />
+  <Association Name="FK__Comment__To_User__4D94879B">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Admins">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="WebCatalogs">
+      <Dependent Role="Comment">
+        <PropertyRef Name="To_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WebCatalo__Admin__5629CD9C">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <End Role="WebCatalog" Type="Self.WebCatalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WebCatalog">
         <PropertyRef Name="Admin_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB_MyBlogsModelStoreContainer">
-    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Blogs" EntityType="Self.Blogs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Catalogs" EntityType="Self.Catalogs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="WebCatalogs" EntityType="Self.WebCatalogs" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_dbo_Admins_dbo_Users_UserID" Association="Self.FK_dbo_Admins_dbo_Users_UserID">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Admins" EntitySet="Admins" />
+  <EntityContainer Name="DB_MyBlogModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WebCatalog" EntityType="Self.WebCatalog" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Admin__User_ID__534D60F1" Association="Self.FK__Admin__User_ID__534D60F1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Admin" EntitySet="Admin" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Articles_dbo_Catalogs_CatalogID" Association="Self.FK_dbo_Articles_dbo_Catalogs_CatalogID">
-      <End Role="Catalogs" EntitySet="Catalogs" />
-      <End Role="Articles" EntitySet="Articles" />
+    <AssociationSet Name="FK__Article__Catalog__4316F928" Association="Self.FK__Article__Catalog__4316F928">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Article" EntitySet="Article" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Blogs_dbo_Users_UserID" Association="Self.FK_dbo_Blogs_dbo_Users_UserID">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Blogs" EntitySet="Blogs" />
+    <AssociationSet Name="FK__Blog__UserID__3A81B327" Association="Self.FK__Blog__UserID__3A81B327">
+      <End Role="User" EntitySet="User" />
+      <End Role="Blog" EntitySet="Blog" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Catalogs_dbo_Blogs_BlogID" Association="Self.FK_dbo_Catalogs_dbo_Blogs_BlogID">
-      <End Role="Blogs" EntitySet="Blogs" />
-      <End Role="Catalogs" EntitySet="Catalogs" />
+    <AssociationSet Name="FK__Catalog__Article__403A8C7D" Association="Self.FK__Catalog__Article__403A8C7D">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Catalog" EntitySet="Catalog" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Comments_dbo_Users_Form_UserID" Association="Self.FK_dbo_Comments_dbo_Users_Form_UserID">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Comments" EntitySet="Comments" />
+    <AssociationSet Name="FK__Comment__Article__4BAC3F29" Association="Self.FK__Comment__Article__4BAC3F29">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_WebCatalogs_dbo_Admins_Admin_ID" Association="Self.FK_dbo_WebCatalogs_dbo_Admins_Admin_ID">
-      <End Role="Admins" EntitySet="Admins" />
-      <End Role="WebCatalogs" EntitySet="WebCatalogs" />
+    <AssociationSet Name="FK__Comment__Form_Us__4CA06362" Association="Self.FK__Comment__Form_Us__4CA06362">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__To_User__4D94879B" Association="Self.FK__Comment__To_User__4D94879B">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WebCatalo__Admin__5629CD9C" Association="Self.FK__WebCatalo__Admin__5629CD9C">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="WebCatalog" EntitySet="WebCatalog" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

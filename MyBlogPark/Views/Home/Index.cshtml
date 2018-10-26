@@ -8,39 +8,25 @@
 
     var blogModel = ViewBag.Blog as List<Blog>;
 }
-<div style="
-        border: 1px solid red;
-        /*background-image: url('../../Content/Img/13.jpg');*/
-        background-repeat: no-repeat;
-        background-size: 100%">
-    <div class="am-g">
+    <div class="am-g" style="">
         <div class="am-u-sm-2">
             <div class="am-panel-group">
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">博文分类</div>
-                    <ul class="am-list blog-list">
-                        <li><a href="#">.NET技术</a></li>
-                        <li><a href="#">编程语言</a></li>
-                        <li><a href="#">软件设计</a></li>
-                        <li><a href="#">软件设计</a></li>
-                    </ul>
-                </section>
-                <section class="am-panel am-panel-default">
                     <div class="am-panel-hd">友情链接</div>
                     <ul class="am-list blog-list">
-                        <li><a href="https://www.zhihu.com/">知乎</a></li>
-                        <li><a href="https://www.baidu.com/">百度搜索</a></li>
-                        <li><a href="https://www.bilibili.com/">哔哩哔哩动画</a></li>
-                        <li><a href="https://github.com/">GitHub</a></li>
+                        <li><a href="https://www.zhihu.com/" style="color:black!important">知乎</a></li>
+                        <li><a href="https://www.baidu.com/" style="color:black!important">百度搜索</a></li>
+                        <li><a href="https://www.bilibili.com/" style="color:black!important">哔哩哔哩动画</a></li>
+                        <li><a href="https://github.com/" style="color:black!important">GitHub</a></li>
                     </ul>
                 </section>
                 <section class="am-panel am-panel-default">
                     <div class="am-panel-hd">推荐博客</div>
-                    <ul class="am-list blog-list">
-                        <li><a href="#">小岛上</a></li>
-                        <li><a href="#">友情岁月</a></li>
-                        <li><a href="#">小年之久</a></li>
-                        <li><a href="#">秋叶原</a></li>
+                    <ul class="am-list blog-list" >
+                        <li><a href="#" style="color:black!important">小岛上</a></li>
+                        <li><a href="#" style="color:black!important">友情岁月</a></li>
+                        <li><a href="#" style="color:black!important">小年之久</a></li>
+                        <li><a href="#" style="color:black!important">秋叶原</a></li>
                     </ul>
                 </section>
             </div>
@@ -52,9 +38,9 @@
 
                 <article class="blog-main">
                     <h2 class="am-article-title blog-title">
-                        <a href="/@hostArticleList[i].BlogIdentity/p/@(hostArticleList[i].ID).html" style="font-size:16px;">@hostArticleList[i].Title</a>
+                        <a href="/@hostArticleList[i].BlogIdentity/p/@(hostArticleList[i].ID).html" style="font-size:23px;">@hostArticleList[i].Title</a>
                     </h2>
-                    <h4 class="am-article-meta blog-meta">作者 <a href="">@hostArticleList[i].UserName</a> 发表于： @hostArticleList[i].AddTime.ToString("yyyy-MM-dd")  <a href="#"></a></h4>
+                    <h4 class="am-article-meta blog-meta" >作者 <a href="#" style="color:black!important">@hostArticleList[i].UserName</a> <span style="margin:0px 0px 0px 10px;">发表于:</span> @hostArticleList[i].AddTime.ToString("yyyy-MM-dd")  <a href="#"></a></h4>
 
                     <div class="am-g blog-content">
                         <div class="am-u-lg-12">
@@ -84,7 +70,7 @@
                     <ul class="am-list blog-list">
                         @foreach (var item in hostArticleList)
                         {
-                            <li><a href="/@item.BlogIdentity/p/@(item.ID).html">@item.Title</a></li>
+                            <li><a href="/@item.BlogIdentity/p/@(item.ID).html" style="color:black!important">@item.Title</a></li>
                         }
                     </ul>
                 </section>
@@ -108,4 +94,3 @@
         </div>
 
     </div>
-</div>

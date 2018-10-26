@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using MyBGO.Framework.Models;
+using MyBGO.Framework.MyModels;
 
 namespace MyBGO.Controllers
 {
@@ -22,14 +22,14 @@ namespace MyBGO.Controllers
             {
                 new SelectListItem() { Text = "无", Value = "0" }
             };
-            var catalogList = dbContext.Webcatalog.Where(m => m.PID == 0).ToList();
+            var catalogList = dbContext.WebCatalog.Where(m => m.PID == 0).ToList();
             foreach (var item in catalogList)
             {
                 list.Add(new SelectListItem() { Text = item.Name, Value = item.ID.ToString() });
             }
             ViewBag.ParentList = list;
 
-            ViewBag.DataList = dbContext.Webcatalog.ToList();
+            ViewBag.DataList = dbContext.WebCatalog.ToList();
 
             return View();
         }
@@ -44,7 +44,7 @@ namespace MyBGO.Controllers
                 model.Status = true;
                 model.Total = 0;
                 model.Refleshs = 0;
-                dbContext.Webcatalog.Add(model);
+                dbContext.WebCatalog.Add(model);
                 if (dbContext.SaveChanges() > 0)
                 {
                     return Redirect("/setting/catalog");

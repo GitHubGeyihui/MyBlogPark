@@ -54,24 +54,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\DottextCount.cs" />
-    <Compile Include="Core\EFInit.cs" />
     <Compile Include="Core\StringHelper .cs" />
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\WebCatalog.cs" />
-    <Compile Include="MyModels\Admins.cs">
+    <Compile Include="MyModels\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\Articles.cs">
+    <Compile Include="MyModels\Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\Blogs.cs">
+    <Compile Include="MyModels\Blog.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\Catalogs.cs">
+    <Compile Include="MyModels\Catalog.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\Comments.cs">
+    <Compile Include="MyModels\Comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MyModels\Model1.Context.cs">
@@ -89,10 +85,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\Users.cs">
+    <Compile Include="MyModels\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModels\WebCatalogs.cs">
+    <Compile Include="MyModels\WebCatalog.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UEditor\Config.cs" />
@@ -103,11 +99,6 @@
     <Compile Include="UEditor\NotSupportedHandler.cs" />
     <Compile Include="UEditor\PathFormater.cs" />
     <Compile Include="UEditor\UploadHandler.cs" />
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Blog.cs" />
-    <Compile Include="Models\Catalog.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,19 +116,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="MyModels\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="MyModels\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

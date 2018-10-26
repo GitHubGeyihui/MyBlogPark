@@ -12,25 +12,21 @@ namespace MyBGO.Framework.MyModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Admins
+    public partial class Admin
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Admins()
+        public Admin()
         {
-            this.WebCatalogs = new HashSet<WebCatalogs>();
+            this.WebCatalog = new HashSet<WebCatalog>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public string Pwd { get; set; }
-        public System.DateTime AddTime { get; set; }
-        public System.DateTime EditTime { get; set; }
-        public bool Status { get; set; }
-        public int UserID { get; set; }
-        public int WebCatalog { get; set; }
+        public Nullable<int> User_ID { get; set; }
     
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WebCatalogs> WebCatalogs { get; set; }
+        public virtual ICollection<WebCatalog> WebCatalog { get; set; }
     }
 }

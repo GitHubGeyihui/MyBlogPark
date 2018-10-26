@@ -1,4 +1,5 @@
-﻿using MyBlogPark.Controllers;
+﻿using MyBGO.Framework.MyModels;
+using MyBlogPark.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,10 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 filterContext.HttpContext.Response.Redirect("/");
             }
             //后台必须先登录才能访问，若未登录则跳回首页
+            
+            
         }
-        
+   
+        public new DB_MyBlogEntities3 dbContext = new DB_MyBlogEntities3();
     }
 }

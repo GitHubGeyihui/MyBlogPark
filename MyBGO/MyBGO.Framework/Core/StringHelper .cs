@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MyBGO.Framework.Core
+﻿namespace MyBGO.Framework.Core
 {
     public class StringHelper
     {

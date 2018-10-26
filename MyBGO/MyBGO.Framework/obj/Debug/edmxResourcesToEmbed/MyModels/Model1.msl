@@ -1,23 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DB_MyBlogsModelStoreContainer" CdmEntityContainer="DB_MyBlogsEntities">
-    <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Admins">
-        <MappingFragment StoreEntitySet="Admins">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
-          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-          <ScalarProperty Name="EditTime" ColumnName="EditTime" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="WebCatalog" ColumnName="WebCatalog" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Articles">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Articles">
-        <MappingFragment StoreEntitySet="Articles">
+  <EntityContainerMapping StorageEntityContainer="DB_MyBlogModelStoreContainer" CdmEntityContainer="DB_MyBlogEntities3">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.Article">
+        <MappingFragment StoreEntitySet="Article">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="CatalogID" ColumnName="CatalogID" />
           <ScalarProperty Name="CatalogName" ColumnName="CatalogName" />
@@ -35,9 +21,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Blogs">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Blogs">
-        <MappingFragment StoreEntitySet="Blogs">
+    <EntitySetMapping Name="Blog">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.Blog">
+        <MappingFragment StoreEntitySet="Blog">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NiName" ColumnName="NiName" />
           <ScalarProperty Name="Identity" ColumnName="Identity" />
@@ -53,9 +39,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Catalogs">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Catalogs">
-        <MappingFragment StoreEntitySet="Catalogs">
+    <EntitySetMapping Name="Catalog">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.Catalog">
+        <MappingFragment StoreEntitySet="Catalog">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="BlogID" ColumnName="BlogID" />
@@ -66,48 +52,55 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Comments">
-        <MappingFragment StoreEntitySet="Comments">
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Contents" ColumnName="Contents" />
           <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
           <ScalarProperty Name="Form_UserID" ColumnName="Form_UserID" />
           <ScalarProperty Name="AddTime" ColumnName="AddTime" />
           <ScalarProperty Name="To_UserID" ColumnName="To_UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.Users">
-        <MappingFragment StoreEntitySet="Users">
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.User">
+        <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Pwd" ColumnName="Pwd" />
           <ScalarProperty Name="IP" ColumnName="IP" />
           <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-          <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
-          <ScalarProperty Name="LoginTimes" ColumnName="LoginTimes" />
           <ScalarProperty Name="BlogID" ColumnName="BlogID" />
           <ScalarProperty Name="EditTime" ColumnName="EditTime" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="WebCatalogs">
-      <EntityTypeMapping TypeName="DB_MyBlogsModel.WebCatalogs">
-        <MappingFragment StoreEntitySet="WebCatalogs">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="PID" ColumnName="PID" />
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Refleshs" ColumnName="Refleshs" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
-          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-          <ScalarProperty Name="EditTime" ColumnName="EditTime" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WebCatalog">
+      <EntityTypeMapping TypeName="DB_MyBlogModel.WebCatalog">
+        <MappingFragment StoreEntitySet="WebCatalog">
           <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EditTime" ColumnName="EditTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Refleshs" ColumnName="Refleshs" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

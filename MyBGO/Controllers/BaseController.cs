@@ -1,14 +1,26 @@
-﻿using MyBGO.Framework.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MyBGO.Framework.MyModels;
 using System.Web.Mvc;
 
 namespace MyBGO.Controllers
 {
+
     public class BaseController : Controller
     {
-        protected DottextCount dbContext = new DottextCount();//封装EF的使用
+        public DB_MyBlogEntities3 dbContext = new DB_MyBlogEntities3();
+        protected Admin AdminLoginUser
+        {
+            get
+            {
+                return Session["AdminLoginUser"] as Admin;
+            }
+        }
+        protected Article AdminLoginArticle
+        {
+            get
+            {
+                return Session["AdminLoginArticle"] as Article;
+            }
+        }
+        
     }
 }

@@ -9,7 +9,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png"/>
+    <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png" />
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
     <style>
         .get {
@@ -93,7 +93,123 @@
             background: #2d3e50;
         }
     </style>
+    <!--水波特效-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            color: #000;
+            font-size: 16px;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            background-image: url('../../IMG/bg2.jpg');
+            background-size: cover;
+        }
+
+            body:after {
+                content: '';
+                display: inline-block;
+                height: 100%;
+            }
+
+        main {
+            display: inline-block;
+            vertical-align: middle;
+            background: url(img/bg.jpg);
+            padding: 100px;
+            max-width: 500px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-top: 6px;
+        }
+
+        p {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #000;
+        }
+
+        pre {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .error {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: #000;
+            color: #f00;
+            padding: 5px;
+            max-width: 50%;
+        }
+
+        button {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            padding: 0 0.8em;
+            line-height: 2em;
+            border: none;
+            background: #666;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 0.5em;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+        }
+
+            button:hover {
+                background: #888;
+            }
+
+        code {
+            font-size: 0.8em;
+            display: inline;
+        }
+
+        .disable {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .code-string {
+            color: #ec7600
+        }
+
+        .code-cbracket {
+            font-weight: bold
+        }
+
+        .code-number {
+            color: #ffcd22
+        }
+    </style>
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.ripples.js"></script>
+    <!--Live2D看板娘-->
+    <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
+  
+
     @RenderSection("scripts", required: false)
 </head>
 <body>
@@ -111,15 +227,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li class="am-active"><a href="/">首页</a></li>
                 <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        栏目 <span class="am-icon-caret-down"></span>
-                    </a>
-                    <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">园子栏目</li>
-                        <li><a href="#">ASP.Net技术</a></li>
-                        <li><a href="#">Python技术</a></li>
-                        <li><a href="#">JAVA技术 </a></li>
-                    </ul>
+
                 </li>
             </ul>
 
@@ -132,7 +240,6 @@
                 {
                     <button type="button" class="am-btn am-btn-success am-btn-sm am-align-right" onclick="window.location.href='/home/login'">登 录</button>
                     <button type="button" class="am-btn am-btn-warning am-btn-sm am-align-right" onclick="window.location.href='/home/register'">注 册</button>
-
                 }
                 else
                 {
@@ -151,8 +258,76 @@
             </form>
         </div>
     </header>
+
     @RenderBody()
+    <!--水波特效-->
+    <script>
+        $(document).ready(function () {
+            try {
+                $('body').ripples({
+                    resolution: 512,
+                    dropRadius: 20, //px
+                    perturbance: 0.04,
+                });
+                $('main').ripples({
+                    resolution: 128,
+                    dropRadius: 10, //px
+                    perturbance: 0.04,
+                    interactive: false
+                });
+            }
+            catch (e) {
+                $('.error').show().text(e);
+            }
+
+            $('.js-ripples-disable').on('click', function () {
+                $('body, main').ripples('destroy');
+                $(this).hide();
+            });
+
+            $('.js-ripples-play').on('click', function () {
+                $('body, main').ripples('play');
+            });
+
+            $('.js-ripples-pause').on('click', function () {
+                $('body, main').ripples('pause');
+            });
+
+            // Automatic drops
+            setInterval(function () {
+                var $el = $('main');
+                var x = Math.random() * $el.outerWidth();
+                var y = Math.random() * $el.outerHeight();
+                var dropRadius = 20;
+                var strength = 0.04 + Math.random() * 0.04;
+
+                $el.ripples('drop', x, y, dropRadius, strength);
+            }, 400);
+        });
+    </script>
+  
     <footer class="footer am-topbar-fixed-bottom">
+        <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
+        <!--看板娘-->
+        <div class="waifu" id="waifu">
+            <div class="waifu-tips" style="opacity:1;"></div>
+            <canvas id="live2d" width="300" height="320" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-eye"></span>
+                <span class="fui-user"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+
+        </div>
+        <link href="https://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
+        <script src="~/Scripts/Live2D看板娘/flat-ui.min.js"></script>
+        <script src="~/Scripts/Live2D看板娘/waifu-tips.js"></script>
+        <script src="~/Scripts/Live2D看板娘/live2d.js"></script>
+        <script type="text/javascript">initModel()</script>
         <p>
             © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a>16301002 <a href="#" target="_blank">谷羽</a> の博客园
         </p>

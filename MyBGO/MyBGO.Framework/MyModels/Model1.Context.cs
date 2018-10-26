@@ -13,10 +13,10 @@ namespace MyBGO.Framework.MyModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_MyBlogsEntities : DbContext
+    public partial class DB_MyBlogEntities3 : DbContext
     {
-        public DB_MyBlogsEntities()
-            : base("name=DB_MyBlogsEntities")
+        public DB_MyBlogEntities3()
+            : base("name=DB_MyBlogEntities3")
         {
         }
     
@@ -25,12 +25,12 @@ namespace MyBGO.Framework.MyModels
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admins> Admins { get; set; }
-        public virtual DbSet<Articles> Articles { get; set; }
-        public virtual DbSet<Blogs> Blogs { get; set; }
-        public virtual DbSet<Catalogs> Catalogs { get; set; }
-        public virtual DbSet<Comments> Comments { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<WebCatalogs> WebCatalogs { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
+        public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Catalog> Catalog { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<WebCatalog> WebCatalog { get; set; }
     }
 }

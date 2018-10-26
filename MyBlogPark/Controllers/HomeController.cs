@@ -1,5 +1,5 @@
 ﻿using BotDetect.Web.Mvc;
-using MyBGO.Framework.Models;
+using MyBGO.Framework.MyModels;
 using MyBlogPark.Core;
 using MyBlogPark.Models;
 using System;
@@ -12,6 +12,7 @@ namespace MyBlogPark.Controllers
 {
     public class HomeController : BaseController
     {
+        //DB_MyBlogEntities2 dbContext = new DB_MyBlogEntities2();
         public ActionResult Index()
         {
           
@@ -28,12 +29,11 @@ namespace MyBlogPark.Controllers
             ViewBag.blog = dbContext.Blog;
             ViewBag.ListArticle = dbContext.Article.OrderBy(m => m.ID).Take(10).ToList();
             ViewBag.ListUser = dbContext.User.OrderBy(m => m.ID).Take(8).ToList();
-             //ViewBag.HotArticleList = dbContext.Article.OrderByDescending(m => m.Views).Take(6).ToList();
             List<ArticleDetail> c = dbContext.Database.SqlQuery<ArticleDetail>(@"SELECT a.*,b.[Identity] as BlogIdentity,u.Name as UserName
-             FROM [dbo].[Articles] as a
-             left join Blogs as b
+             FROM [dbo].[Article] as a
+             left join Blog as b
              on a.BlogID = b.ID
-             left join Users as u
+             left join [User] as u
              on a.UserID = u.ID").ToList();
             ViewBag.HotArticleList = c;
             return View();
@@ -56,10 +56,8 @@ namespace MyBlogPark.Controllers
                     Email = info.Email,
                     IP = "127.0.0.1",
                     AddTime = DateTime.Now,
-                    EditTime = DateTime.Now,
-                    LoginTimes = 1,
+                    EditTime = DateTime.Now,          
                     BlogID = 0,
-                    LastLoginTime = DateTime.Now,
                     Status = true
                 };
                 dbContext.User.Add(user);

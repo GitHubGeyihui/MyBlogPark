@@ -1,0 +1,81 @@
+﻿@model AdminUserLogin
+@{
+    Layout = null;
+
+    <link href="~/Content/Plugin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/Plugin/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/Plugin/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!-- jQuery 3 -->
+    <script src="~/Content/Plugin/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/Plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/Plugin/dist/js/adminlte.min.js"></script>
+
+}
+@section scripts{
+    <script src="http://localhost:58419/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:58419/Scripts/jquery.validate.js"></script>
+    <script src="http://localhost:58419/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style type="text/css">
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>系统登录</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#" target="_blank"><b>谷羽の博客园</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">个人博客管理系统</p>
+            <form form method="post" class="am-form" action="Homes/Login">
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(Model => Model.Name, new { @class = "form-control", @placeholder = "用户名" })
+                    @Html.ValidationMessageFor(m => m.Name)
+
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+
+                    @Html.PasswordFor(Model => Model.Pwd, new { @class = "form-control", @placeholder = "密码" })
+                    @Html.ValidationMessageFor(m => m.Pwd)
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+</html>

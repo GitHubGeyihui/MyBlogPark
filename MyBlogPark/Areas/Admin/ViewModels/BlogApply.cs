@@ -17,15 +17,18 @@ namespace MyBlogPark.Areas.Admin.ViewModels
         [Required]
         [StringLength(20)]
         [DisplayName("博客标识符")]
+        [Compare("Identity", ErrorMessage = "标识符已经有人用过了哦~，麻烦换一个")]
         public string Identity { set; get; }
+       
 
         [StringLength(100)]
         [DisplayName("博客标题")]
-
+        [Compare("Title", ErrorMessage = "请填写标题")]
         public string Title { set; get; }
+      
         [StringLength(100)]
         [DisplayName("签名")]
-
+        [Compare("Signal", ErrorMessage = "请填写签名")]
         public string Signal { set; get; }//签名
         [StringLength(250)]
 

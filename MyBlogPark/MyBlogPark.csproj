@@ -848,6 +848,7 @@
     <Content Include="Content\UEditor.net_1_4_3_3\ueditor.parse.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="IMG\bg2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -887,10 +888,17 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.ripples-min.js" />
+    <Content Include="Scripts\jquery.ripples.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Live2D看板娘\flat-ui.min.js" />
+    <Content Include="Scripts\Live2D看板娘\live2d.js" />
+    <Content Include="Scripts\Live2D看板娘\waifu-tips.js" />
+    <Content Include="Scripts\Live2D看板娘\waifu.css" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -911,6 +919,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Blog\_Layout.cshtml" />
     <Content Include="Views\Blog\Article.cshtml" />
+    <Content Include="Views\Blog\Catalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\API\" />

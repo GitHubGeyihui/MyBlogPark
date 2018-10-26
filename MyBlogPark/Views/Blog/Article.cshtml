@@ -104,12 +104,12 @@
                         <a href="#">@articleModel.Title</a>
                     </h3>
                     <h2 class="am-article-meta blog-meta">
-                        作者:<a href="#">@blogModel.NiName</a>                  发布于:<a> @articleModel.AddTime</a>
+                        作者:<a href="#"style="color:black!important">@blogModel.NiName</a><span style="margin:0px 0px 0px 10px;">发布于:</span><a style="color:black!important"> @articleModel.AddTime</a>
 
 
-                        <button class="icobutton icobutton--heart" style="color: rgb(239, 122, 122); font-size:18px;" onclick="addUp(@articleModel.ID)">
-                            <span class="fa fa-heart" style="transform: scale3d(1, 1, 1);"></span>
-                            <span class="icobutton__text icobutton__text--side">
+                        <button class="icobutton icobutton--heart" style=" font-size:18px;" onclick="addUp(@articleModel.ID)">
+                            <span class="fa fa-heart" style="transform: scale3d(1, 1, 1);margin:0px 0px 0px 10px;"></span>
+                            <span class="icobutton__text icobutton__text--side" >
                                 <i id="upi">@articleModel.UP</i>
                             </span>
 
@@ -156,8 +156,7 @@
                                     <a href="">
                                         <i class="am-icon-thumbs-down"></i>
                                     </a>
-                                    <a href="#miao" onclick="reply(@CommentList[i].ID,'@CommentList[i].User
-                                        .Name');"><i class="am-icon-reply"></i></a>
+                                    <a href="#miao" onclick="reply(@CommentList[i].ID,'@CommentList[i].User.Name');"><i class="am-icon-reply"></i></a>
                                 </div>
                             </footer>
                         </div>

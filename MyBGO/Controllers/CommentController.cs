@@ -17,9 +17,7 @@ namespace MyBGO.Controllers
             int pSize = 5;
             int sk = Convert.ToInt32((page - 1) * pSize);
 
-            var nList = dbContext.Comment.OrderByDescending(n => n.ID)
-                .Skip(sk).Take(pSize).ToList();
-
+            var nList = dbContext.Comment.OrderByDescending(n => n.ID).Skip(sk).Take(pSize).ToList();
             MyPager p = new MyPager(dbContext.Comment.Count(), page, pSize, 5);
             ViewBag.Pager = p.ToHTML();
 
@@ -43,9 +41,7 @@ namespace MyBGO.Controllers
         [HttpPost]
         public int Delete(int id)
         {
-
             var model = dbContext.Comment.FirstOrDefault(m => m.ID == id);
-
             dbContext.Comment.Attach(model);
             dbContext.Entry(model).State = EntityState.Deleted;
             int res = dbContext.SaveChanges();

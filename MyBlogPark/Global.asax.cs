@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
-using MyBGO.Framework.Core;
-using MyBGO.Framework.Models;
+using MyBGO.Framework.MyModels;
 using MyBlogPark.Areas.Admin.ViewModels;
-using MyBlogPark.Core;
-using MyBlogPark.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
- 
+
 namespace MyBlogPark
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -22,7 +15,7 @@ namespace MyBlogPark
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            EFInit.Setting();
+           
             //配置AutoMap 
             Mapper.Initialize(cfg =>
             {

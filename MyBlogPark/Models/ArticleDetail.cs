@@ -1,8 +1,4 @@
-﻿using MyBGO.Framework.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MyBGO.Framework.MyModels;
 
 namespace MyBlogPark.Models
 {

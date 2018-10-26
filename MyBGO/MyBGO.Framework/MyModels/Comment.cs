@@ -12,18 +12,17 @@ namespace MyBGO.Framework.MyModels
     using System;
     using System.Collections.Generic;
     
-    public partial class WebCatalogs
+    public partial class Comment
     {
         public int ID { get; set; }
-        public int PID { get; set; }
-        public string Name { get; set; }
-        public int Refleshs { get; set; }
-        public int Total { get; set; }
+        public string Contents { get; set; }
+        public Nullable<int> ArticleID { get; set; }
+        public Nullable<int> Form_UserID { get; set; }
         public System.DateTime AddTime { get; set; }
-        public System.DateTime EditTime { get; set; }
-        public bool Status { get; set; }
-        public Nullable<int> Admin_ID { get; set; }
+        public Nullable<int> To_UserID { get; set; }
     
-        public virtual Admins Admins { get; set; }
+        public virtual Article Article { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

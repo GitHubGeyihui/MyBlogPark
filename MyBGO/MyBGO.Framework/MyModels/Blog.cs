@@ -12,23 +12,29 @@ namespace MyBGO.Framework.MyModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Articles
+    public partial class Blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Blog()
+        {
+            this.Catalog = new HashSet<Catalog>();
+        }
+    
         public int ID { get; set; }
-        public int CatalogID { get; set; }
-        public string CatalogName { get; set; }
+        public string NiName { get; set; }
+        public string Identity { get; set; }
         public string Title { get; set; }
+        public string Signal { get; set; }
         public string Discription { get; set; }
-        public string Content { get; set; }
-        public int UP { get; set; }
         public int UserID { get; set; }
-        public int BlogID { get; set; }
-        public string Views { get; set; }
+        public string LOGO { get; set; }
+        public int ThemeID { get; set; }
         public System.DateTime AddTime { get; set; }
         public System.DateTime EditTime { get; set; }
         public bool Status { get; set; }
-        public bool IsShowHome { get; set; }
     
-        public virtual Catalogs Catalogs { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Catalog> Catalog { get; set; }
     }
 }

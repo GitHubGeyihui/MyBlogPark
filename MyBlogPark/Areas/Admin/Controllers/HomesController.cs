@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using MyBGO.Framework.Models;
+using MyBGO.Framework.MyModels;
 using MyBlogPark.Areas.Admin.ViewModels;
-using MyBlogPark.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
@@ -31,7 +28,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-               var model= Mapper.Map<Blog>(info);
+               var model= Mapper.Map<MyBGO.Framework.MyModels.Blog>(info);
                 model.AddTime = DateTime.Now;
                 model.EditTime = DateTime.Now;
                 model.Status = true;
@@ -42,10 +39,12 @@ namespace MyBlogPark.Areas.Admin.Controllers
                 if (res > 0)
                 {
                     LoginUser.BlogID = model.ID;//取到ID
-                    //将要修改的实体附加到上下文中
-                    dbContext.User.Attach(LoginUser);
+                                                //将要修改的实体附加到上下文中
+
                     //修改实体的状态，改为“修改”状态
-                    dbContext.Entry<User>(LoginUser).State = System.Data.Entity.EntityState.Modified;
+                    //dbContext.Entry<User>(LoginUser).State = System.Data.Entity.EntityState.Modified;
+                    var u = dbContext.User.Find(LoginUser.ID);
+                    u.BlogID = dbContext.Blog.First(m => m.UserID == LoginUser.ID).ID;
                     res = dbContext.SaveChanges();
 
                     Session["LoginBlog"] = model;

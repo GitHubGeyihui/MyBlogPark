@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "评论管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var articleList = ViewBag.ArticleList as List<Article>;
+
 }
 
 <form method="post" action="" id="listform">
@@ -22,10 +24,10 @@
                                 @foreach (var c in Model)
                                 {<tr>
                                         <td style="padding-left:20px;">
-                                            @Html.ActionLink(c.User.Name, "", "", new { id = c.ID }, new { })
+                                            @Html.ActionLink(c.Article.Catalog.Blog.User.Name, "", "", new { id = c.ID }, new { })
                                         </td>
                                         <td>
-                                            @Html.ActionLink(c.User.IP, "", "", new { id = c.ID }, new { })
+                                            @Html.ActionLink(c.Article.Title, "", "", new { id = c.ID }, new { })
                                         </td>
                                         <td>
                                             @Html.ActionLink(c.Contents, "", "", new { id = c.ID }, new { })

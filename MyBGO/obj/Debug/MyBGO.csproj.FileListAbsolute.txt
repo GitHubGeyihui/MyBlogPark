@@ -96,6 +96,7 @@ D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.DependencyCollector.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.WindowsServer.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.AI.Web.xml
 D:\毕业设计\MyBlogPark\MyBGO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\EntityFramework.resources.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\System.Web.Helpers.resources.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\System.Web.Mvc.resources.dll
 D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\System.Web.Optimization.resources.dll
@@ -108,4 +109,3 @@ D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.csproj.CoreCompileInputs.cache
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.dll
 D:\毕业设计\MyBlogPark\MyBGO\obj\Debug\MyBGO.pdb
-D:\毕业设计\MyBlogPark\MyBGO\bin\zh-Hans\EntityFramework.resources.dll

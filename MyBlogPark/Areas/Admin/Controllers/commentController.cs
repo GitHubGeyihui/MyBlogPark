@@ -1,11 +1,7 @@
-﻿using AutoMapper;
-using MyBGO.App_Start;
-using MyBGO.Framework.Core;
-using MyBGO.Framework.Models;
+﻿using MyBGO.App_Start;
+using MyBGO.Framework.MyModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Areas.Admin.Controllers
@@ -19,9 +15,9 @@ namespace MyBlogPark.Areas.Admin.Controllers
             int pSize = 5;
             int sk = Convert.ToInt32((page - 1) * pSize);
             var u = Session["loginUser"] as User;
-            var nList = dbContext.Comment.Where(o => o.Form_UserID == u.ID).OrderByDescending(n => n.ID)
-                .Skip(sk).Take(pSize).ToList();
-
+            var a = Session["LoginArticle"] as Article;
+            var nList = dbContext.Comment.Where(o => o.Form_UserID == u.ID).OrderByDescending(n => n.ID).Skip(sk).Take(pSize).ToList();
+            //ViewBag.ArticleList = dbContext.Comment.Where(m => m.ArticlesID == a.ID).ToList();
             MyPager p = new MyPager(dbContext.Comment.Count(), page, pSize, 5);
             ViewBag.Pager = p.ToHTML();
 

@@ -12,14 +12,15 @@ namespace MyBGO.Framework.MyModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public User()
         {
-            this.Admins = new HashSet<Admins>();
-            this.Blogs = new HashSet<Blogs>();
-            this.Comments = new HashSet<Comments>();
+            this.Blog = new HashSet<Blog>();
+            this.Comment = new HashSet<Comment>();
+            this.Comment1 = new HashSet<Comment>();
+            this.Admin = new HashSet<Admin>();
         }
     
         public int ID { get; set; }
@@ -28,17 +29,17 @@ namespace MyBGO.Framework.MyModels
         public string Pwd { get; set; }
         public string IP { get; set; }
         public System.DateTime AddTime { get; set; }
-        public System.DateTime LastLoginTime { get; set; }
-        public int LoginTimes { get; set; }
         public int BlogID { get; set; }
         public System.DateTime EditTime { get; set; }
         public bool Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Admins> Admins { get; set; }
+        public virtual ICollection<Blog> Blog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Blogs> Blogs { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Comment> Comment1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Admin> Admin { get; set; }
     }
 }

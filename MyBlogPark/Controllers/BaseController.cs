@@ -1,5 +1,4 @@
-﻿using MyBGO.Framework.Core;
-using MyBGO.Framework.Models;
+﻿using MyBGO.Framework.MyModels;
 using System.Web.Mvc;
 
 namespace MyBlogPark.Controllers
@@ -29,8 +28,15 @@ namespace MyBlogPark.Controllers
                 return Session["loginCatalog"] as Catalog;
             }
         }
-
-        protected DottextCount dbContext = new DottextCount();//封装EF的使用
+        protected Article LoginArticle
+        {
+            get
+            {
+                return Session["LoginArticle"] as Article;
+            }
+        }
+        
+      public  DB_MyBlogEntities3 dbContext = new DB_MyBlogEntities3();
 
     }
 }

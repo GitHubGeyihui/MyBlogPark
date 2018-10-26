@@ -7,9 +7,9 @@ D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\Newtonsoft.Json.dll
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\EntityFramework.xml
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\EntityFramework.SqlServer.xml
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\Newtonsoft.Json.xml
+D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.csproj.CoreCompileInputs.cache
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.csproj.CopyComplete
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.dll
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.pdb
-D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\毕业设计\MyBlogPark\MyBGO\MyBGO.Framework\obj\Debug\MyBGO.Framework.csprojAssemblyReference.cache

@@ -1,17 +1,15 @@
 ﻿using MyBGO.App_Start;
-using MyBGO.Framework.Models;
+using MyBGO.Framework.MyModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyBGO.Controllers
 {
     public class BlogArticleController : BaseController
     {
-
+   
         // GET: BlogArticle
         public ActionResult Index(int page = 1)
         {
