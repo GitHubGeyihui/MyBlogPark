@@ -7,7 +7,6 @@ namespace MyBlogPark.Controllers
 {
     public class BlogController : BaseController
     {
-
         // GET: Blog    
         public ActionResult Index(string blog, int p = 1)
         {
@@ -29,8 +28,6 @@ namespace MyBlogPark.Controllers
             GetViewBag(model);
             return View(model);
         }
-
-
         public ActionResult Article(string blog, int id)
         {
             // 先判断用户存不存在
@@ -67,19 +64,26 @@ namespace MyBlogPark.Controllers
             {
                 to_UserID = model.UserID;
             }
-            var comment = new Comment
+            if (Session["loginUser"] == null)
             {
-                AddTime = DateTime.Now,
-                ArticleID = id,
-                Contents = content,
-                To_UserID = to_UserID,
-                Form_UserID = LoginUser.ID,
-            };
-            ViewBag.commentList = comment;
-            dbContext.Comment.Add(comment);
-            dbContext.SaveChanges();
-            Blog b = dbContext.Blog.First(o => o.UserID == LoginUser.ID);
-            return Redirect("/" + b.Identity + "/p/" + id + ".html");
+                return RedirectToAction("Login", "Home");
+            }
+         
+            var comment = new Comment
+                {
+                    AddTime = DateTime.Now,
+                    ArticleID = id,
+                    Contents = content,
+                    To_UserID = to_UserID,
+                    Form_UserID = LoginUser.ID,
+                };
+                ViewBag.commentList = comment;
+                dbContext.Comment.Add(comment);
+                dbContext.SaveChanges();
+                Blog b = dbContext.Blog.First(o => o.UserID == LoginUser.ID);
+                return Redirect("/" + b.Identity + "/p/" + id + ".html");
+            
+
         }
         public ActionResult Catalog(string blog, int id, int p = 1)
         {
@@ -88,10 +92,10 @@ namespace MyBlogPark.Controllers
             {
                 return Content("博客不存在");
             }
-            
+
 
             //在判断分类存不存在
-            if (dbContext.Catalog.Count(m => m.ID == id)==0)
+            if (dbContext.Catalog.Count(m => m.ID == id) == 0)
             {
                 return Content("分类不存在");
             }
@@ -114,7 +118,7 @@ namespace MyBlogPark.Controllers
             ViewBag.CatalogList = dbContext.Catalog.Where(m => m.Blog.Identity == blog).OrderByDescending(m => m.ID).ToList();
             ViewBag.aa = dbContext.Catalog.Find(id);
             ViewBag.HotArticleList = dbContext.Article.Where(m => m.Catalog.Blog.Identity == blog).OrderByDescending(m => m.Views).Take(3).ToList();
-            return View(dbContext.Blog.Where(o=>o.Identity==blog).FirstOrDefault());
+            return View(dbContext.Blog.Where(o => o.Identity == blog).FirstOrDefault());
 
         }
         //右侧栏热门博文

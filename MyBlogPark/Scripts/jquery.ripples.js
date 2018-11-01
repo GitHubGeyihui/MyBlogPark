@@ -250,11 +250,12 @@
 		// Init WebGL canvas
 		var canvas = document.createElement('canvas');
 		canvas.width = this.$el.innerWidth();
-		canvas.height = this.$el.innerHeight();
+        canvas.height = this.$el.innerHeight();
+       // canvas.height = document.body.scrollHeight;
 		this.canvas = canvas;
 		this.$canvas = $(canvas);
 		this.$canvas.css({
-			position: 'absolute',
+            position:'fixed',
 			left: 0,
 			top: 0,
 			right: 0,
@@ -277,7 +278,8 @@
 
 			if (newWidth != that.canvas.width || newHeight != that.canvas.height) {
 				canvas.width = newWidth;
-				canvas.height = newHeight;
+                canvas.height = newHeight;
+              
 			}
 		});
 

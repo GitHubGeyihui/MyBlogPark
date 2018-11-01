@@ -148,8 +148,7 @@ namespace MyBlogPark.Controllers
             ViewBag.movieGenre = new SelectList(genreList);
 
             //获取Movie表中全部数据
-            var articles = from a in dbContext.Article
-                         select a;
+            var articles = from a in dbContext.Article select a;
 
             //判断参数是否有值，第一次请求参数是空的，所以就显示全部数据；当执行搜索后，表单会把两个参数传过来，就可以对数据过滤了；
             if (!String.IsNullOrEmpty(searchString))

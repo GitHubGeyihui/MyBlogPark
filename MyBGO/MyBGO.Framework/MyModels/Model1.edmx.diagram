@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="051aba429b754a14b9a1a40b045082d6" Name="Diagram1">
+      <Diagram DiagramId="051aba429b754a14b9a1a40b045082d6" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="DB_MyBlogModel.Article" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MyBlogModel.Blog" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MyBlogModel.Catalog" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
@@ -17,7 +17,7 @@
         <AssociationConnector Association="DB_MyBlogModel.FK__Comment__Form_Us__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="DB_MyBlogModel.FK__Comment__To_User__4D94879B" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DB_MyBlogModel.Admin" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="DB_MyBlogModel.WebCatalog" Width="1.5" PointX="5.125" PointY="8.75" />
+        <EntityTypeShape EntityType="DB_MyBlogModel.WebCatalog" Width="1.5" PointX="6.5" PointY="0.75" />
         <AssociationConnector Association="DB_MyBlogModel.FK__Admin__User_ID__534D60F1" />
         <AssociationConnector Association="DB_MyBlogModel.FK__WebCatalo__Admin__5629CD9C" />
       </Diagram>

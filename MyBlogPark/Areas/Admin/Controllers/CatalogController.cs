@@ -56,7 +56,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
                
                 var model = dbContext.Catalog.FirstOrDefault(m => m.ID == info.ID);
                 model.Name = info.Name;
-                dbContext.Catalog.Add(model);          
+                dbContext.Catalog.Add(model);
                 dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 int res = dbContext.SaveChanges();
                 if (res > 0)
@@ -74,9 +74,7 @@ namespace MyBlogPark.Areas.Admin.Controllers
         [HttpPost]
         public int Delete(int id)
         {
-
             var model = dbContext.Catalog.FirstOrDefault(m => m.ID == id);
-
             dbContext.Catalog.Attach(model);
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Deleted;
             int res = dbContext.SaveChanges();

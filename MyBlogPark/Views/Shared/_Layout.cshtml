@@ -8,7 +8,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-
     <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png" />
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
     <style>
@@ -99,17 +98,15 @@
             margin: 0;
             padding: 0;
         }
-
-        html {
+        html,body {
             height: 100%;
         }
-
         body {
-            color: #000;
+            color: #000 ;
             font-size: 16px;
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
             background-image: url('../../IMG/bg2.jpg');
-            background-size: cover;
+            background-size: 100% 100%;
         }
 
             body:after {
@@ -209,11 +206,10 @@
     <!--Live2D看板娘-->
     <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
   
-
     @RenderSection("scripts", required: false)
 </head>
 <body>
-    <header class="am-topbar">
+    <header class="am-topbar am-topbar-fixed-top">
         <h1 class="am-topbar-brand">
             <a href="/">谷羽の博客园</a>
         </h1>
@@ -305,29 +301,27 @@
             }, 400);
         });
     </script>
-  
-    <footer class="footer am-topbar-fixed-bottom">
-        <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
-        <!--看板娘-->
-        <div class="waifu" id="waifu">
-            <div class="waifu-tips" style="opacity:1;"></div>
-            <canvas id="live2d" width="300" height="320" class="live2d"></canvas>
-            <div class="waifu-tool">
-                <span class="fui-home"></span>
-                <span class="fui-chat"></span>
-                <span class="fui-eye"></span>
-                <span class="fui-user"></span>
-                <span class="fui-photo"></span>
-                <span class="fui-info-circle"></span>
-                <span class="fui-cross"></span>
-            </div>
-
+    <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
+    <!--看板娘-->
+    <div class="waifu" id="waifu">
+        <div class="waifu-tips" style="opacity:1;"></div>
+        <canvas id="live2d" width="300" height="320" class="live2d"></canvas>
+        <div class="waifu-tool">
+            <span class="fui-home"></span>
+            <span class="fui-chat"></span>
+            <span class="fui-eye"></span>
+            <span class="fui-user"></span>
+            <span class="fui-photo"></span>
+            <span class="fui-info-circle"></span>
+            <span class="fui-cross"></span>
         </div>
         <link href="https://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
         <script src="~/Scripts/Live2D看板娘/flat-ui.min.js"></script>
         <script src="~/Scripts/Live2D看板娘/waifu-tips.js"></script>
         <script src="~/Scripts/Live2D看板娘/live2d.js"></script>
         <script type="text/javascript">initModel()</script>
+    </div>
+    <footer class="footer am-topbar-fixed-bottom">
         <p>
             © @DateTime.Now.Year <a href="#" target="_blank">SCITC</a>16301002 <a href="#" target="_blank">谷羽</a> の博客园
         </p>

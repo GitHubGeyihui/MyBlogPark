@@ -20,7 +20,6 @@ namespace MyBlogPark.Areas.Admin.Controllers
             var listArticle = dbContext.Article.Where(o => o.UserID == b.UserID).OrderBy(m => m.ID).OrderBy(c => c.CatalogID).Skip((p - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.TotalCount = dbContext.Article.Count();
             ViewBag.PageSize = pageSize;
-            // ViewBag.listCatalog = dbContext.Article.Where(m => m.CatalogName == c.Name).ToList();
             return View(listArticle);
 
         }

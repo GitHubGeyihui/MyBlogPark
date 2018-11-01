@@ -18,12 +18,10 @@
     <link rel="alternate icon" type="image/png" href="~/Content/AmazeUI-2.7.2/assets/i/favicon.png">
     <link href="~/Content/AmazeUI-2.7.2/assets/css/amazeui.min.css" rel="stylesheet" />
     <!--点赞动画-->
-
-    <link href="~/Content/dianzan/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/dianzan/css/icons.css" rel="stylesheet" />
-    <script src="~/Content/dianzan/js/dianzan.js"></script>
-    <script src="~/Content/dianzan/js/mo.min.js"></script>
-
+    <link href="~/Content/dianzan/css/font-awesome.min.css" rel="stylesheet" />
+   
+    <link href="~/Content/dianzan/fonts/font-awesome.min.css" rel="stylesheet" />
     <!--Live2D看板娘-->
     <link href="~/Scripts/Live2D看板娘/waifu.css" rel="stylesheet" />
 
@@ -270,7 +268,7 @@
     @RenderSection("scripts", required: false)
 </head>
 <body>
-    <header class="am-topbar">
+    <header class="am-topbar am-topbar-fixed-top">
         <div style="width:1200px;margin:0 auto;">
             <h1 class="am-topbar-brand">
                 <a href="#">@Model.Title</a>
@@ -295,9 +293,6 @@
                             {
                                 <li><a href="/@Model.Identity/@item.ID" style="color:black!important">@item.Name</a></li>
                             }
-
-
-
                         </ul>
                     </li>
 
@@ -416,7 +411,7 @@
     <script src="~/Scripts/Live2D看板娘/live2d.js"></script>
 
     <script type="text/javascript">initModel()</script>
-    <footer class="footer">
+    <footer class="footer am-topbar-fixed-bottom">
         <p>
             ©@DateTime.Now.Year <a href="#" target="_blank">SCITC</a> 16301002 <a href="#" target="_blank">谷羽</a>の博客园
         </p>
